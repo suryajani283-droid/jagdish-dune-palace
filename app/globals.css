@@ -1,0 +1,91 @@
+@import "tailwindcss";
+
+@theme {
+  --font-serif: var(--font-playfair), serif;
+  --font-sans: var(--font-lato), sans-serif;
+  
+  /* Premium Royal Colors */
+  --color-brand-gold: #D4AF37; 
+  --color-brand-dark: #2c0e0e; 
+  --color-brand-cream: #FAF8F5; 
+}
+
+body {
+  background-color: var(--color-brand-cream);
+  color: #333;
+  overflow-x: hidden;
+}
+
+/* =========================================
+   NAVBAR LINK ANIMATION (सुनहरी लाइन का जादू)
+   ========================================= */
+.nav-link {
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -4px;
+  left: 0;
+  background-color: var(--color-brand-gold);
+  transition: width 0.3s ease-in-out;
+}
+
+.nav-link:hover {
+  color: var(--color-brand-gold);
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+/* =========================================
+   PREMIUM BUTTONS
+   ========================================= */
+.btn-gold {
+  @apply relative overflow-hidden bg-brand-gold text-brand-dark font-sans font-bold uppercase tracking-widest text-xs px-8 py-4 transition-all duration-500 inline-block;
+  box-shadow: 0 4px 15px rgba(212, 175, 55, 0.2);
+  border: 1px solid var(--color-brand-gold);
+}
+.btn-gold:hover {
+  @apply bg-brand-dark text-brand-gold border-brand-dark shadow-2xl;
+  transform: translateY(-3px); /* ऊपर उठने का इफेक्ट */
+}
+
+.btn-outline {
+  @apply border border-brand-gold text-brand-gold hover:bg-brand-gold hover:text-brand-dark uppercase tracking-widest text-xs font-bold px-8 py-4 transition-all duration-300 inline-block relative overflow-hidden;
+}
+.btn-outline:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(212, 175, 55, 0.3);
+}
+
+/* =========================================
+   CARD HOVER EFFECTS (प्रीमियम लुक)
+   ========================================= */
+.card-premium {
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+.card-premium:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(44, 14, 14, 0.1); /* डार्क मैरून शैडो */
+}
+
+/* Animations */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-up {
+  animation: fadeUp 1s ease-out forwards;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: #f1f1f1; }
+::-webkit-scrollbar-thumb { background: #D4AF37; border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: #2c0e0e; }
