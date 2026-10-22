@@ -25,7 +25,7 @@ export default async function ManageRoomsPage() {
   return (
     <div className="p-8 max-w-7xl mx-auto">
       <div className="mb-8">
-        <h1 className="text-3xl font-serif font-bold text-[#2c0e0e]">Manage Rooms</h1>
+        <h1 className="text-3xl font-serif font-bold text-[bg-desert-text]">Manage Rooms</h1>
         <p className="text-stone-500 text-sm mt-1">Add, edit or remove hotel rooms</p>
       </div>
 
@@ -34,7 +34,7 @@ export default async function ManageRoomsPage() {
         {/* Add New Room Form */}
         <div className="lg:col-span-1">
           <form action={async (formData: FormData) => { 'use server'; await createRoom(formData); }} className="bg-white p-6 border border-stone-200 shadow-sm space-y-3 sticky top-8">
-            <h2 className="text-xl font-bold text-[#2c0e0e] mb-2 border-b pb-2">+ Add New Room</h2>
+            <h2 className="text-xl font-bold text-[bg-desert-text] mb-2 border-b pb-2">+ Add New Room</h2>
             
             <div>
               <label className="block text-[10px] font-bold text-stone-500 uppercase mb-1">Room Number *</label>
@@ -83,7 +83,7 @@ export default async function ManageRoomsPage() {
                 <option value="maintenance">Maintenance</option>
               </select>
             </div>
-            <button type="submit" className="w-full bg-[#D4AF37] text-[#2c0e0e] hover:bg-[#2c0e0e] hover:text-[#D4AF37] py-2 text-xs uppercase tracking-widest font-bold transition-colors mt-2">
+            <button type="submit" className="w-full bg-[#D4AF37] text-[bg-desert-text] hover:bg-[bg-desert-text] hover:text-[#D4AF37] py-2 text-xs uppercase tracking-widest font-bold transition-colors mt-2">
               Create Room
             </button>
           </form>
@@ -99,7 +99,7 @@ export default async function ManageRoomsPage() {
               <div key={room.id} className="bg-white border border-stone-200 shadow-sm p-6">
                 <div className="flex justify-between items-start mb-4">
                   <div>
-                    <h2 className="text-xl font-bold text-[#2c0e0e]">{room.category}</h2>
+                    <h2 className="text-xl font-bold text-[bg-desert-text]">{room.category}</h2>
                     <p className="text-xs text-stone-500 uppercase tracking-widest font-bold">Room {room.room_number}</p>
                   </div>
                   <div className={`px-2 py-1 text-xs font-bold uppercase rounded-sm border ${isOccupied ? 'bg-red-50 text-red-700 border-red-200' : 'bg-green-50 text-green-700 border-green-200'}`}>

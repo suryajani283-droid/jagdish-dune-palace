@@ -9,7 +9,7 @@ const playfair = Playfair_Display({
 });
 
 const lato = Lato({ 
-  weight: ['300', '400', '700'],
+  weight: ['300', '400', '700', '900'],
   subsets: ['latin'], 
   variable: '--font-lato',
   display: 'swap',
@@ -23,7 +23,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={`${playfair.variable} ${lato.variable}`}>
-      <body className="font-lato bg-[#faf8f5] text-[#2a2520] antialiased">
+      <body className="font-sans antialiased text-desert-text">
         {children}
       </body>
     </html>

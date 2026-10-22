@@ -28,10 +28,10 @@ export default async function GuestHistoryPage() {
     <div className="p-8 max-w-7xl mx-auto">
       <div className="flex justify-between items-center mb-8">
         <div>
-          <h1 className="text-3xl font-serif font-bold text-[#2c0e0e]">Guest History (CRM)</h1>
+          <h1 className="text-3xl font-serif font-bold text-[bg-desert-text]">Guest History (CRM)</h1>
           <p className="text-stone-500 text-sm mt-1">View all your past and current customers</p>
         </div>
-        <div className="bg-[#2c0e0e] text-[#D4AF37] px-6 py-2 rounded-sm font-bold">
+        <div className="bg-[bg-desert-text] text-[#D4AF37] px-6 py-2 rounded-sm font-bold">
           Total Customers: {guests?.length || 0}
         </div>
       </div>
@@ -60,7 +60,7 @@ export default async function GuestHistoryPage() {
 
               return (
                 <tr key={guest.id} className="hover:bg-stone-50/50">
-                  <td className="px-6 py-4 font-bold text-[#2c0e0e]">{guest.full_name}</td>
+                  <td className="px-6 py-4 font-bold text-[bg-desert-text]">{guest.full_name}</td>
                   <td className="px-6 py-4">
                     <p className="text-xs text-stone-600 font-medium">{guest.phone}</p>
                     <p className="text-xs text-stone-400">{guest.email || 'No email'}</p>

@@ -61,7 +61,7 @@ function BookingContent() {
     return (
       <>
         <Navbar />
-        <div className="min-h-[60vh] flex items-center justify-center font-serif text-xl text-[#2c0e0e]">
+        <div className="min-h-[60vh] flex items-center justify-center font-serif text-xl text-[bg-desert-text]">
           Checking authentication...
         </div>
         <Footer />
@@ -184,7 +184,7 @@ function BookingContent() {
       <Script src="https://checkout.razorpay.com/v1/checkout.js" strategy="lazyOnload" />
       
       <Navbar />
-      <div className="bg-[#2c0e0e] py-16 text-center text-white">
+      <div className="bg-[bg-desert-text] py-16 text-center text-white">
         <h1 className="text-5xl font-serif font-bold mb-4 text-[#D4AF37]">Reserve Your Stay</h1>
         <p className="text-stone-300">Complete your booking securely</p>
       </div>
@@ -194,7 +194,7 @@ function BookingContent() {
           
           {/* 1. Dates */}
           <div className="bg-white p-8 border border-stone-200 shadow-sm">
-            <h3 className="text-2xl font-serif mb-6 text-[#2c0e0e]">1. Select Dates</h3>
+            <h3 className="text-2xl font-serif mb-6 text-[bg-desert-text]">1. Select Dates</h3>
             <div className="grid md:grid-cols-4 gap-4">
               <div>
                 <label className="block text-xs uppercase tracking-widest text-stone-500 mb-2">Check-in</label>
@@ -214,7 +214,7 @@ function BookingContent() {
                   value={form.guests_count} onChange={(e) => setForm({ ...form, guests_count: +e.target.value })} />
               </div>
               <div className="flex items-end">
-                <button type="button" onClick={search} disabled={searching} className="w-full bg-[#2c0e0e] text-[#D4AF37] hover:bg-[#D4AF37] hover:text-[#2c0e0e] py-3 text-xs uppercase tracking-widest transition-colors font-bold">
+                <button type="button" onClick={search} disabled={searching} className="w-full bg-[bg-desert-text] text-[#D4AF37] hover:bg-[#D4AF37] hover:text-[bg-desert-text] py-3 text-xs uppercase tracking-widest transition-colors font-bold">
                   {searching ? 'Searching...' : 'Check Rooms'}
                 </button>
               </div>
@@ -224,7 +224,7 @@ function BookingContent() {
           {/* 2. Rooms */}
           {rooms.length > 0 && (
             <div className="bg-white p-8 border border-stone-200 shadow-sm animate-fade-up">
-              <h3 className="text-2xl font-serif mb-6 text-[#2c0e0e]">2. Select Room</h3>
+              <h3 className="text-2xl font-serif mb-6 text-[bg-desert-text]">2. Select Room</h3>
               <div className="space-y-4">
                 {rooms.map((r) => (
                   <label key={r.id} className={`flex justify-between items-center p-4 border cursor-pointer transition-colors ${form.room_id === r.id ? 'border-[#D4AF37] bg-[#faf8f5]' : 'border-stone-200 hover:border-stone-400'}`}>
@@ -232,7 +232,7 @@ function BookingContent() {
                       <input type="radio" name="room" value={r.id} className="accent-[#D4AF37] w-4 h-4"
                         checked={form.room_id === r.id} onChange={() => setForm({ ...form, room_id: r.id })} />
                       <div>
-                        <span className="font-bold text-[#2c0e0e] block">{r.category}</span>
+                        <span className="font-bold text-[bg-desert-text] block">{r.category}</span>
                         <span className="text-xs text-stone-500 uppercase tracking-widest">Room {r.room_number}</span>
                       </div>
                     </div>
@@ -245,7 +245,7 @@ function BookingContent() {
 
          {/* 3. Guest Details */}
 <div className="bg-white p-8 border border-stone-200 shadow-sm">
-  <h3 className="text-2xl font-serif mb-6 text-[#2c0e0e]">3. Guest Details</h3>
+  <h3 className="text-2xl font-serif mb-6 text-[bg-desert-text]">3. Guest Details</h3>
   <div className="grid md:grid-cols-3 gap-4">
     <input required placeholder="Full Name" className="w-full bg-[#faf8f5] border border-stone-200 px-4 py-3 focus:outline-none focus:border-[#D4AF37]"
       value={form.full_name} onChange={(e) => setForm({ ...form, full_name: e.target.value })} />
@@ -267,13 +267,13 @@ function BookingContent() {
 
           {/* 4. Payment Method */}
           <div className="bg-white p-8 border border-stone-200 shadow-sm">
-            <h3 className="text-2xl font-serif mb-6 text-[#2c0e0e]">4. Payment Method</h3>
+            <h3 className="text-2xl font-serif mb-6 text-[bg-desert-text]">4. Payment Method</h3>
             <div className="grid md:grid-cols-2 gap-4">
               <label className={`flex items-start gap-4 p-4 border cursor-pointer transition-colors ${form.payment_method === 'online' ? 'border-[#D4AF37] bg-[#faf8f5]' : 'border-stone-200'}`}>
                 <input type="radio" name="payment_method" value="online" className="accent-[#D4AF37] w-4 h-4 mt-1"
                   checked={form.payment_method === 'online'} onChange={() => setForm({ ...form, payment_method: 'online' })} />
                 <div>
-                  <span className="font-bold text-[#2c0e0e] block mb-1">Pay Online (सुरक्षित)</span>
+                  <span className="font-bold text-[bg-desert-text] block mb-1">Pay Online (सुरक्षित)</span>
                   <span className="text-xs text-stone-500">UPI, Credit Card, Debit Card, Netbanking के ज़रिए अभी पेमेंट करें।</span>
                 </div>
               </label>
@@ -281,7 +281,7 @@ function BookingContent() {
                 <input type="radio" name="payment_method" value="pay_at_hotel" className="accent-[#D4AF37] w-4 h-4 mt-1"
                   checked={form.payment_method === 'pay_at_hotel'} onChange={() => setForm({ ...form, payment_method: 'pay_at_hotel' })} />
                 <div>
-                  <span className="font-bold text-[#2c0e0e] block mb-1">Pay at Hotel (होटल में भुगतान)</span>
+                  <span className="font-bold text-[bg-desert-text] block mb-1">Pay at Hotel (होटल में भुगतान)</span>
                   <span className="text-xs text-stone-500">होटल पहुँचकर कैश या कार्ड से पेमेंट करें।</span>
                 </div>
               </label>
@@ -290,10 +290,10 @@ function BookingContent() {
 
           {/* 5. Coupon Code */}
           <div className="bg-white p-8 border border-stone-200 shadow-sm">
-            <h3 className="text-2xl font-serif mb-4 text-[#2c0e0e]">5. Have a Coupon Code?</h3>
+            <h3 className="text-2xl font-serif mb-4 text-[bg-desert-text]">5. Have a Coupon Code?</h3>
             <div className="flex gap-2">
               <input type="text" value={couponInput} onChange={(e) => setCouponInput(e.target.value.toUpperCase())} placeholder="Enter Code" className="w-full bg-[#faf8f5] border border-stone-200 px-4 py-3 focus:outline-none focus:border-[#D4AF37] uppercase font-mono" />
-              <button type="button" onClick={applyCoupon} disabled={checkingCoupon} className="bg-[#2c0e0e] text-[#D4AF37] border border-[#2c0e0e] hover:bg-[#D4AF37] hover:text-[#2c0e0e] px-6 py-3 font-bold uppercase tracking-widest transition-colors disabled:opacity-50">
+              <button type="button" onClick={applyCoupon} disabled={checkingCoupon} className="bg-[bg-desert-text] text-[#D4AF37] border border-[bg-desert-text] hover:bg-[#D4AF37] hover:text-[bg-desert-text] px-6 py-3 font-bold uppercase tracking-widest transition-colors disabled:opacity-50">
                 {checkingCoupon ? '...' : 'Apply'}
               </button>
             </div>
@@ -302,7 +302,7 @@ function BookingContent() {
 
           {/* 6. Summary */}
           {selected && nights > 0 && (
-            <div className="bg-[#2c0e0e] text-white p-8 border border-[#D4AF37] animate-fade-up shadow-xl">
+            <div className="bg-[bg-desert-text] text-white p-8 border border-[#D4AF37] animate-fade-up shadow-xl">
               <h3 className="text-2xl font-serif mb-6 text-[#D4AF37]">Booking Summary</h3>
               <div className="flex justify-between text-sm mb-2 text-stone-300"><span>{selected.category} ({nights} Nights)</span><span>{formatINR(baseTotal)}</span></div>
               {discountPercent > 0 && <div className="flex justify-between text-sm mb-2 text-green-400 font-bold"><span>Discount ({discountPercent}% OFF)</span><span>- {formatINR(discountAmount)}</span></div>}
@@ -317,7 +317,7 @@ function BookingContent() {
 
           {error && <p className="text-red-600 font-bold text-center bg-red-50 p-4 border border-red-200 animate-fade-up">{error}</p>}
           
-          <button type="submit" disabled={submitting || !form.room_id} className={`w-full py-5 text-sm uppercase tracking-widest font-bold transition-all shadow-lg ${form.room_id ? 'bg-[#2c0e0e] text-[#D4AF37] hover:bg-[#D4AF37] hover:text-[#2c0e0e]' : 'bg-stone-300 text-stone-500 cursor-not-allowed'}`}>
+          <button type="submit" disabled={submitting || !form.room_id} className={`w-full py-5 text-sm uppercase tracking-widest font-bold transition-all shadow-lg ${form.room_id ? 'bg-[bg-desert-text] text-[#D4AF37] hover:bg-[#D4AF37] hover:text-[bg-desert-text]' : 'bg-stone-300 text-stone-500 cursor-not-allowed'}`}>
             {submitting ? 'Processing...' : form.payment_method === 'online' ? 'Proceed to Pay' : 'Confirm Booking'}
           </button>
         </form>
@@ -328,5 +328,5 @@ function BookingContent() {
 }
 
 export default function BookingPage() {
-  return <Suspense fallback={<div className="text-center py-20 font-serif text-[#2c0e0e]">Loading...</div>}><BookingContent /></Suspense>;
+  return <Suspense fallback={<div className="text-center py-20 font-serif text-[bg-desert-text]">Loading...</div>}><BookingContent /></Suspense>;
 }

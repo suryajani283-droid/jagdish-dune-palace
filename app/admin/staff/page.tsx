@@ -25,7 +25,7 @@ export default async function StaffPage() {
   return (
     <div className="p-8 max-w-7xl mx-auto">
       <div className="mb-8">
-        <h1 className="text-3xl font-serif font-bold text-[#2c0e0e]">Staff Management</h1>
+        <h1 className="text-3xl font-serif font-bold text-[bg-desert-text]">Staff Management</h1>
         <p className="text-stone-500 text-sm mt-1">Create, manage and remove hotel staff accounts</p>
       </div>
 
@@ -34,7 +34,7 @@ export default async function StaffPage() {
         {/* Add Staff Form */}
         <div className="lg:col-span-1">
           <form action={submitStaff} className="bg-white p-6 border border-stone-200 shadow-sm space-y-4">
-            <h2 className="text-xl font-bold text-[#2c0e0e] mb-4 border-b pb-2">Add New Staff</h2>
+            <h2 className="text-xl font-bold text-[bg-desert-text] mb-4 border-b pb-2">Add New Staff</h2>
             
             <div>
               <label className="block text-xs font-bold text-stone-500 uppercase mb-1">Full Name *</label>
@@ -59,7 +59,7 @@ export default async function StaffPage() {
               </select>
             </div>
 
-            <button type="submit" className="w-full bg-[#2c0e0e] text-white hover:bg-[#D4AF37] py-3 text-xs uppercase tracking-widest font-bold transition-colors">
+            <button type="submit" className="w-full bg-[bg-desert-text] text-white hover:bg-[#D4AF37] py-3 text-xs uppercase tracking-widest font-bold transition-colors">
               Create Account
             </button>
           </form>
@@ -84,7 +84,7 @@ export default async function StaffPage() {
               ) : (
                 staffMembers.map((staff) => (
                   <tr key={staff.id} className="hover:bg-stone-50/50">
-                    <td className="px-6 py-4 font-bold text-[#2c0e0e]">{staff.full_name}</td>
+                    <td className="px-6 py-4 font-bold text-[bg-desert-text]">{staff.full_name}</td>
                     <td className="px-6 py-4">
                       <span className={`px-2 py-1 text-xs font-bold uppercase rounded-sm border ${staff.role === 'admin' ? 'bg-purple-100 text-purple-700 border-purple-200' : 'bg-blue-100 text-blue-700 border-blue-200'}`}>
                         {staff.role}

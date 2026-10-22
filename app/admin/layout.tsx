@@ -15,7 +15,7 @@ export default async function AdminLayout({ children }: { children: React.ReactN
   return (
     <div className="min-h-screen bg-stone-50 flex flex-col md:flex-row">
       
-      <aside className="w-full md:w-64 bg-[#2c0e0e] text-white flex flex-col print:hidden shadow-xl z-20">
+      <aside className="w-full md:w-64 bg-[bg-desert-text] text-white flex flex-col print:hidden shadow-xl z-20">
         <div className="p-6 border-b border-stone-800">
           <h2 className="text-xl font-serif font-bold text-[#D4AF37]">JDP Admin</h2>
           <p className="text-xs text-stone-400 mt-1">{displayName}</p>
@@ -35,7 +35,7 @@ export default async function AdminLayout({ children }: { children: React.ReactN
           </div>
           
           <div className="py-2">
-            <Link href="/admin/bookings/new" className="block px-4 py-3 bg-[#D4AF37] text-[#2c0e0e] font-bold rounded-sm hover:bg-[#b8984e] transition-colors shadow-md">
+            <Link href="/admin/bookings/new" className="block px-4 py-3 bg-[#D4AF37] text-[bg-desert-text] font-bold rounded-sm hover:bg-[#b8984e] transition-colors shadow-md">
               + New Booking
             </Link>
           </div>

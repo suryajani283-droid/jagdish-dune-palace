@@ -41,7 +41,7 @@ export function Navbar() {
     <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-stone-200 shadow-sm">
       
       {/* Top Bar */}
-      <div className="bg-[#2c0e0e] text-stone-300 text-xs py-2 hidden md:block">
+      <div className="bg-[bg-desert-text] text-stone-300 text-xs py-2 hidden md:block">
         <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
           <div className="flex gap-6 font-medium tracking-wide">
             <span>📞 +91 7599936000</span>
@@ -61,12 +61,12 @@ export function Navbar() {
               <img src={logoUrl} alt="Hotel Logo" className="w-full h-full object-cover" />
             </div>
           ) : (
-            <div className="w-16 h-16 md:w-20 md:h-20 rounded-full border-2 border-[#D4AF37] flex items-center justify-center font-serif text-3xl font-bold text-[#2c0e0e] group-hover:bg-[#D4AF37] group-hover:text-white transition-all duration-300 shadow-md shrink-0">
+            <div className="w-16 h-16 md:w-20 md:h-20 rounded-full border-2 border-[#D4AF37] flex items-center justify-center font-serif text-3xl font-bold text-[bg-desert-text] group-hover:bg-[#D4AF37] group-hover:text-white transition-all duration-300 shadow-md shrink-0">
               J
             </div>
           )}
           <div className="flex flex-col">
-            <span className="text-xl md:text-3xl font-serif font-bold text-[#2c0e0e] tracking-wide uppercase leading-tight group-hover:text-[#D4AF37] transition-colors">
+            <span className="text-xl md:text-3xl font-serif font-bold text-[bg-desert-text] tracking-wide uppercase leading-tight group-hover:text-[#D4AF37] transition-colors">
               Jagdish Dune
             </span>
             <span className="text-[10px] md:text-xs uppercase tracking-[0.4em] text-[#D4AF37] font-sans font-bold text-left mt-1">
@@ -87,7 +87,7 @@ export function Navbar() {
           {/* Login / Profile */}
           {user ? (
             <div className="flex items-center gap-4 ml-2 pl-4 border-l border-stone-300">
-              <Link href="/my-booking" className="nav-link text-[#2c0e0e] flex items-center gap-1">
+              <Link href="/my-booking" className="nav-link text-[bg-desert-text] flex items-center gap-1">
                 👤 Profile
               </Link>
               <button onClick={handleLogout} className="text-red-500 hover:text-red-700 transition-colors">
@@ -95,7 +95,7 @@ export function Navbar() {
               </button>
             </div>
           ) : (
-            <Link href="/customer/login" className="nav-link text-[#2c0e0e] border border-stone-300 px-3 py-1.5 rounded-sm hover:border-[#D4AF37]">
+            <Link href="/customer/login" className="nav-link text-[bg-desert-text] border border-stone-300 px-3 py-1.5 rounded-sm hover:border-[#D4AF37]">
               Login
             </Link>
           )}
@@ -103,14 +103,14 @@ export function Navbar() {
           {/* Book Now Button (Premium Animation) */}
           <Link 
             href="/booking" 
-            className="bg-[#2c0e0e] text-[#D4AF37] border border-[#D4AF37] hover:bg-[#D4AF37] hover:text-[#2c0e0e] transition-all duration-300 py-3 px-6 ml-2 font-bold shadow-md hover:-translate-y-1 hover:shadow-xl"
+            className="bg-[bg-desert-text] text-[#D4AF37] border border-[#D4AF37] hover:bg-[#D4AF37] hover:text-[bg-desert-text] transition-all duration-300 py-3 px-6 ml-2 font-bold shadow-md hover:-translate-y-1 hover:shadow-xl"
           >
             Book Now
           </Link>
         </nav>
 
         {/* Mobile Menu Button */}
-        <button className="lg:hidden text-2xl text-[#2c0e0e]" onClick={() => setIsOpen(!isOpen)}>
+        <button className="lg:hidden text-2xl text-[bg-desert-text]" onClick={() => setIsOpen(!isOpen)}>
           {isOpen ? '✕' : '☰'}
         </button>
       </div>
@@ -139,7 +139,7 @@ export function Navbar() {
           <Link 
             href="/booking" 
             onClick={() => setIsOpen(false)} 
-            className="bg-[#2c0e0e] text-[#D4AF37] border border-[#D4AF37] text-center py-4 mt-2 shadow-md transition-all"
+            className="bg-[bg-desert-text] text-[#D4AF37] border border-[#D4AF37] text-center py-4 mt-2 shadow-md transition-all"
           >
             Book Now
           </Link>

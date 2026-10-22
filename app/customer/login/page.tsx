@@ -88,7 +88,7 @@ function LoginContent() {
       <div className="min-h-[70vh] flex items-center justify-center bg-[#faf8f5] py-16 px-6">
         <div className="bg-white p-8 md:p-12 border border-stone-200 shadow-xl w-full max-w-md">
           
-          <h1 className="text-3xl font-serif font-bold text-[#2c0e0e] text-center mb-2">Customer Login</h1>
+          <h1 className="text-3xl font-serif font-bold text-[bg-desert-text] text-center mb-2">Customer Login</h1>
           
           {step === 'email' && (
             <form onSubmit={handleSendOtp} className="space-y-6 mt-6">
@@ -99,7 +99,7 @@ function LoginContent() {
                   value={email} onChange={(e) => setEmail(e.target.value)} />
               </div>
               {error && <p className="text-red-600 text-sm bg-red-50 p-2">{error}</p>}
-              <button type="submit" disabled={loading} className="w-full bg-[#2c0e0e] text-[#D4AF37] hover:bg-[#D4AF37] hover:text-[#2c0e0e] py-3 font-bold uppercase tracking-widest text-xs transition-colors">
+              <button type="submit" disabled={loading} className="w-full bg-[bg-desert-text] text-[#D4AF37] hover:bg-[#D4AF37] hover:text-[bg-desert-text] py-3 font-bold uppercase tracking-widest text-xs transition-colors">
                 {loading ? 'Sending OTP...' : 'Send Login OTP'}
               </button>
             </form>
@@ -114,7 +114,7 @@ function LoginContent() {
                   value={otp} onChange={(e) => setOtp(e.target.value)} />
               </div>
               {error && <p className="text-red-600 text-sm bg-red-50 p-2">{error}</p>}
-              <button type="submit" disabled={loading} className="w-full bg-[#D4AF37] text-[#2c0e0e] hover:bg-[#2c0e0e] hover:text-[#D4AF37] py-3 font-bold uppercase tracking-widest text-xs transition-colors">
+              <button type="submit" disabled={loading} className="w-full bg-[#D4AF37] text-[bg-desert-text] hover:bg-[bg-desert-text] hover:text-[#D4AF37] py-3 font-bold uppercase tracking-widest text-xs transition-colors">
                 {loading ? 'Verifying...' : 'Verify OTP'}
               </button>
             </form>
@@ -129,7 +129,7 @@ function LoginContent() {
                   value={phone} onChange={(e) => setPhone(e.target.value)} />
               </div>
               {error && <p className="text-red-600 text-sm bg-red-50 p-2">{error}</p>}
-              <button type="submit" disabled={loading} className="w-full bg-[#2c0e0e] text-[#D4AF37] hover:bg-[#D4AF37] hover:text-[#2c0e0e] py-3 font-bold uppercase tracking-widest text-xs transition-colors">
+              <button type="submit" disabled={loading} className="w-full bg-[bg-desert-text] text-[#D4AF37] hover:bg-[#D4AF37] hover:text-[bg-desert-text] py-3 font-bold uppercase tracking-widest text-xs transition-colors">
                 {loading ? 'Saving...' : 'Save & Continue'}
               </button>
             </form>

@@ -120,7 +120,7 @@ export function EditRoomForm({ room }: { room: any }) {
           </div>
         )}
 
-        <input type="file" name="room_images" multiple accept=".jpg,.jpeg,.png,.webp" className="w-full text-xs bg-white border border-stone-200 file:mr-4 file:py-1 file:px-3 file:border-0 file:text-xs file:font-semibold file:bg-[#2c0e0e] file:text-white hover:file:bg-[#D4AF37]" />
+        <input type="file" name="room_images" multiple accept=".jpg,.jpeg,.png,.webp" className="w-full text-xs bg-white border border-stone-200 file:mr-4 file:py-1 file:px-3 file:border-0 file:text-xs file:font-semibold file:bg-[bg-desert-text] file:text-white hover:file:bg-[#D4AF37]" />
         <input type="hidden" name="existing_images" value={currentImages.join(',')} />
       </div>
 
@@ -129,7 +129,7 @@ export function EditRoomForm({ room }: { room: any }) {
 
       <div className="flex justify-between items-center pt-2">
         <DeleteRoomButton roomId={room.id} />
-        <button type="submit" disabled={loading} className="bg-[#2c0e0e] text-white hover:bg-[#D4AF37] px-4 py-2 text-xs font-bold transition-colors disabled:opacity-50">
+        <button type="submit" disabled={loading} className="bg-[bg-desert-text] text-white hover:bg-[#D4AF37] px-4 py-2 text-xs font-bold transition-colors disabled:opacity-50">
           {loading ? 'Saving...' : 'Save Changes'}
         </button>
       </div>
