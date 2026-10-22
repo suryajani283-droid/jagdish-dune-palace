@@ -1,65 +1,82 @@
 @import "tailwindcss";
 
 @theme {
-  /* Typography */
   --font-serif: var(--font-playfair), serif;
   --font-sans: var(--font-lato), sans-serif;
   
-  /* Desert Color Palette */
-  --color-desert-sand: #F9F6F0;    /* Warm off-white / cream background */
-  --color-desert-cream: #FFFFFF;   /* Pure white for cards */
-  --color-desert-terracotta: #C05C3E; /* Accent color for primary buttons */
-  --color-desert-gold: text-desert-text;    /* Sandstone gold for borders/highlights */
-  --color-desert-blue: #1E3A8A;    /* Royal blue for secondary accents */
-  --color-desert-text: #2B2520;    /* Dark brown-grey for text */
+  /* NEXT LEVEL LUXURY COLORS */
+  --color-brand-primary: #0B1E1A; /* Deep Forest Green (मुख्य रंग) */
+  --color-brand-accent: #D4AF37;  /* Champagne Gold (हाईलाइट के लिए) */
+  --color-brand-bg: #F8F6F0;      /* Warm Ivory (बैकग्राउंड) */
+  --color-brand-surface: #FFFFFF; /* Cards के लिए */
+  --color-brand-text: #2B2B2B;    /* सॉफ्ट ब्लैक टेक्स्ट */
 }
 
 body {
-  background-color: var(--color-desert-sand);
-  color: var(--color-desert-text);
+  background-color: var(--color-brand-bg);
+  color: var(--color-brand-text);
   overflow-x: hidden;
-}
-
-/* =========================================
-   TYPOGRAPHY
-   ========================================= */
-h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-serif);
-  color: var(--color-desert-text);
 }
 
 /* =========================================
    PREMIUM BUTTONS
    ========================================= */
-.btn-terracotta {
-  @apply relative overflow-hidden bg-desert-terracotta text-white font-sans font-bold uppercase tracking-widest text-xs px-8 py-4 transition-all duration-300 inline-block shadow-lg;
+.btn-luxury {
+  @apply relative overflow-hidden bg-brand-accent text-brand-primary font-bold uppercase tracking-widest text-xs px-8 py-4 transition-all duration-300 inline-block;
+  box-shadow: 0 4px 15px rgba(212, 175, 55, 0.2);
 }
-.btn-terracotta:hover {
-  @apply bg-desert-text shadow-2xl;
-  transform: translateY(-2px); /* थोड़ा ऊपर उठेगा */
+.btn-luxury:hover {
+  @apply bg-brand-primary text-brand-accent;
+  transform: translateY(-3px); /* बटन ऊपर उठेगा */
+  box-shadow: 0 8px 25px rgba(11, 30, 26, 0.3);
 }
 
-.btn-gold-outline {
-  @apply border border-desert-gold text-desert-gold hover:bg-desert-gold hover:text-desert-text uppercase tracking-widest text-xs font-bold px-8 py-4 transition-all duration-300 inline-block;
+.btn-outline {
+  @apply border-2 border-brand-primary text-brand-primary hover:bg-brand-primary hover:text-brand-accent uppercase tracking-widest text-xs font-bold px-8 py-4 transition-all duration-300 inline-block;
 }
-.btn-gold-outline:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+.btn-outline:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(11, 30, 26, 0.15);
 }
 
 /* =========================================
-   COMPONENT STYLES (Cards & Shadows)
+   NAVBAR LINK ANIMATION
+   ========================================= */
+.nav-link {
+  position: relative;
+  transition: color 0.3s ease;
+}
+.nav-link::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -4px;
+  left: 0;
+  background-color: var(--color-brand-accent);
+  transition: width 0.3s ease-in-out;
+}
+.nav-link:hover {
+  color: var(--color-brand-accent);
+}
+.nav-link:hover::after {
+  width: 100%;
+}
+
+/* =========================================
+   CARD HOVER EFFECT
    ========================================= */
 .card-luxury {
-  @apply bg-desert-cream border border-stone-200 overflow-hidden transition-all duration-300;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05); /* Subtle shadow */
+  @apply bg-brand-surface border border-stone-200 overflow-hidden transition-all duration-500;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.03);
 }
 .card-luxury:hover {
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); /* Deeper shadow on hover */
-  transform: translateY(-5px);
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(11, 30, 26, 0.1); /* डार्क ग्रीन शैडो */
+  border-color: var(--color-brand-accent);
 }
 
 /* Hero Overlay */
 .hero-overlay {
-  background: linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.6) 100%);
+  background: linear-gradient(to bottom, rgba(11, 30, 26, 0.4) 0%, rgba(11, 30, 26, 0.8) 100%);
 }

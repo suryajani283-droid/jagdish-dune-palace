@@ -20,19 +20,13 @@ export function Hero({ settings }: { settings: any }) {
   return (
     <section className="relative h-[90vh] min-h-[600px] flex items-center justify-center text-center overflow-hidden w-full">
       
-      <Image
-        src={bgImage}
-        alt="Hotel Background"
-        fill
-        priority
-        className="object-cover object-center z-0"
-      />
+      <Image src={bgImage} alt="Hotel Background" fill priority className="object-cover object-center z-0" />
       
-      {/* ✅ नया Desert Overlay (डार्क ग्रेडिएंट) */}
+      {/* नया Premium Overlay */}
       <div className="absolute inset-0 hero-overlay z-10"></div>
 
       <div className="relative z-20 max-w-4xl px-6 text-white animate-fade-up w-full pt-16">
-        <p className="text-desert-gold uppercase tracking-[0.5em] text-xs md:text-sm mb-4 font-bold drop-shadow-md">
+        <p className="text-brand-accent uppercase tracking-[0.5em] text-xs md:text-sm mb-4 font-bold">
           Welcome to Chohtan, Barmer
         </p>
         <h1 className="text-5xl md:text-7xl font-serif font-bold mb-6 tracking-tight text-white drop-shadow-xl">
@@ -43,11 +37,10 @@ export function Hero({ settings }: { settings: any }) {
         </p>
         
         <div className="flex flex-col md:flex-row justify-center items-center gap-4">
-          {/* ✅ नया Terracotta बटन */}
-          <Link href="/booking" className="btn-terracotta w-full md:w-auto text-center">
+          <Link href="/booking" className="btn-luxury w-full md:w-auto text-center">
             Book Your Stay
           </Link>
-          <Link href="/rooms" className="btn-gold-outline w-full md:w-auto text-center bg-white/10 backdrop-blur-sm border-white/50 text-white hover:bg-white hover:text-desert-text">
+          <Link href="/rooms" className="border-2 border-white text-white hover:bg-white hover:text-brand-primary font-bold uppercase tracking-widest text-xs px-8 py-4 transition-all duration-300 w-full md:w-auto text-center">
             Explore Rooms
           </Link>
         </div>
