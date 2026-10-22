@@ -14,8 +14,8 @@ export function LanguageSwitcher() {
   };
   return (
     <div className="flex gap-1 text-xs">
-      <button onClick={() => change('en')} className={`px-2 py-1 ${lang === 'en' ? 'bg-[#c9a961] text-white' : 'text-stone-600'}`}>EN</button>
-      <button onClick={() => change('hi')} className={`px-2 py-1 ${lang === 'hi' ? 'bg-[#c9a961] text-white' : 'text-stone-600'}`}>हिं</button>
+      <button onClick={() => change('en')} className={`px-2 py-1 ${lang === 'en' ? 'bg-[brand-accent] text-white' : 'text-stone-600'}`}>EN</button>
+      <button onClick={() => change('hi')} className={`px-2 py-1 ${lang === 'hi' ? 'bg-[brand-accent] text-white' : 'text-stone-600'}`}>हिं</button>
     </div>
   );
 }

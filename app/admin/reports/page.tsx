@@ -50,7 +50,7 @@ export default async function ReportsPage() {
     <div className="p-8 max-w-7xl mx-auto print:p-0 print:m-0 print:max-w-none">
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4 print:hidden">
         <div>
-          <h1 className="text-3xl font-serif font-bold text-[#1a1815]">Monthly Reports</h1>
+          <h1 className="text-3xl font-serif font-bold text-[brand-primary]">Monthly Reports</h1>
           <p className="text-stone-500 text-sm mt-1">Financial performance for the last 6 months</p>
         </div>
         
@@ -78,7 +78,7 @@ export default async function ReportsPage() {
 
       <div className="bg-white border border-stone-200 shadow-sm overflow-x-auto print:shadow-none print:border-none">
         <table className="w-full text-left text-sm text-stone-600 print:text-xs">
-          <thead className="bg-[#faf8f5] border-b border-stone-200 text-xs uppercase tracking-wider text-stone-500 print:bg-gray-100 print:text-black">
+          <thead className="bg-[brand-bg] border-b border-stone-200 text-xs uppercase tracking-wider text-stone-500 print:bg-gray-100 print:text-black">
             <tr>
               <th className="px-6 py-4 font-bold border-r border-stone-100 print:border-gray-300">Month</th>
               <th className="px-6 py-4 font-bold text-center border-r border-stone-100 print:border-gray-300">Total Bookings</th>
@@ -90,7 +90,7 @@ export default async function ReportsPage() {
           <tbody className="divide-y divide-stone-100 print:divide-gray-300">
             {reportData.map((row, i) => (
               <tr key={i} className="hover:bg-stone-50/50 transition-colors print:hover:bg-transparent">
-                <td className="px-6 py-4 font-bold text-[#1a1815] border-r border-stone-50 print:text-black print:border-gray-300">{row.month}</td>
+                <td className="px-6 py-4 font-bold text-[brand-primary] border-r border-stone-50 print:text-black print:border-gray-300">{row.month}</td>
                 <td className="px-6 py-4 text-center border-r border-stone-50 print:border-gray-300">
                   <span className="bg-stone-100 text-stone-600 px-3 py-1 rounded-full text-xs font-bold border border-stone-200 print:border-none print:p-0 print:bg-transparent">
                     {row.totalBookings}
@@ -102,7 +102,7 @@ export default async function ReportsPage() {
                 <td className="px-6 py-4 text-right font-semibold text-red-600 border-r border-stone-50 print:text-black print:border-gray-300">
                   {formatINR(row.expense)}
                 </td>
-                <td className={`px-6 py-4 text-right font-bold print:text-black ${row.profit >= 0 ? 'text-[#c9a961]' : 'text-red-600'}`}>
+                <td className={`px-6 py-4 text-right font-bold print:text-black ${row.profit >= 0 ? 'text-[brand-accent]' : 'text-red-600'}`}>
                   {formatINR(row.profit)}
                 </td>
               </tr>

@@ -37,8 +37,8 @@ export function RoomCard({ room }: { room: any }) {
 
         {images.length > 1 && (
           <>
-            <button onClick={prevSlide} className="absolute top-1/2 left-2 -translate-y-1/2 bg-white/70 hover:bg-white text-[bg-desert-text] w-8 h-8 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity z-10 shadow-md">‹</button>
-            <button onClick={nextSlide} className="absolute top-1/2 right-2 -translate-y-1/2 bg-white/70 hover:bg-white text-[bg-desert-text] w-8 h-8 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity z-10 shadow-md">›</button>
+            <button onClick={prevSlide} className="absolute top-1/2 left-2 -translate-y-1/2 bg-white/70 hover:bg-white text-[brand-primary] w-8 h-8 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity z-10 shadow-md">‹</button>
+            <button onClick={nextSlide} className="absolute top-1/2 right-2 -translate-y-1/2 bg-white/70 hover:bg-white text-[brand-primary] w-8 h-8 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity z-10 shadow-md">›</button>
             <div className="absolute bottom-3 left-0 right-0 flex justify-center gap-1.5 z-10">
               {images.map((_: any, idx: number) => (
                 <button key={idx} onClick={(e) => { e.preventDefault(); setCurrentIndex(idx); }} className={`w-2 h-2 rounded-full transition-all duration-300 ${currentIndex === idx ? 'bg-[text-desert-text] w-4' : 'bg-white/60 hover:bg-white'}`} />
@@ -51,7 +51,7 @@ export function RoomCard({ room }: { room: any }) {
       {/* Details */}
       <div className="p-6 flex-grow flex flex-col">
         <div className="flex justify-between items-start mb-2">
-          <h3 className="text-2xl font-serif font-bold text-[bg-desert-text]">{room.category}</h3>
+          <h3 className="text-2xl font-serif font-bold text-[brand-primary]">{room.category}</h3>
           <div className="text-right">
             <span className="block text-xl font-bold text-[text-desert-text]">{formatINR(room.base_price)}</span>
             <span className="text-[10px] text-stone-400 uppercase tracking-wider">/ night</span>
@@ -69,7 +69,7 @@ export function RoomCard({ room }: { room: any }) {
         <div className="flex flex-wrap gap-2 mb-6 flex-grow">
           {room.amenities && room.amenities.length > 0 ? (
             room.amenities.slice(0, 4).map((amenity: string) => (
-              <span key={amenity} className="text-[10px] bg-[#faf8f5] text-stone-600 px-2 py-1 rounded-sm border border-stone-200 font-semibold">
+              <span key={amenity} className="text-[10px] bg-[brand-bg] text-stone-600 px-2 py-1 rounded-sm border border-stone-200 font-semibold">
                 {amenity}
               </span>
             ))
@@ -82,7 +82,7 @@ export function RoomCard({ room }: { room: any }) {
         </div>
 
         {/* यहाँ गलती सुधार दी गई है: </button> की जगह </Link> कर दिया है */}
-        <Link href={`/booking?room=${room.id}`} className="border border-[text-desert-text] text-[text-desert-text] hover:bg-[text-desert-text] hover:text-[bg-desert-text] w-full text-center py-2.5 text-xs uppercase tracking-widest font-bold transition-colors block">
+        <Link href={`/booking?room=${room.id}`} className="border border-[text-desert-text] text-[text-desert-text] hover:bg-[text-desert-text] hover:text-[brand-primary] w-full text-center py-2.5 text-xs uppercase tracking-widest font-bold transition-colors block">
           Book This Room
         </Link>
       </div>

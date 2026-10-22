@@ -25,14 +25,14 @@ export const sendBookingEmail = async (
 
     const htmlContent = `
       <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; border: 1px solid #e5e5e5; padding: 20px;">
-        <h2 style="color: #c9a961; text-align: center;">Jagdish Dune Palace</h2>
+        <h2 style="color: brand-accent; text-align: center;">Jagdish Dune Palace</h2>
         <p style="text-align: center; color: #666;">Booking Confirmation</p>
         
         <p>Dear <strong>${guestName}</strong>,</p>
         <p>Thank you for choosing Jagdish Dune Palace. Your booking is successfully confirmed. Here are your details:</p>
         
         <table style="width: 100%; border-collapse: collapse; margin-top: 20px;">
-          <tr><td style="padding: 8px; border-bottom: 1px solid #ddd;"><strong>Booking Reference:</strong></td><td style="padding: 8px; border-bottom: 1px solid #ddd; font-size: 18px; color: #c9a961;"><strong>${bookingRef}</strong></td></tr>
+          <tr><td style="padding: 8px; border-bottom: 1px solid #ddd;"><strong>Booking Reference:</strong></td><td style="padding: 8px; border-bottom: 1px solid #ddd; font-size: 18px; color: brand-accent;"><strong>${bookingRef}</strong></td></tr>
           <tr><td style="padding: 8px; border-bottom: 1px solid #ddd;"><strong>Room Type:</strong></td><td style="padding: 8px; border-bottom: 1px solid #ddd;">${roomType}</td></tr>
           <tr><td style="padding: 8px; border-bottom: 1px solid #ddd;"><strong>Check-in:</strong></td><td style="padding: 8px; border-bottom: 1px solid #ddd;">${checkIn}</td></tr>
           <tr><td style="padding: 8px; border-bottom: 1px solid #ddd;"><strong>Check-out:</strong></td><td style="padding: 8px; border-bottom: 1px solid #ddd;">${checkOut}</td></tr>

@@ -12,7 +12,7 @@ export default async function AdminOffersPage() {
 
   return (
     <div className="p-8 max-w-7xl mx-auto">
-      <h1 className="text-3xl font-serif font-bold text-[bg-desert-text] mb-8">Manage Offers & Coupons</h1>
+      <h1 className="text-3xl font-serif font-bold text-[brand-primary] mb-8">Manage Offers & Coupons</h1>
       
       <div className="grid lg:grid-cols-3 gap-8">
         <div className="lg:col-span-1">

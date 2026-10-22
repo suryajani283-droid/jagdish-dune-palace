@@ -6,7 +6,7 @@
   
   /* NEXT LEVEL LUXURY COLORS */
   --color-brand-primary: #0B1E1A; /* Deep Forest Green (मुख्य रंग) */
-  --color-brand-accent: #D4AF37;  /* Champagne Gold (हाईलाइट के लिए) */
+  --color-brand-accent: brand-accent;  /* Champagne Gold (हाईलाइट के लिए) */
   --color-brand-bg: #F8F6F0;      /* Warm Ivory (बैकग्राउंड) */
   --color-brand-surface: #FFFFFF; /* Cards के लिए */
   --color-brand-text: #2B2B2B;    /* सॉफ्ट ब्लैक टेक्स्ट */

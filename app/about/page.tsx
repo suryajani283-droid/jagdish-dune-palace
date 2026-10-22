@@ -7,7 +7,7 @@ export default function AboutPage() {
       <Navbar />
       <div className="max-w-4xl mx-auto px-6 py-20 text-center">
         <h1 className="text-5xl font-serif font-bold mb-6">Our Story</h1>
-        <div className="w-24 h-1 bg-[#c9a961] mx-auto mb-8"></div>
+        <div className="w-24 h-1 bg-[brand-accent] mx-auto mb-8"></div>
         <p className="text-lg text-stone-600 leading-relaxed mb-6">
           Welcome to Jagdish Dune Palace, a sanctuary of luxury nestled in the heart of the Thar Desert in Chohtan, Barmer. 
           Our heritage property offers a perfect blend of traditional Rajasthani hospitality and modern comfort.

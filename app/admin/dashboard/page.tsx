@@ -47,10 +47,10 @@ export default async function Dashboard() {
     <div className="p-8 max-w-7xl mx-auto">
       <div className="flex justify-between items-center mb-8">
         <div>
-          <h1 className="text-3xl font-serif font-bold text-[#1a1815]">Dashboard Overview</h1>
+          <h1 className="text-3xl font-serif font-bold text-[brand-primary]">Dashboard Overview</h1>
           <p className="text-stone-500 text-sm mt-1">Welcome back! Here is your hotel's performance today.</p>
         </div>
-        <Link href="/admin/bookings/new" className="bg-[#c9a961] text-white px-6 py-3 text-sm font-bold rounded-sm hover:bg-[#1a1815] transition-colors">
+        <Link href="/admin/bookings/new" className="bg-[brand-accent] text-white px-6 py-3 text-sm font-bold rounded-sm hover:bg-[brand-primary] transition-colors">
           + Create Booking
         </Link>
       </div>
@@ -71,9 +71,9 @@ export default async function Dashboard() {
         </div>
 
         {/* Net Profit */}
-        <div className="bg-white p-5 border border-stone-200 shadow-sm border-t-4 border-t-[#c9a961]">
+        <div className="bg-white p-5 border border-stone-200 shadow-sm border-t-4 border-t-[brand-accent]">
           <p className="text-[10px] text-stone-500 uppercase tracking-widest mb-1">Net Profit</p>
-          <p className={`text-2xl font-bold ${netProfit >= 0 ? 'text-[#c9a961]' : 'text-red-600'}`}>{formatINR(netProfit)}</p>
+          <p className={`text-2xl font-bold ${netProfit >= 0 ? 'text-[brand-accent]' : 'text-red-600'}`}>{formatINR(netProfit)}</p>
         </div>
 
         {/* Pending Payments */}
@@ -85,7 +85,7 @@ export default async function Dashboard() {
         {/* Total Bookings */}
         <div className="bg-white p-5 border border-stone-200 shadow-sm border-t-4 border-t-blue-500">
           <p className="text-[10px] text-stone-500 uppercase tracking-widest mb-1">Bookings</p>
-          <p className="text-2xl font-bold text-[#1a1815]">{allBookings?.length || 0}</p>
+          <p className="text-2xl font-bold text-[brand-primary]">{allBookings?.length || 0}</p>
         </div>
       </div>
 
@@ -95,7 +95,7 @@ export default async function Dashboard() {
         <div className="md:col-span-1 space-y-6">
           <div className="bg-white border border-stone-200 shadow-sm">
             <div className="p-4 border-b border-stone-200 bg-stone-50 flex justify-between items-center">
-              <h2 className="font-bold text-[#1a1815]">Arrivals Today</h2>
+              <h2 className="font-bold text-[brand-primary]">Arrivals Today</h2>
               <span className="bg-green-100 text-green-700 px-2 py-1 text-xs font-bold rounded-full">{arrivals.length}</span>
             </div>
             <div className="p-4 max-h-60 overflow-y-auto">
@@ -103,7 +103,7 @@ export default async function Dashboard() {
                 <ul className="space-y-3">
                   {arrivals.map((b) => (
                     <li key={b.id} className="text-sm border-b border-stone-100 pb-2">
-                      <p className="font-bold text-[#1a1815]">{b.guests?.full_name}</p>
+                      <p className="font-bold text-[brand-primary]">{b.guests?.full_name}</p>
                       <p className="text-xs text-stone-500">{b.booking_reference} • {b.guests_count} Guests</p>
                     </li>
                   ))}
@@ -114,7 +114,7 @@ export default async function Dashboard() {
 
           <div className="bg-white border border-stone-200 shadow-sm">
             <div className="p-4 border-b border-stone-200 bg-stone-50 flex justify-between items-center">
-              <h2 className="font-bold text-[#1a1815]">Departures Today</h2>
+              <h2 className="font-bold text-[brand-primary]">Departures Today</h2>
               <span className="bg-red-100 text-red-700 px-2 py-1 text-xs font-bold rounded-full">{departures.length}</span>
             </div>
             <div className="p-4 max-h-60 overflow-y-auto">
@@ -122,7 +122,7 @@ export default async function Dashboard() {
                 <ul className="space-y-3">
                   {departures.map((b) => (
                     <li key={b.id} className="text-sm border-b border-stone-100 pb-2">
-                      <p className="font-bold text-[#1a1815]">{b.guests?.full_name}</p>
+                      <p className="font-bold text-[brand-primary]">{b.guests?.full_name}</p>
                       <p className="text-xs text-stone-500">{b.booking_reference} • {b.guests_count} Guests</p>
                     </li>
                   ))}
@@ -135,13 +135,13 @@ export default async function Dashboard() {
         {/* Right Column: Recent Bookings */}
         <div className="md:col-span-2 bg-white border border-stone-200 shadow-sm">
           <div className="p-4 border-b border-stone-200 bg-stone-50 flex justify-between items-center">
-            <h2 className="font-bold text-[#1a1815]">Recent Bookings</h2>
-            <Link href="/admin/bookings" className="text-xs text-[#c9a961] font-bold hover:underline">View All</Link>
+            <h2 className="font-bold text-[brand-primary]">Recent Bookings</h2>
+            <Link href="/admin/bookings" className="text-xs text-[brand-accent] font-bold hover:underline">View All</Link>
           </div>
           
           <div className="overflow-x-auto">
             <table className="w-full text-left text-sm text-stone-600">
-              <thead className="bg-[#faf8f5] border-b border-stone-200 text-xs uppercase text-stone-500">
+              <thead className="bg-[brand-bg] border-b border-stone-200 text-xs uppercase text-stone-500">
                 <tr>
                   <th className="px-4 py-3 font-bold">Guest</th>
                   <th className="px-4 py-3 font-bold">Ref</th>
@@ -153,11 +153,11 @@ export default async function Dashboard() {
                 {recentBookings.map((b) => (
                   <tr key={b.id} className="hover:bg-stone-50/50">
                     <td className="px-4 py-3">
-                      <p className="font-bold text-[#1a1815]">{b.guests?.full_name}</p>
+                      <p className="font-bold text-[brand-primary]">{b.guests?.full_name}</p>
                       <p className="text-xs text-stone-400">{new Date(b.created_at).toLocaleDateString('en-IN')}</p>
                     </td>
                     <td className="px-4 py-3 font-mono text-xs">{b.booking_reference}</td>
-                    <td className="px-4 py-3 font-bold text-[#c9a961]">{formatINR(b.total_amount)}</td>
+                    <td className="px-4 py-3 font-bold text-[brand-accent]">{formatINR(b.total_amount)}</td>
                     <td className="px-4 py-3">
                       <span className={`inline-block px-2 py-1 text-[10px] font-bold uppercase rounded-full ${
                         b.status === 'confirmed' ? 'bg-green-100 text-green-700' : 

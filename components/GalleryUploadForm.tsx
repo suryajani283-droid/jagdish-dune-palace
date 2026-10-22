@@ -26,7 +26,7 @@ export function GalleryUploadForm() {
 
   return (
     <form onSubmit={handleSubmit} className="bg-white p-6 border border-stone-200 shadow-sm space-y-4 sticky top-8">
-      <h2 className="text-xl font-bold text-[#1a1815] mb-4 border-b pb-2">+ Upload Photo</h2>
+      <h2 className="text-xl font-bold text-[brand-primary] mb-4 border-b pb-2">+ Upload Photo</h2>
       
       <div>
         <label className="block text-xs font-bold text-stone-500 uppercase mb-1">Select Image (JPG/PNG) *</label>
@@ -45,7 +45,7 @@ export function GalleryUploadForm() {
           type="text" 
           name="title" 
           placeholder="e.g. Royal Suite View" 
-          className="w-full bg-[#faf8f5] border border-stone-200 px-4 py-2 focus:outline-none focus:border-[#c9a961]" 
+          className="w-full bg-[brand-bg] border border-stone-200 px-4 py-2 focus:outline-none focus:border-[brand-accent]" 
         />
       </div>
 
@@ -54,7 +54,7 @@ export function GalleryUploadForm() {
       <button 
         type="submit" 
         disabled={loading}
-        className="w-full bg-[#c9a961] text-white hover:bg-[#1a1815] py-3 text-xs uppercase tracking-widest font-bold transition-colors disabled:opacity-50"
+        className="w-full bg-[brand-accent] text-white hover:bg-[brand-primary] py-3 text-xs uppercase tracking-widest font-bold transition-colors disabled:opacity-50"
       >
         {loading ? 'Uploading...' : 'Upload Photo'}
       </button>

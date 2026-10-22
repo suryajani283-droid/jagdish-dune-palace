@@ -53,7 +53,7 @@ export default async function ExpensesPage({
       {/* हेडर, फिल्टर और बटन */}
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4 print:hidden">
         <div>
-          <h1 className="text-3xl font-serif font-bold text-[#1a1815]">Expense Management</h1>
+          <h1 className="text-3xl font-serif font-bold text-[brand-primary]">Expense Management</h1>
           <p className="text-stone-500 text-sm mt-1">Track and export monthly hotel expenses</p>
         </div>
         
@@ -82,17 +82,17 @@ export default async function ExpensesPage({
       <div className="bg-white border border-stone-200 p-4 mb-6 shadow-sm flex items-center gap-4 print:hidden">
         <span className="text-sm font-bold text-stone-600 uppercase tracking-wider">Filter Month:</span>
         <form method="GET" className="flex gap-2">
-          <select name="month" defaultValue={selectedMonth} className="bg-[#faf8f5] border border-stone-300 px-3 py-2 text-sm font-semibold focus:outline-none focus:border-[#c9a961]">
+          <select name="month" defaultValue={selectedMonth} className="bg-[brand-bg] border border-stone-300 px-3 py-2 text-sm font-semibold focus:outline-none focus:border-[brand-accent]">
             {monthNames.map((m, i) => (
               <option key={i+1} value={i+1}>{m}</option>
             ))}
           </select>
-          <select name="year" defaultValue={selectedYear} className="bg-[#faf8f5] border border-stone-300 px-3 py-2 text-sm font-semibold focus:outline-none focus:border-[#c9a961]">
+          <select name="year" defaultValue={selectedYear} className="bg-[brand-bg] border border-stone-300 px-3 py-2 text-sm font-semibold focus:outline-none focus:border-[brand-accent]">
             {[now.getFullYear(), now.getFullYear() - 1, now.getFullYear() - 2].map(y => (
               <option key={y} value={y}>{y}</option>
             ))}
           </select>
-          <button type="submit" className="bg-[#1a1815] text-white px-4 py-2 text-xs font-bold uppercase transition-colors hover:bg-[#c9a961]">Apply Filter</button>
+          <button type="submit" className="bg-[brand-primary] text-white px-4 py-2 text-xs font-bold uppercase transition-colors hover:bg-[brand-accent]">Apply Filter</button>
           {params.month && (
             <Link href="/admin/expenses" className="bg-stone-200 text-stone-700 px-4 py-2 text-xs font-bold uppercase transition-colors hover:bg-stone-300">Clear</Link>
           )}
@@ -111,21 +111,21 @@ export default async function ExpensesPage({
         {/* Add Expense Form (प्रिंट में नहीं दिखेगा) */}
         <div className="lg:col-span-1 print:hidden">
           <form action={submitExpense} className="bg-white p-6 border border-stone-200 shadow-sm space-y-4 sticky top-8">
-            <h2 className="text-xl font-bold text-[#1a1815] mb-4 border-b pb-2">Add New Expense</h2>
+            <h2 className="text-xl font-bold text-[brand-primary] mb-4 border-b pb-2">Add New Expense</h2>
             
             <div>
               <label className="block text-xs font-bold text-stone-500 uppercase mb-1">Expense Title *</label>
-              <input type="text" name="title" required placeholder="e.g. Electricity Bill" className="w-full bg-[#faf8f5] border border-stone-200 px-4 py-2 focus:outline-none focus:border-[#c9a961]" />
+              <input type="text" name="title" required placeholder="e.g. Electricity Bill" className="w-full bg-[brand-bg] border border-stone-200 px-4 py-2 focus:outline-none focus:border-[brand-accent]" />
             </div>
 
             <div>
               <label className="block text-xs font-bold text-stone-500 uppercase mb-1">Amount (₹) *</label>
-              <input type="number" name="amount" required min={1} className="w-full bg-[#faf8f5] border border-stone-200 px-4 py-2 focus:outline-none focus:border-[#c9a961]" />
+              <input type="number" name="amount" required min={1} className="w-full bg-[brand-bg] border border-stone-200 px-4 py-2 focus:outline-none focus:border-[brand-accent]" />
             </div>
 
             <div>
               <label className="block text-xs font-bold text-stone-500 uppercase mb-1">Category *</label>
-              <select name="category" required className="w-full bg-[#faf8f5] border border-stone-200 px-4 py-2 focus:outline-none focus:border-[#c9a961]">
+              <select name="category" required className="w-full bg-[brand-bg] border border-stone-200 px-4 py-2 focus:outline-none focus:border-[brand-accent]">
                 <option value="Salary">Staff Salary</option>
                 <option value="Electricity">Electricity / Water</option>
                 <option value="Maintenance">Maintenance</option>
@@ -136,15 +136,15 @@ export default async function ExpensesPage({
 
             <div>
               <label className="block text-xs font-bold text-stone-500 uppercase mb-1">Date *</label>
-              <input type="date" name="expense_date" required defaultValue={today} className="w-full bg-[#faf8f5] border border-stone-200 px-4 py-2 focus:outline-none focus:border-[#c9a961]" />
+              <input type="date" name="expense_date" required defaultValue={today} className="w-full bg-[brand-bg] border border-stone-200 px-4 py-2 focus:outline-none focus:border-[brand-accent]" />
             </div>
 
             <div>
               <label className="block text-xs font-bold text-stone-500 uppercase mb-1">Notes (Optional)</label>
-              <textarea name="notes" className="w-full bg-[#faf8f5] border border-stone-200 px-4 py-2 focus:outline-none focus:border-[#c9a961] h-20"></textarea>
+              <textarea name="notes" className="w-full bg-[brand-bg] border border-stone-200 px-4 py-2 focus:outline-none focus:border-[brand-accent] h-20"></textarea>
             </div>
 
-            <button type="submit" className="w-full bg-[#c9a961] text-white hover:bg-[#1a1815] py-3 text-xs uppercase tracking-widest font-bold transition-colors">
+            <button type="submit" className="w-full bg-[brand-accent] text-white hover:bg-[brand-primary] py-3 text-xs uppercase tracking-widest font-bold transition-colors">
               Save Expense
             </button>
           </form>
@@ -173,7 +173,7 @@ export default async function ExpensesPage({
                     <td className="px-6 py-4 whitespace-nowrap border-r border-stone-50 print:border-gray-300">
                       {new Date(exp.expense_date).toLocaleDateString('en-IN')}
                     </td>
-                    <td className="px-6 py-4 font-bold text-[#1a1815] border-r border-stone-50 print:text-black print:border-gray-300">
+                    <td className="px-6 py-4 font-bold text-[brand-primary] border-r border-stone-50 print:text-black print:border-gray-300">
                       {exp.title}
                     </td>
                     <td className="px-6 py-4 border-r border-stone-50 print:border-gray-300">
@@ -192,7 +192,7 @@ export default async function ExpensesPage({
               )}
             </tbody>
             {expenses && expenses.length > 0 && (
-              <tfoot className="bg-stone-50 font-bold text-[#1a1815] print:bg-gray-100 print:text-black">
+              <tfoot className="bg-stone-50 font-bold text-[brand-primary] print:bg-gray-100 print:text-black">
                 <tr>
                   <td colSpan={4} className="px-6 py-4 text-right border-r border-stone-200 print:border-gray-300 uppercase tracking-wider text-xs">Monthly Total</td>
                   <td className="px-6 py-4 text-right text-red-600 print:text-black text-lg">{formatINR(totalExpense)}</td>
