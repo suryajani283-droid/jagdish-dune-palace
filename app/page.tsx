@@ -31,6 +31,12 @@ export default async function HomePage() {
   return (
     <>
       <Navbar />
+      
+      {/* 🚨 यहाँ मैंने टेस्ट के लिए लाल रंग की पट्टी जोड़ी है 🚨 */}
+      <div className="bg-red-500 text-white text-center py-6 text-2xl md:text-3xl font-bold">
+        NEW DEPLOYMENT TEST - IF YOU SEE THIS, IT WORKED!
+      </div>
+
       <Hero settings={settings} />
       
       {/* Heritage Section */}
