@@ -9,80 +9,45 @@ export function RoomCard({ room }: { room: any }) {
 
   useEffect(() => {
     if (images.length <= 1) return;
-    const interval = setInterval(() => {
-      setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
-    }, 3000);
+    const interval = setInterval(() => setCurrentIndex((prev) => (prev + 1) % images.length), 3000);
     return () => clearInterval(interval);
   }, [images.length]);
 
-  const nextSlide = (e: React.MouseEvent) => { e.preventDefault(); setCurrentIndex((prev) => (prev + 1) % images.length); };
-  const prevSlide = (e: React.MouseEvent) => { e.preventDefault(); setCurrentIndex((prev) => (prev === 0 ? images.length - 1 : prev - 1)); };
-
   return (
-    <div className="bg-white border border-stone-200 overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-500 group flex flex-col relative">
-      
-      {/* Slider */}
+    <div className="card-premium group flex flex-col relative">
       <div className="relative aspect-[4/3] overflow-hidden bg-stone-100">
         <div className="flex transition-transform duration-700 ease-in-out h-full" style={{ transform: `translateX(-${currentIndex * 100}%)` }}>
           {images.map((img: string, index: number) => (
             <div key={index} className="w-full h-full flex-shrink-0 relative">
-              <img src={img} alt={`${room.category} - ${index}`} className="w-full h-full object-cover" />
+              <img src={img} alt={`${room.category}`} className="w-full h-full object-cover" />
             </div>
           ))}
         </div>
-        
-        <div className="absolute top-4 left-4 bg-black/60 text-white text-xs px-3 py-1 rounded-full z-10 flex items-center gap-1">
-          📷 {images.length} Photos
-        </div>
-
-        {images.length > 1 && (
-          <>
-            <button onClick={prevSlide} className="absolute top-1/2 left-2 -translate-y-1/2 bg-white/70 hover:bg-white text-[brand-primary] w-8 h-8 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity z-10 shadow-md">‹</button>
-            <button onClick={nextSlide} className="absolute top-1/2 right-2 -translate-y-1/2 bg-white/70 hover:bg-white text-[brand-primary] w-8 h-8 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity z-10 shadow-md">›</button>
-            <div className="absolute bottom-3 left-0 right-0 flex justify-center gap-1.5 z-10">
-              {images.map((_: any, idx: number) => (
-                <button key={idx} onClick={(e) => { e.preventDefault(); setCurrentIndex(idx); }} className={`w-2 h-2 rounded-full transition-all duration-300 ${currentIndex === idx ? 'bg-[text-desert-text] w-4' : 'bg-white/60 hover:bg-white'}`} />
-              ))}
-            </div>
-          </>
-        )}
+        <div className="absolute top-4 left-4 bg-[#0B1320]/80 text-white text-xs px-3 py-1 rounded-full z-10 backdrop-blur-sm">📷 {images.length} Photos</div>
       </div>
 
-      {/* Details */}
       <div className="p-6 flex-grow flex flex-col">
         <div className="flex justify-between items-start mb-2">
-          <h3 className="text-2xl font-serif font-bold text-[brand-primary]">{room.category}</h3>
+          <h3 className="text-2xl font-serif font-bold text-[#0B1320]">{room.category}</h3>
           <div className="text-right">
-            <span className="block text-xl font-bold text-[text-desert-text]">{formatINR(room.base_price)}</span>
+            <span className="block text-xl font-bold text-[#C5A059]">{formatINR(room.base_price)}</span>
             <span className="text-[10px] text-stone-400 uppercase tracking-wider">/ night</span>
           </div>
         </div>
 
-        {/* Area & Capacity */}
         <div className="flex flex-wrap gap-x-4 gap-y-1 mb-4 text-xs text-stone-500 font-medium border-b border-stone-100 pb-3">
           <span className="flex items-center gap-1">📏 {room.area || '250 sq. ft.'}</span>
           <span className="flex items-center gap-1">👨‍🦱 {room.max_adults || room.capacity} Adults</span>
           <span className="flex items-center gap-1">👶 {room.max_children || 0} Children</span>
         </div>
 
-        {/* Amenities Badges */}
         <div className="flex flex-wrap gap-2 mb-6 flex-grow">
-          {room.amenities && room.amenities.length > 0 ? (
-            room.amenities.slice(0, 4).map((amenity: string) => (
-              <span key={amenity} className="text-[10px] bg-[brand-bg] text-stone-600 px-2 py-1 rounded-sm border border-stone-200 font-semibold">
-                {amenity}
-              </span>
-            ))
-          ) : (
-            <span className="text-[10px] text-stone-400 italic">Premium Amenities Included</span>
-          )}
-          {room.amenities && room.amenities.length > 4 && (
-            <span className="text-[10px] bg-stone-100 text-stone-500 px-2 py-1 rounded-sm font-semibold">+{room.amenities.length - 4} More</span>
-          )}
+          {room.amenities && room.amenities.slice(0, 4).map((amenity: string) => (
+            <span key={amenity} className="text-[10px] bg-[#F8F9FA] text-stone-600 px-2 py-1 rounded-sm border border-stone-200 font-semibold">{amenity}</span>
+          ))}
         </div>
 
-        {/* यहाँ गलती सुधार दी गई है: </button> की जगह </Link> कर दिया है */}
-        <Link href={`/booking?room=${room.id}`} className="border border-[text-desert-text] text-[text-desert-text] hover:bg-[text-desert-text] hover:text-[brand-primary] w-full text-center py-2.5 text-xs uppercase tracking-widest font-bold transition-colors block">
+        <Link href={`/booking?room=${room.id}`} className="border-2 border-[#0B1320] text-[#0B1320] hover:bg-[#0B1320] hover:text-[#C5A059] w-full text-center py-2.5 text-xs font-bold uppercase tracking-widest transition-colors">
           Book This Room
         </Link>
       </div>

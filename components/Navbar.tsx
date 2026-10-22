@@ -33,8 +33,8 @@ export function Navbar() {
 
   return (
     <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-stone-200 shadow-sm">
-      {/* Top Bar */}
-      <div className="bg-brand-primary text-stone-300 text-xs py-2 hidden md:block">
+      {/* Top Bar (Obsidian Navy) */}
+      <div className="bg-[#0B1320] text-stone-300 text-xs py-2 hidden md:block">
         <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
           <div className="flex gap-6 font-medium tracking-wide">
             <span>📞 +91 7599936000</span>
@@ -48,19 +48,19 @@ export function Navbar() {
       <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
         <Link href="/" className="flex items-center gap-4 group">
           {logoUrl ? (
-            <div className="w-16 h-16 md:w-20 md:h-20 rounded-full overflow-hidden border-2 border-brand-accent shadow-md shrink-0 bg-white group-hover:scale-105 transition-transform duration-300">
+            <div className="w-16 h-16 md:w-20 md:h-20 rounded-full overflow-hidden border-2 border-[#C5A059] shadow-md shrink-0 bg-white group-hover:scale-105 transition-transform duration-300">
               <img src={logoUrl} alt="Hotel Logo" className="w-full h-full object-cover" />
             </div>
           ) : (
-            <div className="w-16 h-16 md:w-20 md:h-20 rounded-full border-2 border-brand-accent flex items-center justify-center font-serif text-3xl font-bold text-brand-primary group-hover:bg-brand-primary group-hover:text-brand-accent transition-all duration-300 shadow-md shrink-0">
+            <div className="w-16 h-16 md:w-20 md:h-20 rounded-full border-2 border-[#C5A059] flex items-center justify-center font-serif text-3xl font-bold text-[#0B1320] group-hover:bg-[#0B1320] group-hover:text-[#C5A059] transition-all duration-300 shadow-md shrink-0">
               J
             </div>
           )}
           <div className="flex flex-col">
-            <span className="text-xl md:text-3xl font-serif font-bold text-brand-primary tracking-wide uppercase leading-tight group-hover:text-brand-accent transition-colors">
+            <span className="text-xl md:text-3xl font-serif font-bold text-[#0B1320] tracking-wide uppercase leading-tight group-hover:text-[#C5A059] transition-colors">
               Jagdish Dune
             </span>
-            <span className="text-[10px] md:text-xs uppercase tracking-[0.4em] text-brand-accent font-sans font-bold text-left mt-1">
+            <span className="text-[10px] md:text-xs uppercase tracking-[0.4em] text-[#C5A059] font-sans font-bold text-left mt-1">
               Palace
             </span>
           </div>
@@ -76,17 +76,19 @@ export function Navbar() {
           
           {user ? (
             <div className="flex items-center gap-4 ml-2 pl-4 border-l border-stone-300">
-              <Link href="/my-booking" className="nav-link text-brand-primary flex items-center gap-1">👤 Profile</Link>
+              <Link href="/my-booking" className="nav-link text-[#0B1320] flex items-center gap-1">👤 Profile</Link>
               <button onClick={handleLogout} className="text-red-500 hover:text-red-700 transition-colors">Logout</button>
             </div>
           ) : (
-            <Link href="/customer/login" className="nav-link text-brand-primary border border-stone-300 px-3 py-1.5 rounded-sm hover:border-brand-accent">Login</Link>
+            <Link href="/customer/login" className="nav-link text-[#0B1320] border border-stone-300 px-3 py-1.5 rounded-sm hover:border-[#C5A059]">Login</Link>
           )}
 
-          <Link href="/booking" className="btn-luxury py-3 px-6 ml-2">Book Now</Link>
+          <Link href="/booking" className="bg-[#C5A059] text-[#0B1320] hover:bg-[#0B1320] hover:text-[#C5A059] transition-all duration-300 py-3 px-6 ml-2 font-bold shadow-md hover:-translate-y-1 hover:shadow-xl">
+            Book Now
+          </Link>
         </nav>
 
-        <button className="lg:hidden text-2xl text-brand-primary" onClick={() => setIsOpen(!isOpen)}>
+        <button className="lg:hidden text-2xl text-[#0B1320]" onClick={() => setIsOpen(!isOpen)}>
           {isOpen ? '✕' : '☰'}
         </button>
       </div>
@@ -94,23 +96,23 @@ export function Navbar() {
       {/* Mobile Menu */}
       {isOpen && (
         <div className="lg:hidden bg-white border-t border-stone-200 px-6 py-6 flex flex-col gap-5 text-sm uppercase tracking-widest font-bold text-stone-600 shadow-lg absolute w-full left-0">
-          <Link href="/" onClick={() => setIsOpen(false)} className="hover:text-brand-accent">Home</Link>
-          <Link href="/rooms" onClick={() => setIsOpen(false)} className="hover:text-brand-accent">Rooms</Link>
-          <Link href="/facilities" onClick={() => setIsOpen(false)} className="hover:text-brand-accent">Facilities</Link>
-          <Link href="/gallery" onClick={() => setIsOpen(false)} className="hover:text-brand-accent">Gallery</Link>
-          <Link href="/offers" onClick={() => setIsOpen(false)} className="hover:text-brand-accent">Offers</Link>
-          <Link href="/contact" onClick={() => setIsOpen(false)} className="hover:text-brand-accent">Contact</Link>
+          <Link href="/" onClick={() => setIsOpen(false)} className="hover:text-[#C5A059]">Home</Link>
+          <Link href="/rooms" onClick={() => setIsOpen(false)} className="hover:text-[#C5A059]">Rooms</Link>
+          <Link href="/facilities" onClick={() => setIsOpen(false)} className="hover:text-[#C5A059]">Facilities</Link>
+          <Link href="/gallery" onClick={() => setIsOpen(false)} className="hover:text-[#C5A059]">Gallery</Link>
+          <Link href="/offers" onClick={() => setIsOpen(false)} className="hover:text-[#C5A059]">Offers</Link>
+          <Link href="/contact" onClick={() => setIsOpen(false)} className="hover:text-[#C5A059]">Contact</Link>
           
           {user ? (
             <div className="flex flex-col gap-4 py-4 border-y border-stone-200">
-              <Link href="/my-booking" onClick={() => setIsOpen(false)} className="hover:text-brand-accent">👤 My Profile</Link>
+              <Link href="/my-booking" onClick={() => setIsOpen(false)} className="hover:text-[#C5A059]">👤 My Profile</Link>
               <button onClick={handleLogout} className="text-red-500 text-left hover:text-red-700">Logout</button>
             </div>
           ) : (
-            <Link href="/customer/login" onClick={() => setIsOpen(false)} className="hover:text-brand-accent py-4 border-y border-stone-200">Login / Register</Link>
+            <Link href="/customer/login" onClick={() => setIsOpen(false)} className="hover:text-[#C5A059] py-4 border-y border-stone-200">Login / Register</Link>
           )}
 
-          <Link href="/booking" onClick={() => setIsOpen(false)} className="btn-luxury text-center mt-2">Book Now</Link>
+          <Link href="/booking" onClick={() => setIsOpen(false)} className="bg-[#C5A059] text-[#0B1320] text-center py-4 mt-2 shadow-md transition-all font-bold">Book Now</Link>
         </div>
       )}
     </header>

@@ -26,12 +26,11 @@ export default async function HomePage() {
     .eq('id', 1)
     .single();
 
-  // ✅ आपकी असली इंस्टाग्राम पोस्ट्स के लिंक
   const instaPosts = [
     'https://www.instagram.com/p/DXFlniek5a2',
     'https://www.instagram.com/reel/DXCc6Fikxjp',
     'https://www.instagram.com/p/DYoxC8_RvRQ',
-    'https://www.instagram.com/p/DXFlniek5a2' // चौथी पोस्ट के लिए डुप्लीकेट (आप इसे बदल सकते हैं)
+    'https://www.instagram.com/p/DXFlniek5a2'
   ];
 
   return (
@@ -41,8 +40,8 @@ export default async function HomePage() {
       {/* हीरो सेक्शन */}
       <Hero settings={settings} />
       
-      {/* Welcome / Heritage Section */}
-      <section className="py-24 bg-[brand-bg]">
+      {/* Welcome / Heritage Section (Soft Platinum White Background) */}
+      <section className="py-24 bg-[#F8F9FA]">
         <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-16 items-center">
           <div className="relative h-[500px] w-full">
             <Image 
@@ -53,14 +52,16 @@ export default async function HomePage() {
             />
           </div>
           <div>
-            <p className="text-[text-desert-text] uppercase tracking-[0.3em] text-xs font-bold mb-4">Our Heritage</p>
-            <h2 className="text-4xl md:text-5xl font-serif font-bold text-[brand-primary] mb-6 leading-tight">
+            <p className="text-[#C5A059] uppercase tracking-[0.3em] text-xs font-bold mb-4">Our Heritage</p>
+            <h2 className="text-4xl md:text-5xl font-serif font-bold text-[#0B1320] mb-6 leading-tight">
               A Royal Retreat in the Heart of the Thar Desert
             </h2>
             <p className="text-stone-500 leading-relaxed mb-6 font-light text-lg">
               Welcome to {settings?.hotel_name || 'Jagdish Dune Palace'}, a sanctuary of luxury nestled in the golden sands of Chohtan, Barmer. Every corner tells a story of royalty and modern elegance.
             </p>
-            <Link href="/about" className="border border-[text-desert-text] text-[text-desert-text] hover:bg-[text-desert-text] hover:text-[brand-primary] uppercase tracking-widest text-xs font-bold px-8 py-4 transition-all duration-300 inline-block">Discover Our Story</Link>
+            <Link href="/about" className="border-2 border-[#0B1320] text-[#0B1320] hover:bg-[#0B1320] hover:text-[#C5A059] uppercase tracking-widest text-xs font-bold px-8 py-4 transition-all duration-300 inline-block">
+              Discover Our Story
+            </Link>
           </div>
         </div>
       </section>
@@ -69,9 +70,9 @@ export default async function HomePage() {
       <section className="py-24 bg-white">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-16">
-            <p className="text-[text-desert-text] uppercase tracking-[0.3em] text-xs font-bold mb-3">Accommodation</p>
-            <h2 className="text-4xl md:text-5xl font-serif font-bold text-[brand-primary]">Rooms & Suites</h2>
-            <div className="w-16 h-1 bg-[text-desert-text] mx-auto mt-6"></div>
+            <p className="text-[#C5A059] uppercase tracking-[0.3em] text-xs font-bold mb-3">Accommodation</p>
+            <h2 className="text-4xl md:text-5xl font-serif font-bold text-[#0B1320]">Rooms & Suites</h2>
+            <div className="w-16 h-1 bg-[#C5A059] mx-auto mt-6"></div>
           </div>
           
           <Suspense fallback={<div className="text-center py-10 font-serif text-lg text-stone-500">Loading rooms...</div>}>
@@ -79,19 +80,20 @@ export default async function HomePage() {
           </Suspense>
           
           <div className="text-center mt-16">
-            <Link href="/rooms" className="border border-[text-desert-text] text-[text-desert-text] hover:bg-[text-desert-text] hover:text-[brand-primary] uppercase tracking-widest text-xs font-bold px-8 py-4 transition-all duration-300 inline-block">View All Rooms</Link>
+            <Link href="/rooms" className="border-2 border-[#0B1320] text-[#0B1320] hover:bg-[#0B1320] hover:text-[#C5A059] uppercase tracking-widest text-xs font-bold px-8 py-4 transition-all duration-300 inline-block">
+              View All Rooms
+            </Link>
           </div>
         </div>
       </section>
 
-      {/* नया इंस्टाग्राम सेक्शन (असली पोस्ट्स के साथ) */}
-      <section className="py-20 bg-[brand-bg] border-t border-stone-200">
+      {/* इंस्टाग्राम सेक्शन */}
+      <section className="py-20 bg-[#F8F9FA] border-t border-stone-200">
         <div className="max-w-7xl mx-auto px-6 text-center">
-          <p className="text-[text-desert-text] uppercase tracking-[0.3em] text-xs font-bold mb-3">Follow Our Journey</p>
-          <h2 className="text-4xl font-serif font-bold text-[brand-primary] mb-4">@jagdishpalacechohtan</h2>
+          <p className="text-[#C5A059] uppercase tracking-[0.3em] text-xs font-bold mb-3">Follow Our Journey</p>
+          <h2 className="text-4xl font-serif font-bold text-[#0B1320] mb-4">@jagdishpalacechohtan</h2>
           <p className="text-stone-500 mb-10 max-w-xl mx-auto">Experience the beauty of the palace through our latest photos and reels on Instagram.</p>
           
-          {/* इंस्टाग्राम पोस्ट्स का ग्रिड (iframe के जरिए) */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-10 items-start">
             {instaPosts.map((url, i) => (
               <div key={i} className="w-full flex justify-center overflow-hidden rounded-sm bg-white border border-stone-200 shadow-sm">
@@ -113,7 +115,7 @@ export default async function HomePage() {
             href="https://www.instagram.com/jagdishpalacechohtan" 
             target="_blank" 
             rel="noopener noreferrer"
-            className="bg-[brand-primary] text-[text-desert-text] border border-[text-desert-text] hover:bg-[text-desert-text] hover:text-[brand-primary] uppercase tracking-widest text-xs font-bold px-8 py-4 transition-all duration-300 inline-flex items-center gap-2"
+            className="bg-[#0B1320] text-[#C5A059] border-2 border-[#0B1320] hover:bg-[#C5A059] hover:text-[#0B1320] uppercase tracking-widest text-xs font-bold px-8 py-4 transition-all duration-300 inline-flex items-center gap-2"
           >
             <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
             Follow Us on Instagram
@@ -129,9 +131,11 @@ export default async function HomePage() {
           style={{ backgroundImage: 'url("https://images.unsplash.com/photo-1578683010236-d716f9a3f461?w=1920")' }}
         />
         <div className="relative z-20 max-w-3xl mx-auto px-6 text-center text-white">
-          <h2 className="text-4xl md:text-5xl font-serif font-bold mb-6">Begin Your Royal Journey</h2>
-          <p className="text-stone-300 mb-10 text-lg font-light">Book your stay today and experience the magic of the Thar Desert.</p>
-          <Link href="/booking" className="bg-[text-desert-text] text-[brand-primary] hover:bg-white hover:text-[brand-primary] uppercase tracking-widest text-sm font-bold px-10 py-5 transition-colors inline-block">Reserve Now</Link>
+          <h2 className="text-4xl md:text-5xl font-serif font-bold mb-6 text-white">Begin Your Royal Journey</h2>
+          <p className="text-stone-200 mb-10 text-lg font-light">Book your stay today and experience the magic of the Thar Desert.</p>
+          <Link href="/booking" className="bg-[#C5A059] text-[#0B1320] hover:bg-white hover:text-[#0B1320] uppercase tracking-widest text-sm font-bold px-10 py-5 transition-colors inline-block shadow-lg">
+            Reserve Now
+          </Link>
         </div>
       </section>
 

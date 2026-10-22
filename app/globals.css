@@ -3,18 +3,11 @@
 @theme {
   --font-serif: var(--font-playfair), serif;
   --font-sans: var(--font-lato), sans-serif;
-  
-  /* NEXT LEVEL LUXURY COLORS */
-  --color-brand-primary: #0B1E1A; /* Deep Forest Green (मुख्य रंग) */
-  --color-brand-accent: brand-accent;  /* Champagne Gold (हाईलाइट के लिए) */
-  --color-brand-bg: #F8F6F0;      /* Warm Ivory (बैकग्राउंड) */
-  --color-brand-surface: #FFFFFF; /* Cards के लिए */
-  --color-brand-text: #2B2B2B;    /* सॉफ्ट ब्लैक टेक्स्ट */
 }
 
 body {
-  background-color: var(--color-brand-bg);
-  color: var(--color-brand-text);
+  background-color: #F8F9FA; /* Soft Platinum White */
+  color: #1A1A1A;
   overflow-x: hidden;
 }
 
@@ -22,21 +15,22 @@ body {
    PREMIUM BUTTONS
    ========================================= */
 .btn-luxury {
-  @apply relative overflow-hidden bg-brand-accent text-brand-primary font-bold uppercase tracking-widest text-xs px-8 py-4 transition-all duration-300 inline-block;
-  box-shadow: 0 4px 15px rgba(212, 175, 55, 0.2);
+  @apply relative overflow-hidden bg-[#C5A059] text-[#0B1320] font-bold uppercase tracking-widest text-xs px-8 py-4 transition-all duration-300 inline-block;
+  box-shadow: 0 4px 15px rgba(197, 160, 89, 0.2);
+  border: 1px solid #C5A059;
 }
 .btn-luxury:hover {
-  @apply bg-brand-primary text-brand-accent;
-  transform: translateY(-3px); /* बटन ऊपर उठेगा */
-  box-shadow: 0 8px 25px rgba(11, 30, 26, 0.3);
+  @apply bg-[#0B1320] text-[#C5A059];
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(11, 19, 32, 0.3);
 }
 
 .btn-outline {
-  @apply border-2 border-brand-primary text-brand-primary hover:bg-brand-primary hover:text-brand-accent uppercase tracking-widest text-xs font-bold px-8 py-4 transition-all duration-300 inline-block;
+  @apply border-2 border-[#0B1320] text-[#0B1320] hover:bg-[#0B1320] hover:text-[#C5A059] uppercase tracking-widest text-xs font-bold px-8 py-4 transition-all duration-300 inline-block;
 }
 .btn-outline:hover {
   transform: translateY(-3px);
-  box-shadow: 0 8px 20px rgba(11, 30, 26, 0.15);
+  box-shadow: 0 8px 20px rgba(11, 19, 32, 0.15);
 }
 
 /* =========================================
@@ -53,11 +47,11 @@ body {
   height: 2px;
   bottom: -4px;
   left: 0;
-  background-color: var(--color-brand-accent);
+  background-color: #C5A059;
   transition: width 0.3s ease-in-out;
 }
 .nav-link:hover {
-  color: var(--color-brand-accent);
+  color: #C5A059;
 }
 .nav-link:hover::after {
   width: 100%;
@@ -66,17 +60,17 @@ body {
 /* =========================================
    CARD HOVER EFFECT
    ========================================= */
-.card-luxury {
-  @apply bg-brand-surface border border-stone-200 overflow-hidden transition-all duration-500;
+.card-premium {
+  @apply bg-white border border-stone-200 overflow-hidden transition-all duration-500;
   box-shadow: 0 10px 30px rgba(0,0,0,0.03);
 }
-.card-luxury:hover {
+.card-premium:hover {
   transform: translateY(-8px);
-  box-shadow: 0 20px 40px rgba(11, 30, 26, 0.1); /* डार्क ग्रीन शैडो */
-  border-color: var(--color-brand-accent);
+  box-shadow: 0 20px 40px rgba(11, 19, 32, 0.15);
+  border-color: #C5A059;
 }
 
 /* Hero Overlay */
 .hero-overlay {
-  background: linear-gradient(to bottom, rgba(11, 30, 26, 0.4) 0%, rgba(11, 30, 26, 0.8) 100%);
+  background: linear-gradient(to bottom, rgba(11, 19, 32, 0.5) 0%, rgba(11, 19, 32, 0.85) 100%);
 }
