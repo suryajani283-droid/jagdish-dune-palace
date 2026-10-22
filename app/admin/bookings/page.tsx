@@ -54,7 +54,7 @@ export default async function BookingsPage({ searchParams }: { searchParams: Pro
     <div className="p-8 max-w-7xl mx-auto">
       <div className="flex justify-between items-center mb-6">
         <h1 className="text-3xl font-serif font-bold text-[bg-desert-text]">Booking Management</h1>
-        <Link href="/admin/bookings/new" className="bg-[#D4AF37] text-[bg-desert-text] px-6 py-2 text-sm font-bold rounded-sm hover:bg-[#b8984e] transition-colors">
+        <Link href="/admin/bookings/new" className="bg-[text-desert-text] text-[bg-desert-text] px-6 py-2 text-sm font-bold rounded-sm hover:bg-[#b8984e] transition-colors">
           + Manual Booking
         </Link>
       </div>
@@ -65,7 +65,7 @@ export default async function BookingsPage({ searchParams }: { searchParams: Pro
           <Link 
             key={tab.id} 
             href={`/admin/bookings?filter=${tab.id}`}
-            className={`px-4 py-2 text-sm font-bold rounded-t-sm transition-colors ${filter === tab.id ? 'bg-[bg-desert-text] text-[#D4AF37]' : 'bg-stone-100 text-stone-600 hover:bg-stone-200'}`}
+            className={`px-4 py-2 text-sm font-bold rounded-t-sm transition-colors ${filter === tab.id ? 'bg-[bg-desert-text] text-[text-desert-text]' : 'bg-stone-100 text-stone-600 hover:bg-stone-200'}`}
           >
             {tab.label}
           </Link>
@@ -109,7 +109,7 @@ export default async function BookingsPage({ searchParams }: { searchParams: Pro
                     </td>
 
                     <td className="px-6 py-4">
-                      <p className="font-bold text-[#D4AF37] text-base">{formatINR(booking.total_amount)}</p>
+                      <p className="font-bold text-[text-desert-text] text-base">{formatINR(booking.total_amount)}</p>
                       <div className="flex items-center gap-2 mt-1">
                         
                         {/* पेमेंट स्टेटस बैज */}
@@ -120,7 +120,7 @@ export default async function BookingsPage({ searchParams }: { searchParams: Pro
                         {/* Mark Paid बटन */}
                         {!isPaid && !isRefunded && (
                           <form action={async () => { 'use server'; await markAsPaid(booking.id); }}>
-                            <button className="text-[10px] bg-[bg-desert-text] text-white px-2 py-0.5 rounded hover:bg-[#D4AF37] transition-colors">Mark Paid</button>
+                            <button className="text-[10px] bg-[bg-desert-text] text-white px-2 py-0.5 rounded hover:bg-[text-desert-text] transition-colors">Mark Paid</button>
                           </form>
                         )}
 
@@ -157,7 +157,7 @@ export default async function BookingsPage({ searchParams }: { searchParams: Pro
                         {booking.status === 'checked_in' && (
                           <form action={createBill}>
                             <input type="hidden" name="bookingId" value={booking.id} />
-                            <button className="bg-[#D4AF37] hover:bg-[#b8984e] text-white px-3 py-1.5 text-xs font-bold transition-colors">Checkout & Bill</button>
+                            <button className="bg-[text-desert-text] hover:bg-[#b8984e] text-white px-3 py-1.5 text-xs font-bold transition-colors">Checkout & Bill</button>
                           </form>
                         )}
                         {booking.invoices && booking.invoices.length > 0 && (

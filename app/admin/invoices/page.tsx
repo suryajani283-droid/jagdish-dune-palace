@@ -94,9 +94,9 @@ export default async function InvoicesPage() {
                 <td className="px-4 py-4 text-right">{formatINR(inv.taxable_value)}</td>
                 <td className="px-4 py-4 text-right text-stone-500">{formatINR(inv.gst_amount / 2)}</td>
                 <td className="px-4 py-4 text-right text-stone-500">{formatINR(inv.gst_amount / 2)}</td>
-                <td className="px-4 py-4 text-right font-bold text-[#D4AF37]">{formatINR(inv.total)}</td>
+                <td className="px-4 py-4 text-right font-bold text-[text-desert-text]">{formatINR(inv.total)}</td>
                 <td className="px-4 py-4 text-center print:hidden">
-                  <Link href={`/admin/bookings/${inv.booking_id}/invoice`} className="text-xs font-bold text-[bg-desert-text] hover:text-[#D4AF37] underline">
+                  <Link href={`/admin/bookings/${inv.booking_id}/invoice`} className="text-xs font-bold text-[bg-desert-text] hover:text-[text-desert-text] underline">
                     View Bill
                   </Link>
                 </td>
@@ -105,7 +105,7 @@ export default async function InvoicesPage() {
           </tbody>
           {/* कुल टैक्स का हिसाब */}
           {invoices && invoices.length > 0 && (
-            <tfoot className="bg-[bg-desert-text] text-[#D4AF37] font-bold print:bg-gray-200 print:text-black">
+            <tfoot className="bg-[bg-desert-text] text-[text-desert-text] font-bold print:bg-gray-200 print:text-black">
               <tr>
                 <td colSpan={2} className="px-4 py-3 text-right uppercase tracking-wider text-xs">Total (All Invoices)</td>
                 <td className="px-4 py-3 text-right">{formatINR(invoices.reduce((sum, inv) => sum + Number(inv.taxable_value), 0))}</td>

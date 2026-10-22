@@ -38,28 +38,28 @@ export default async function StaffPage() {
             
             <div>
               <label className="block text-xs font-bold text-stone-500 uppercase mb-1">Full Name *</label>
-              <input type="text" name="full_name" required className="w-full bg-[#faf8f5] border border-stone-200 px-4 py-2 focus:outline-none focus:border-[#D4AF37]" />
+              <input type="text" name="full_name" required className="w-full bg-[#faf8f5] border border-stone-200 px-4 py-2 focus:outline-none focus:border-[text-desert-text]" />
             </div>
 
             <div>
               <label className="block text-xs font-bold text-stone-500 uppercase mb-1">Email (Login ID) *</label>
-              <input type="email" name="email" required className="w-full bg-[#faf8f5] border border-stone-200 px-4 py-2 focus:outline-none focus:border-[#D4AF37]" />
+              <input type="email" name="email" required className="w-full bg-[#faf8f5] border border-stone-200 px-4 py-2 focus:outline-none focus:border-[text-desert-text]" />
             </div>
 
             <div>
               <label className="block text-xs font-bold text-stone-500 uppercase mb-1">Password *</label>
-              <input type="text" name="password" required minLength={6} placeholder="Min 6 characters" className="w-full bg-[#faf8f5] border border-stone-200 px-4 py-2 focus:outline-none focus:border-[#D4AF37]" />
+              <input type="text" name="password" required minLength={6} placeholder="Min 6 characters" className="w-full bg-[#faf8f5] border border-stone-200 px-4 py-2 focus:outline-none focus:border-[text-desert-text]" />
             </div>
 
             <div>
               <label className="block text-xs font-bold text-stone-500 uppercase mb-1">Role *</label>
-              <select name="role" required className="w-full bg-[#faf8f5] border border-stone-200 px-4 py-2 focus:outline-none focus:border-[#D4AF37]">
+              <select name="role" required className="w-full bg-[#faf8f5] border border-stone-200 px-4 py-2 focus:outline-none focus:border-[text-desert-text]">
                 <option value="receptionist">Receptionist (सिर्फ बुकिंग देख सकते हैं)</option>
                 <option value="admin">Admin (पूरा एक्सेस)</option>
               </select>
             </div>
 
-            <button type="submit" className="w-full bg-[bg-desert-text] text-white hover:bg-[#D4AF37] py-3 text-xs uppercase tracking-widest font-bold transition-colors">
+            <button type="submit" className="w-full bg-[bg-desert-text] text-white hover:bg-[text-desert-text] py-3 text-xs uppercase tracking-widest font-bold transition-colors">
               Create Account
             </button>
           </form>

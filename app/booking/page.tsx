@@ -163,7 +163,7 @@ function BookingContent() {
           else { setError('Payment succeeded but verification failed.'); setSubmitting(false); }
         },
         prefill: { name: form.full_name, email: form.email, contact: form.phone },
-        theme: { color: "#D4AF37" }
+        theme: { color: "text-desert-text" }
       };
 
       const rzp = new (window as any).Razorpay(options);
@@ -185,7 +185,7 @@ function BookingContent() {
       
       <Navbar />
       <div className="bg-[bg-desert-text] py-16 text-center text-white">
-        <h1 className="text-5xl font-serif font-bold mb-4 text-[#D4AF37]">Reserve Your Stay</h1>
+        <h1 className="text-5xl font-serif font-bold mb-4 text-[text-desert-text]">Reserve Your Stay</h1>
         <p className="text-stone-300">Complete your booking securely</p>
       </div>
 
@@ -198,23 +198,23 @@ function BookingContent() {
             <div className="grid md:grid-cols-4 gap-4">
               <div>
                 <label className="block text-xs uppercase tracking-widest text-stone-500 mb-2">Check-in</label>
-                <input type="date" required className="w-full bg-[#faf8f5] border border-stone-200 px-4 py-3 focus:outline-none focus:border-[#D4AF37]"
+                <input type="date" required className="w-full bg-[#faf8f5] border border-stone-200 px-4 py-3 focus:outline-none focus:border-[text-desert-text]"
                   min={new Date().toISOString().split('T')[0]} value={form.check_in}
                   onChange={(e) => setForm({ ...form, check_in: e.target.value })} />
               </div>
               <div>
                 <label className="block text-xs uppercase tracking-widest text-stone-500 mb-2">Check-out</label>
-                <input type="date" required className="w-full bg-[#faf8f5] border border-stone-200 px-4 py-3 focus:outline-none focus:border-[#D4AF37]"
+                <input type="date" required className="w-full bg-[#faf8f5] border border-stone-200 px-4 py-3 focus:outline-none focus:border-[text-desert-text]"
                   min={form.check_in || new Date().toISOString().split('T')[0]} value={form.check_out}
                   onChange={(e) => setForm({ ...form, check_out: e.target.value })} />
               </div>
               <div>
                 <label className="block text-xs uppercase tracking-widest text-stone-500 mb-2">Guests</label>
-                <input type="number" min={1} max={6} className="w-full bg-[#faf8f5] border border-stone-200 px-4 py-3 focus:outline-none focus:border-[#D4AF37]"
+                <input type="number" min={1} max={6} className="w-full bg-[#faf8f5] border border-stone-200 px-4 py-3 focus:outline-none focus:border-[text-desert-text]"
                   value={form.guests_count} onChange={(e) => setForm({ ...form, guests_count: +e.target.value })} />
               </div>
               <div className="flex items-end">
-                <button type="button" onClick={search} disabled={searching} className="w-full bg-[bg-desert-text] text-[#D4AF37] hover:bg-[#D4AF37] hover:text-[bg-desert-text] py-3 text-xs uppercase tracking-widest transition-colors font-bold">
+                <button type="button" onClick={search} disabled={searching} className="w-full bg-[bg-desert-text] text-[text-desert-text] hover:bg-[text-desert-text] hover:text-[bg-desert-text] py-3 text-xs uppercase tracking-widest transition-colors font-bold">
                   {searching ? 'Searching...' : 'Check Rooms'}
                 </button>
               </div>
@@ -227,16 +227,16 @@ function BookingContent() {
               <h3 className="text-2xl font-serif mb-6 text-[bg-desert-text]">2. Select Room</h3>
               <div className="space-y-4">
                 {rooms.map((r) => (
-                  <label key={r.id} className={`flex justify-between items-center p-4 border cursor-pointer transition-colors ${form.room_id === r.id ? 'border-[#D4AF37] bg-[#faf8f5]' : 'border-stone-200 hover:border-stone-400'}`}>
+                  <label key={r.id} className={`flex justify-between items-center p-4 border cursor-pointer transition-colors ${form.room_id === r.id ? 'border-[text-desert-text] bg-[#faf8f5]' : 'border-stone-200 hover:border-stone-400'}`}>
                     <div className="flex items-center gap-4">
-                      <input type="radio" name="room" value={r.id} className="accent-[#D4AF37] w-4 h-4"
+                      <input type="radio" name="room" value={r.id} className="accent-[text-desert-text] w-4 h-4"
                         checked={form.room_id === r.id} onChange={() => setForm({ ...form, room_id: r.id })} />
                       <div>
                         <span className="font-bold text-[bg-desert-text] block">{r.category}</span>
                         <span className="text-xs text-stone-500 uppercase tracking-widest">Room {r.room_number}</span>
                       </div>
                     </div>
-                    <span className="font-bold text-[#D4AF37]">{formatINR(r.base_price)} <span className="text-xs font-normal text-stone-400">/ night</span></span>
+                    <span className="font-bold text-[text-desert-text]">{formatINR(r.base_price)} <span className="text-xs font-normal text-stone-400">/ night</span></span>
                   </label>
                 ))}
               </div>
@@ -247,21 +247,21 @@ function BookingContent() {
 <div className="bg-white p-8 border border-stone-200 shadow-sm">
   <h3 className="text-2xl font-serif mb-6 text-[bg-desert-text]">3. Guest Details</h3>
   <div className="grid md:grid-cols-3 gap-4">
-    <input required placeholder="Full Name" className="w-full bg-[#faf8f5] border border-stone-200 px-4 py-3 focus:outline-none focus:border-[#D4AF37]"
+    <input required placeholder="Full Name" className="w-full bg-[#faf8f5] border border-stone-200 px-4 py-3 focus:outline-none focus:border-[text-desert-text]"
       value={form.full_name} onChange={(e) => setForm({ ...form, full_name: e.target.value })} />
     <input readOnly placeholder="Email" type="email" className="w-full bg-stone-100 border border-stone-200 px-4 py-3 text-stone-500 cursor-not-allowed"
       value={form.email} />
-    <input required placeholder="Phone Number" className="w-full bg-[#faf8f5] border border-stone-200 px-4 py-3 focus:outline-none focus:border-[#D4AF37]"
+    <input required placeholder="Phone Number" className="w-full bg-[#faf8f5] border border-stone-200 px-4 py-3 focus:outline-none focus:border-[text-desert-text]"
       value={form.phone} onChange={(e) => setForm({ ...form, phone: e.target.value })} />
   </div>
   
   {/* GSTIN फील्ड */}
   <div className="mt-4">
-    <input placeholder="Company GSTIN (Optional - for business invoices)" className="w-full bg-[#faf8f5] border border-stone-200 px-4 py-3 focus:outline-none focus:border-[#D4AF37] uppercase"
+    <input placeholder="Company GSTIN (Optional - for business invoices)" className="w-full bg-[#faf8f5] border border-stone-200 px-4 py-3 focus:outline-none focus:border-[text-desert-text] uppercase"
       value={form.guest_gstin} onChange={(e) => setForm({ ...form, guest_gstin: e.target.value.toUpperCase() })} />
   </div>
 
-  <textarea placeholder="Any special requests? (Optional)" className="w-full bg-[#faf8f5] border border-stone-200 px-4 py-3 mt-4 focus:outline-none focus:border-[#D4AF37] h-24"
+  <textarea placeholder="Any special requests? (Optional)" className="w-full bg-[#faf8f5] border border-stone-200 px-4 py-3 mt-4 focus:outline-none focus:border-[text-desert-text] h-24"
     value={form.special_requests} onChange={(e) => setForm({ ...form, special_requests: e.target.value })} />
 </div>
 
@@ -269,16 +269,16 @@ function BookingContent() {
           <div className="bg-white p-8 border border-stone-200 shadow-sm">
             <h3 className="text-2xl font-serif mb-6 text-[bg-desert-text]">4. Payment Method</h3>
             <div className="grid md:grid-cols-2 gap-4">
-              <label className={`flex items-start gap-4 p-4 border cursor-pointer transition-colors ${form.payment_method === 'online' ? 'border-[#D4AF37] bg-[#faf8f5]' : 'border-stone-200'}`}>
-                <input type="radio" name="payment_method" value="online" className="accent-[#D4AF37] w-4 h-4 mt-1"
+              <label className={`flex items-start gap-4 p-4 border cursor-pointer transition-colors ${form.payment_method === 'online' ? 'border-[text-desert-text] bg-[#faf8f5]' : 'border-stone-200'}`}>
+                <input type="radio" name="payment_method" value="online" className="accent-[text-desert-text] w-4 h-4 mt-1"
                   checked={form.payment_method === 'online'} onChange={() => setForm({ ...form, payment_method: 'online' })} />
                 <div>
                   <span className="font-bold text-[bg-desert-text] block mb-1">Pay Online (सुरक्षित)</span>
                   <span className="text-xs text-stone-500">UPI, Credit Card, Debit Card, Netbanking के ज़रिए अभी पेमेंट करें।</span>
                 </div>
               </label>
-              <label className={`flex items-start gap-4 p-4 border cursor-pointer transition-colors ${form.payment_method === 'pay_at_hotel' ? 'border-[#D4AF37] bg-[#faf8f5]' : 'border-stone-200'}`}>
-                <input type="radio" name="payment_method" value="pay_at_hotel" className="accent-[#D4AF37] w-4 h-4 mt-1"
+              <label className={`flex items-start gap-4 p-4 border cursor-pointer transition-colors ${form.payment_method === 'pay_at_hotel' ? 'border-[text-desert-text] bg-[#faf8f5]' : 'border-stone-200'}`}>
+                <input type="radio" name="payment_method" value="pay_at_hotel" className="accent-[text-desert-text] w-4 h-4 mt-1"
                   checked={form.payment_method === 'pay_at_hotel'} onChange={() => setForm({ ...form, payment_method: 'pay_at_hotel' })} />
                 <div>
                   <span className="font-bold text-[bg-desert-text] block mb-1">Pay at Hotel (होटल में भुगतान)</span>
@@ -292,8 +292,8 @@ function BookingContent() {
           <div className="bg-white p-8 border border-stone-200 shadow-sm">
             <h3 className="text-2xl font-serif mb-4 text-[bg-desert-text]">5. Have a Coupon Code?</h3>
             <div className="flex gap-2">
-              <input type="text" value={couponInput} onChange={(e) => setCouponInput(e.target.value.toUpperCase())} placeholder="Enter Code" className="w-full bg-[#faf8f5] border border-stone-200 px-4 py-3 focus:outline-none focus:border-[#D4AF37] uppercase font-mono" />
-              <button type="button" onClick={applyCoupon} disabled={checkingCoupon} className="bg-[bg-desert-text] text-[#D4AF37] border border-[bg-desert-text] hover:bg-[#D4AF37] hover:text-[bg-desert-text] px-6 py-3 font-bold uppercase tracking-widest transition-colors disabled:opacity-50">
+              <input type="text" value={couponInput} onChange={(e) => setCouponInput(e.target.value.toUpperCase())} placeholder="Enter Code" className="w-full bg-[#faf8f5] border border-stone-200 px-4 py-3 focus:outline-none focus:border-[text-desert-text] uppercase font-mono" />
+              <button type="button" onClick={applyCoupon} disabled={checkingCoupon} className="bg-[bg-desert-text] text-[text-desert-text] border border-[bg-desert-text] hover:bg-[text-desert-text] hover:text-[bg-desert-text] px-6 py-3 font-bold uppercase tracking-widest transition-colors disabled:opacity-50">
                 {checkingCoupon ? '...' : 'Apply'}
               </button>
             </div>
@@ -302,22 +302,22 @@ function BookingContent() {
 
           {/* 6. Summary */}
           {selected && nights > 0 && (
-            <div className="bg-[bg-desert-text] text-white p-8 border border-[#D4AF37] animate-fade-up shadow-xl">
-              <h3 className="text-2xl font-serif mb-6 text-[#D4AF37]">Booking Summary</h3>
+            <div className="bg-[bg-desert-text] text-white p-8 border border-[text-desert-text] animate-fade-up shadow-xl">
+              <h3 className="text-2xl font-serif mb-6 text-[text-desert-text]">Booking Summary</h3>
               <div className="flex justify-between text-sm mb-2 text-stone-300"><span>{selected.category} ({nights} Nights)</span><span>{formatINR(baseTotal)}</span></div>
               {discountPercent > 0 && <div className="flex justify-between text-sm mb-2 text-green-400 font-bold"><span>Discount ({discountPercent}% OFF)</span><span>- {formatINR(discountAmount)}</span></div>}
               <div className="flex justify-between text-sm mb-2 text-stone-300 border-t border-stone-700 pt-2"><span>Taxable Value</span><span>{formatINR(taxableValue)}</span></div>
               <div className="flex justify-between text-sm mb-4 text-stone-400"><span>GST (CGST 6% + SGST 6%)</span><span>+ {formatINR(gstAmount)}</span></div>
               <div className="flex justify-between font-bold text-2xl border-t border-stone-700 pt-4">
                 <span>{form.payment_method === 'online' ? 'Total Payable Now' : 'Total Payable at Hotel'}</span>
-                <span className="text-[#D4AF37]">{formatINR(finalTotal)}</span>
+                <span className="text-[text-desert-text]">{formatINR(finalTotal)}</span>
               </div>
             </div>
           )}
 
           {error && <p className="text-red-600 font-bold text-center bg-red-50 p-4 border border-red-200 animate-fade-up">{error}</p>}
           
-          <button type="submit" disabled={submitting || !form.room_id} className={`w-full py-5 text-sm uppercase tracking-widest font-bold transition-all shadow-lg ${form.room_id ? 'bg-[bg-desert-text] text-[#D4AF37] hover:bg-[#D4AF37] hover:text-[bg-desert-text]' : 'bg-stone-300 text-stone-500 cursor-not-allowed'}`}>
+          <button type="submit" disabled={submitting || !form.room_id} className={`w-full py-5 text-sm uppercase tracking-widest font-bold transition-all shadow-lg ${form.room_id ? 'bg-[bg-desert-text] text-[text-desert-text] hover:bg-[text-desert-text] hover:text-[bg-desert-text]' : 'bg-stone-300 text-stone-500 cursor-not-allowed'}`}>
             {submitting ? 'Processing...' : form.payment_method === 'online' ? 'Proceed to Pay' : 'Confirm Booking'}
           </button>
         </form>

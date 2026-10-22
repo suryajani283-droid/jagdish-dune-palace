@@ -31,7 +31,7 @@ export default async function GuestHistoryPage() {
           <h1 className="text-3xl font-serif font-bold text-[bg-desert-text]">Guest History (CRM)</h1>
           <p className="text-stone-500 text-sm mt-1">View all your past and current customers</p>
         </div>
-        <div className="bg-[bg-desert-text] text-[#D4AF37] px-6 py-2 rounded-sm font-bold">
+        <div className="bg-[bg-desert-text] text-[text-desert-text] px-6 py-2 rounded-sm font-bold">
           Total Customers: {guests?.length || 0}
         </div>
       </div>
@@ -70,7 +70,7 @@ export default async function GuestHistoryPage() {
                       {validBookings.length}
                     </span>
                   </td>
-                  <td className="px-6 py-4 text-right font-bold text-[#D4AF37]">
+                  <td className="px-6 py-4 text-right font-bold text-[text-desert-text]">
                     {formatINR(totalSpent)}
                   </td>
                   <td className="px-6 py-4 text-right text-xs">

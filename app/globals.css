@@ -9,7 +9,7 @@
   --color-desert-sand: #F9F6F0;    /* Warm off-white / cream background */
   --color-desert-cream: #FFFFFF;   /* Pure white for cards */
   --color-desert-terracotta: #C05C3E; /* Accent color for primary buttons */
-  --color-desert-gold: #D4AF37;    /* Sandstone gold for borders/highlights */
+  --color-desert-gold: text-desert-text;    /* Sandstone gold for borders/highlights */
   --color-desert-blue: #1E3A8A;    /* Royal blue for secondary accents */
   --color-desert-text: #2B2520;    /* Dark brown-grey for text */
 }

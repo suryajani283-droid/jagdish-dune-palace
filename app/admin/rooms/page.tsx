@@ -38,30 +38,30 @@ export default async function ManageRoomsPage() {
             
             <div>
               <label className="block text-[10px] font-bold text-stone-500 uppercase mb-1">Room Number *</label>
-              <input type="text" name="room_number" required placeholder="e.g. 401" className="w-full bg-[#faf8f5] border border-stone-200 px-3 py-1.5 text-sm focus:border-[#D4AF37]" />
+              <input type="text" name="room_number" required placeholder="e.g. 401" className="w-full bg-[#faf8f5] border border-stone-200 px-3 py-1.5 text-sm focus:border-[text-desert-text]" />
             </div>
             <div>
               <label className="block text-[10px] font-bold text-stone-500 uppercase mb-1">Category *</label>
-              <input type="text" name="category" required placeholder="e.g. Deluxe" className="w-full bg-[#faf8f5] border border-stone-200 px-3 py-1.5 text-sm focus:border-[#D4AF37]" />
+              <input type="text" name="category" required placeholder="e.g. Deluxe" className="w-full bg-[#faf8f5] border border-stone-200 px-3 py-1.5 text-sm focus:border-[text-desert-text]" />
             </div>
             <div className="grid grid-cols-2 gap-2">
               <div>
                 <label className="block text-[10px] font-bold text-stone-500 uppercase mb-1">Area *</label>
-                <input type="text" name="area" required placeholder="300 sq. ft." className="w-full bg-[#faf8f5] border border-stone-200 px-3 py-1.5 text-sm focus:border-[#D4AF37]" />
+                <input type="text" name="area" required placeholder="300 sq. ft." className="w-full bg-[#faf8f5] border border-stone-200 px-3 py-1.5 text-sm focus:border-[text-desert-text]" />
               </div>
               <div>
                 <label className="block text-[10px] font-bold text-stone-500 uppercase mb-1">Price (₹) *</label>
-                <input type="number" name="base_price" required placeholder="3500" className="w-full bg-[#faf8f5] border border-stone-200 px-3 py-1.5 text-sm focus:border-[#D4AF37]" />
+                <input type="number" name="base_price" required placeholder="3500" className="w-full bg-[#faf8f5] border border-stone-200 px-3 py-1.5 text-sm focus:border-[text-desert-text]" />
               </div>
             </div>
             <div className="grid grid-cols-2 gap-2">
               <div>
                 <label className="block text-[10px] font-bold text-stone-500 uppercase mb-1">Max Adults *</label>
-                <input type="number" name="max_adults" required defaultValue={2} min={1} className="w-full bg-[#faf8f5] border border-stone-200 px-3 py-1.5 text-sm focus:border-[#D4AF37]" />
+                <input type="number" name="max_adults" required defaultValue={2} min={1} className="w-full bg-[#faf8f5] border border-stone-200 px-3 py-1.5 text-sm focus:border-[text-desert-text]" />
               </div>
               <div>
                 <label className="block text-[10px] font-bold text-stone-500 uppercase mb-1">Max Children *</label>
-                <input type="number" name="max_children" required defaultValue={0} min={0} className="w-full bg-[#faf8f5] border border-stone-200 px-3 py-1.5 text-sm focus:border-[#D4AF37]" />
+                <input type="number" name="max_children" required defaultValue={0} min={0} className="w-full bg-[#faf8f5] border border-stone-200 px-3 py-1.5 text-sm focus:border-[text-desert-text]" />
               </div>
             </div>
             
@@ -70,7 +70,7 @@ export default async function ManageRoomsPage() {
               <div className="grid grid-cols-2 gap-1">
                 {ALL_AMENITIES.map(a => (
                   <label key={a} className="flex items-center gap-1.5 text-[11px] font-semibold text-stone-600">
-                    <input type="checkbox" name="amenities" value={a} className="accent-[#D4AF37] w-3 h-3" /> {a}
+                    <input type="checkbox" name="amenities" value={a} className="accent-[text-desert-text] w-3 h-3" /> {a}
                   </label>
                 ))}
               </div>
@@ -78,12 +78,12 @@ export default async function ManageRoomsPage() {
 
             <div>
               <label className="block text-[10px] font-bold text-stone-500 uppercase mb-1">Status *</label>
-              <select name="status" required className="w-full bg-[#faf8f5] border border-stone-200 px-3 py-1.5 text-sm focus:border-[#D4AF37]">
+              <select name="status" required className="w-full bg-[#faf8f5] border border-stone-200 px-3 py-1.5 text-sm focus:border-[text-desert-text]">
                 <option value="available">Available</option>
                 <option value="maintenance">Maintenance</option>
               </select>
             </div>
-            <button type="submit" className="w-full bg-[#D4AF37] text-[bg-desert-text] hover:bg-[bg-desert-text] hover:text-[#D4AF37] py-2 text-xs uppercase tracking-widest font-bold transition-colors mt-2">
+            <button type="submit" className="w-full bg-[text-desert-text] text-[bg-desert-text] hover:bg-[bg-desert-text] hover:text-[text-desert-text] py-2 text-xs uppercase tracking-widest font-bold transition-colors mt-2">
               Create Room
             </button>
           </form>

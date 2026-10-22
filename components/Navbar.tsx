@@ -57,19 +57,19 @@ export function Navbar() {
         {/* Logo */}
         <Link href="/" className="flex items-center gap-4 group">
           {logoUrl ? (
-            <div className="w-16 h-16 md:w-20 md:h-20 rounded-full overflow-hidden border-2 border-[#D4AF37] shadow-md shrink-0 bg-white group-hover:scale-105 transition-transform duration-300">
+            <div className="w-16 h-16 md:w-20 md:h-20 rounded-full overflow-hidden border-2 border-[text-desert-text] shadow-md shrink-0 bg-white group-hover:scale-105 transition-transform duration-300">
               <img src={logoUrl} alt="Hotel Logo" className="w-full h-full object-cover" />
             </div>
           ) : (
-            <div className="w-16 h-16 md:w-20 md:h-20 rounded-full border-2 border-[#D4AF37] flex items-center justify-center font-serif text-3xl font-bold text-[bg-desert-text] group-hover:bg-[#D4AF37] group-hover:text-white transition-all duration-300 shadow-md shrink-0">
+            <div className="w-16 h-16 md:w-20 md:h-20 rounded-full border-2 border-[text-desert-text] flex items-center justify-center font-serif text-3xl font-bold text-[bg-desert-text] group-hover:bg-[text-desert-text] group-hover:text-white transition-all duration-300 shadow-md shrink-0">
               J
             </div>
           )}
           <div className="flex flex-col">
-            <span className="text-xl md:text-3xl font-serif font-bold text-[bg-desert-text] tracking-wide uppercase leading-tight group-hover:text-[#D4AF37] transition-colors">
+            <span className="text-xl md:text-3xl font-serif font-bold text-[bg-desert-text] tracking-wide uppercase leading-tight group-hover:text-[text-desert-text] transition-colors">
               Jagdish Dune
             </span>
-            <span className="text-[10px] md:text-xs uppercase tracking-[0.4em] text-[#D4AF37] font-sans font-bold text-left mt-1">
+            <span className="text-[10px] md:text-xs uppercase tracking-[0.4em] text-[text-desert-text] font-sans font-bold text-left mt-1">
               Palace
             </span>
           </div>
@@ -95,7 +95,7 @@ export function Navbar() {
               </button>
             </div>
           ) : (
-            <Link href="/customer/login" className="nav-link text-[bg-desert-text] border border-stone-300 px-3 py-1.5 rounded-sm hover:border-[#D4AF37]">
+            <Link href="/customer/login" className="nav-link text-[bg-desert-text] border border-stone-300 px-3 py-1.5 rounded-sm hover:border-[text-desert-text]">
               Login
             </Link>
           )}
@@ -103,7 +103,7 @@ export function Navbar() {
           {/* Book Now Button (Premium Animation) */}
           <Link 
             href="/booking" 
-            className="bg-[bg-desert-text] text-[#D4AF37] border border-[#D4AF37] hover:bg-[#D4AF37] hover:text-[bg-desert-text] transition-all duration-300 py-3 px-6 ml-2 font-bold shadow-md hover:-translate-y-1 hover:shadow-xl"
+            className="bg-[bg-desert-text] text-[text-desert-text] border border-[text-desert-text] hover:bg-[text-desert-text] hover:text-[bg-desert-text] transition-all duration-300 py-3 px-6 ml-2 font-bold shadow-md hover:-translate-y-1 hover:shadow-xl"
           >
             Book Now
           </Link>
@@ -118,20 +118,20 @@ export function Navbar() {
       {/* Mobile Menu */}
       {isOpen && (
         <div className="lg:hidden bg-white border-t border-stone-200 px-6 py-6 flex flex-col gap-5 text-sm uppercase tracking-widest font-bold text-stone-600 shadow-lg absolute w-full left-0">
-          <Link href="/" onClick={() => setIsOpen(false)} className="hover:text-[#D4AF37]">Home</Link>
-          <Link href="/rooms" onClick={() => setIsOpen(false)} className="hover:text-[#D4AF37]">Rooms</Link>
-          <Link href="/facilities" onClick={() => setIsOpen(false)} className="hover:text-[#D4AF37]">Facilities</Link>
-          <Link href="/gallery" onClick={() => setIsOpen(false)} className="hover:text-[#D4AF37]">Gallery</Link>
-          <Link href="/offers" onClick={() => setIsOpen(false)} className="hover:text-[#D4AF37]">Offers</Link>
-          <Link href="/contact" onClick={() => setIsOpen(false)} className="hover:text-[#D4AF37]">Contact</Link>
+          <Link href="/" onClick={() => setIsOpen(false)} className="hover:text-[text-desert-text]">Home</Link>
+          <Link href="/rooms" onClick={() => setIsOpen(false)} className="hover:text-[text-desert-text]">Rooms</Link>
+          <Link href="/facilities" onClick={() => setIsOpen(false)} className="hover:text-[text-desert-text]">Facilities</Link>
+          <Link href="/gallery" onClick={() => setIsOpen(false)} className="hover:text-[text-desert-text]">Gallery</Link>
+          <Link href="/offers" onClick={() => setIsOpen(false)} className="hover:text-[text-desert-text]">Offers</Link>
+          <Link href="/contact" onClick={() => setIsOpen(false)} className="hover:text-[text-desert-text]">Contact</Link>
           
           {user ? (
             <div className="flex flex-col gap-4 py-4 border-y border-stone-200">
-              <Link href="/my-booking" onClick={() => setIsOpen(false)} className="hover:text-[#D4AF37]">👤 My Profile</Link>
+              <Link href="/my-booking" onClick={() => setIsOpen(false)} className="hover:text-[text-desert-text]">👤 My Profile</Link>
               <button onClick={handleLogout} className="text-red-500 text-left hover:text-red-700">Logout</button>
             </div>
           ) : (
-            <Link href="/customer/login" onClick={() => setIsOpen(false)} className="hover:text-[#D4AF37] py-4 border-y border-stone-200">
+            <Link href="/customer/login" onClick={() => setIsOpen(false)} className="hover:text-[text-desert-text] py-4 border-y border-stone-200">
               Login / Register
             </Link>
           )}
@@ -139,7 +139,7 @@ export function Navbar() {
           <Link 
             href="/booking" 
             onClick={() => setIsOpen(false)} 
-            className="bg-[bg-desert-text] text-[#D4AF37] border border-[#D4AF37] text-center py-4 mt-2 shadow-md transition-all"
+            className="bg-[bg-desert-text] text-[text-desert-text] border border-[text-desert-text] text-center py-4 mt-2 shadow-md transition-all"
           >
             Book Now
           </Link>

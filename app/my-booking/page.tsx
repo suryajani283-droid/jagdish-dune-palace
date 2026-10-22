@@ -91,11 +91,11 @@ function Content() {
 
   // बुकिंग कार्ड UI
   const renderBookingCard = (booking: any, isSearched: boolean = false) => (
-    <div className={`bg-white border p-6 shadow-sm flex flex-col md:flex-row justify-between items-start md:items-center gap-4 ${isSearched ? 'border-[#D4AF37] border-2' : 'border-stone-200'}`}>
+    <div className={`bg-white border p-6 shadow-sm flex flex-col md:flex-row justify-between items-start md:items-center gap-4 ${isSearched ? 'border-[text-desert-text] border-2' : 'border-stone-200'}`}>
       <div>
         <p className="text-xs text-stone-500 uppercase tracking-widest mb-1">Reference</p>
         <p className="text-xl font-mono font-bold text-[bg-desert-text] mb-2">{booking.booking_reference}</p>
-        <p className="text-sm font-bold text-[#D4AF37]">{booking.rooms?.category} (Room {booking.rooms?.room_number})</p>
+        <p className="text-sm font-bold text-[text-desert-text]">{booking.rooms?.category} (Room {booking.rooms?.room_number})</p>
         <p className="text-xs text-stone-500 mt-1">
           {new Date(booking.check_in).toLocaleDateString('en-IN')} to {new Date(booking.check_out).toLocaleDateString('en-IN')}
         </p>
@@ -128,7 +128,7 @@ function Content() {
           <Link 
             href={`/my-booking/invoice/${booking.id}`} 
             target="_blank"
-            className="mt-1 inline-flex items-center gap-1 bg-[bg-desert-text] text-[#D4AF37] border border-[#D4AF37] hover:bg-[#D4AF37] hover:text-[bg-desert-text] px-3 py-1.5 text-xs font-bold transition-colors rounded-sm"
+            className="mt-1 inline-flex items-center gap-1 bg-[bg-desert-text] text-[text-desert-text] border border-[text-desert-text] hover:bg-[text-desert-text] hover:text-[bg-desert-text] px-3 py-1.5 text-xs font-bold transition-colors rounded-sm"
           >
             📥 Download Receipt
           </Link>
@@ -143,7 +143,7 @@ function Content() {
     <>
       <Navbar />
       <div className="bg-[bg-desert-text] py-16 text-center text-white">
-        <h1 className="text-5xl font-serif font-bold mb-4 text-[#D4AF37]">
+        <h1 className="text-5xl font-serif font-bold mb-4 text-[text-desert-text]">
           {user ? 'My Profile & Bookings' : 'Find Your Booking'}
         </h1>
         {user && (
@@ -164,10 +164,10 @@ function Content() {
               value={searchRef}
               onChange={(e) => setSearchRef(e.target.value.toUpperCase())}
               placeholder="Enter Booking Reference (e.g. JDP-XXXXXX)" 
-              className="w-full bg-[#faf8f5] border border-stone-200 px-4 py-3 focus:outline-none focus:border-[#D4AF37] uppercase font-mono" 
+              className="w-full bg-[#faf8f5] border border-stone-200 px-4 py-3 focus:outline-none focus:border-[text-desert-text] uppercase font-mono" 
               required
             />
-            <button type="submit" disabled={searchLoading} className="bg-[#D4AF37] text-[bg-desert-text] hover:bg-[bg-desert-text] hover:text-[#D4AF37] px-8 py-3 text-xs uppercase tracking-widest font-bold transition-colors disabled:opacity-50 whitespace-nowrap">
+            <button type="submit" disabled={searchLoading} className="bg-[text-desert-text] text-[bg-desert-text] hover:bg-[bg-desert-text] hover:text-[text-desert-text] px-8 py-3 text-xs uppercase tracking-widest font-bold transition-colors disabled:opacity-50 whitespace-nowrap">
               {searchLoading ? 'Searching...' : 'Search'}
             </button>
           </form>
@@ -192,7 +192,7 @@ function Content() {
             ) : userBookings.length === 0 ? (
               <div className="text-center p-10 bg-white border border-stone-200">
                 <p className="text-stone-500 mb-4">You have no past bookings.</p>
-                <Link href="/rooms" className="bg-[#D4AF37] text-[bg-desert-text] px-6 py-2 font-bold uppercase tracking-widest text-xs inline-block">Book a Room</Link>
+                <Link href="/rooms" className="bg-[text-desert-text] text-[bg-desert-text] px-6 py-2 font-bold uppercase tracking-widest text-xs inline-block">Book a Room</Link>
               </div>
             ) : (
               <div className="space-y-4">
