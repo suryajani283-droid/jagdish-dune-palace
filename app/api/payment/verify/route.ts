@@ -17,11 +17,18 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: 'Payment verification failed' }, { status: 400 });
     }
 
-    // 🔒 सुधार: डेटाबेस से बुकिंग का असली अमाउंट निकालें
+    // 🔒 डेटाबेस से बुकिंग का असली अमाउंट निकालें
     const { data: bookingData, error: fetchErr } = await supabaseAdmin
-      .from('bookings').select('total_amount, guests(*), rooms(category), check_in, check_out, booking_reference').eq('id', booking_id).single();
+      .from('bookings')
+      .select('total_amount, guests(*), rooms(category), check_in, check_out, booking_reference')
+      .eq('id', booking_id)
+      .single();
       
     if (fetchErr || !bookingData) throw new Error('Booking not found');
+
+    // ✅ TypeScript एरर फिक्स: Supabase कभी-कभी डेटा को Array में लौटाता है
+    const guest = Array.isArray(bookingData.guests) ? bookingData.guests[0] : bookingData.guests;
+    const room = Array.isArray(bookingData.rooms) ? bookingData.rooms[0] : bookingData.rooms;
 
     // 1. बुकिंग को कन्फर्म और पेड करें
     const { error: bErr } = await supabaseAdmin
@@ -40,12 +47,17 @@ export async function POST(req: Request) {
       status: 'captured'
     });
 
-    // 3. ईमेल भेजें
-    if (bookingData.guests?.email) {
+    // 3. ईमेल भेजें (यहाँ भी [0] का इस्तेमाल किया है)
+    if (guest?.email) {
       await sendBookingEmail(
-        bookingData.guests.email, bookingData.guests.full_name, bookingData.booking_reference, 
-        bookingData.rooms.category, bookingData.check_in, bookingData.check_out, 
-        bookingData.total_amount, 'Paid Online (Successful)'
+        guest.email, 
+        guest.full_name, 
+        bookingData.booking_reference, 
+        room?.category || 'Room', 
+        bookingData.check_in, 
+        bookingData.check_out, 
+        bookingData.total_amount, 
+        'Paid Online (Successful)'
       );
     }
 
