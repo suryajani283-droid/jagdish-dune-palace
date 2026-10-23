@@ -12,6 +12,9 @@ export async function updateSettings(formData: FormData) {
     const gstin = formData.get('gstin') as string;
     const hero_title = formData.get('hero_title') as string;
     const hero_subtitle = formData.get('hero_subtitle') as string;
+    
+    // ✅ त्योहारों की थीम (Festival Theme) निकालें
+    const active_theme = formData.get('active_theme') as string || 'default';
 
     // पुराने URL (अगर यूजर ने नई इमेज अपलोड नहीं की है)
     let logo_url = formData.get('existing_logo_url') as string;
@@ -55,7 +58,7 @@ export async function updateSettings(formData: FormData) {
       hero_image_url = publicUrl;
     }
 
-    // 3. डेटाबेस अपडेट करें
+    // 3. डेटाबेस अपडेट करें (साथ में active_theme भी सेव करें)
     const { error } = await supabaseAdmin
       .from('hotel_settings')
       .update({
@@ -68,11 +71,13 @@ export async function updateSettings(formData: FormData) {
         hero_image_url,
         hero_title,
         hero_subtitle,
+        active_theme, // ✅ यहाँ थीम सेव हो रही है
       })
       .eq('id', 1);
 
     if (error) throw new Error(error.message);
 
+    // कैश साफ़ करें ताकि पूरी वेबसाइट पर नई थीम तुरंत दिखे
     revalidatePath('/', 'layout'); 
     return { success: true };
   } catch (err: any) {

@@ -1,75 +1,140 @@
 @import "tailwindcss";
 
+/* =========================================
+   1. THEME COLORS (Colors change per festival)
+   ========================================= */
 :root {
-  --font-serif: var(--font-playfair), serif;
-  --font-sans: var(--font-lato), sans-serif;
+  --theme-primary: #0B1320; 
+  --theme-secondary: #C5A059; 
+  --theme-bg: #F8F9FA;
+  --theme-text: #1A1A1A;
+}
+
+[data-theme="diwali"] {
+  --theme-primary: #3E0606; /* Deep Red */
+  --theme-secondary: #FFD700; /* Bright Gold */
+  --theme-bg: #FFF4E6; /* Warm Light */
+  --theme-text: #2B1A1A;
+}
+
+[data-theme="holi"] {
+  --theme-primary: #2B1055; /* Deep Purple */
+  --theme-secondary: #FF007F; /* Bright Pink */
+  --theme-bg: #F4F9F4; 
+  --theme-text: #1D3557;
+}
+
+[data-theme="rakshabandhan"] {
+  --theme-primary: #4A1525; /* Dark Maroon */
+  --theme-secondary: #FF9933; /* Saffron */
+  --theme-bg: #FFF8F0;
+  --theme-text: #2B1A1A;
+}
+
+[data-theme="newyear"] {
+  --theme-primary: #000000; /* Black */
+  --theme-secondary: #E5E5E5; /* Silver */
+  --theme-bg: #F9F9F9;
+  --theme-text: #111111;
 }
 
 body {
-  background-color: #F8F9FA; /* Soft Platinum White */
-  color: #1A1A1A;
+  background-color: var(--theme-bg);
+  color: var(--theme-text);
   overflow-x: hidden;
-  font-family: var(--font-sans);
+  transition: background-color 0.8s ease;
 }
 
-h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-serif);
-}
+/* =========================================
+   2. DYNAMIC UI CLASSES
+   ========================================= */
+.text-theme-primary { color: var(--theme-primary); }
+.text-theme-secondary { color: var(--theme-secondary); }
+.bg-theme-primary { background-color: var(--theme-primary); }
+.bg-theme-secondary { background-color: var(--theme-secondary); }
+.bg-theme-bg { background-color: var(--theme-bg); }
+.bg-theme-card { background-color: #FFFFFF; }
 
-/* Premium Buttons */
-.btn-luxury {
-  @apply relative overflow-hidden bg-[#C5A059] text-[#0B1320] font-bold uppercase tracking-widest text-xs px-8 py-4 transition-all duration-300 inline-block;
-  box-shadow: 0 4px 15px rgba(197, 160, 89, 0.2);
-  border: 1px solid #C5A059;
+.btn-primary {
+  background-color: var(--theme-secondary);
+  color: var(--theme-primary);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: 1rem 2rem;
+  transition: all 0.3s ease;
+  border: 2px solid var(--theme-secondary);
 }
-.btn-luxury:hover {
-  @apply bg-[#0B1320] text-[#C5A059];
+.btn-primary:hover {
+  background-color: var(--theme-primary);
+  color: var(--theme-secondary);
   transform: translateY(-3px);
-  box-shadow: 0 8px 25px rgba(11, 19, 32, 0.3);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
 }
 
 .btn-outline {
-  @apply border-2 border-[#0B1320] text-[#0B1320] hover:bg-[#0B1320] hover:text-[#C5A059] uppercase tracking-widest text-xs font-bold px-8 py-4 transition-all duration-300 inline-block;
+  border: 2px solid var(--theme-primary);
+  color: var(--theme-primary);
+  padding: 1rem 2rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
 }
 .btn-outline:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 8px 20px rgba(11, 19, 32, 0.15);
+  background-color: var(--theme-primary);
+  color: var(--theme-secondary);
 }
 
-/* Navbar Link Animation */
-.nav-link {
-  position: relative;
-  transition: color 0.3s ease;
+/* =========================================
+   3. FESTIVAL ANIMATIONS & DECORATIONS
+   ========================================= */
+
+/* Diwali: Diya Glow */
+@keyframes diya-glow {
+  0%, 100% { box-shadow: 0 0 20px 5px rgba(255, 215, 0, 0.4); }
+  50% { box-shadow: 0 0 40px 10px rgba(255, 140, 0, 0.6); }
 }
-.nav-link::after {
-  content: '';
-  position: absolute;
-  width: 0;
-  height: 2px;
-  bottom: -4px;
-  left: 0;
-  background-color: #C5A059;
-  transition: width 0.3s ease-in-out;
+.diwali-glow { animation: diya-glow 3s infinite; }
+
+/* Holi: Falling Colors */
+@keyframes fall {
+  0% { transform: translateY(-10vh) rotate(0deg); opacity: 1; }
+  100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
 }
-.nav-link:hover {
-  color: #C5A059;
-}
-.nav-link:hover::after {
-  width: 100%;
+.holi-color {
+  position: fixed;
+  top: -10vh;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  animation: fall linear infinite;
+  z-index: 100;
+  pointer-events: none;
 }
 
-/* Card Hover Effect */
-.card-premium {
-  @apply bg-white border border-stone-200 overflow-hidden transition-all duration-500;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+/* Rakshabandhan: Floating Rakhi */
+@keyframes float {
+  0% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-20px) rotate(10deg); }
+  100% { transform: translateY(0px) rotate(0deg); }
 }
-.card-premium:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 20px 40px rgba(11, 19, 32, 0.15);
-  border-color: #C5A059;
+.rakhi-float {
+  position: fixed;
+  animation: float 4s ease-in-out infinite;
+  z-index: 100;
+  pointer-events: none;
+  font-size: 2rem;
 }
 
-/* Hero Overlay */
-.hero-overlay {
-  background: linear-gradient(to bottom, rgba(11, 19, 32, 0.6) 0%, rgba(11, 19, 32, 0.9) 100%);
+/* New Year: Twinkling Stars */
+@keyframes twinkle {
+  0%, 100% { opacity: 0.2; transform: scale(0.8); }
+  50% { opacity: 1; transform: scale(1.2); }
+}
+.star-twinkle {
+  position: fixed;
+  color: #FFD700;
+  animation: twinkle 2s infinite;
+  z-index: 100;
+  pointer-events: none;
 }
