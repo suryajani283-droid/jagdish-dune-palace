@@ -1,3 +1,0 @@
-module.exports=[70406,(a,b,c)=>{b.exports=a.x("next/dist/compiled/@opentelemetry/api",()=>require("next/dist/compiled/@opentelemetry/api"))},81111,(a,b,c)=>{b.exports=a.x("node:stream",()=>require("node:stream"))},29998,a=>{"use strict";var b=a.i(27268),c=a.i(30824);a.S([b,"4016d9f9b4a57dba67449414e88625a04363a89515,$$RSC_SERVER_ACTION_0",0,c,"4068cbe11529fb25a54958bf991735fb63843c0d0b,g,40e614a377d7a6ed00eec349402519f9692e2b5097,f"],29998)},39916,a=>{"use strict";let b=(0,a.i(45618).f)("https://qocvgplnvpscrzsknjhq.supabase.co",process.env.SUPABASE_SERVICE_ROLE_KEY,{auth:{persistSession:!1}});a.s(["f",0,b])}];
-
-//# sourceMappingURL=%5Broot-of-the-server%5D__14v-3bhefc2ch._.js.map

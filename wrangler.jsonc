@@ -4,7 +4,6 @@
   "name": "jagdish-dune-palace",
   "compatibility_date": "2025-09-01",
   "compatibility_flags": [
-    "nodejs_compat",
     "nodejs_compat_v2"
   ],
   "minify": false,

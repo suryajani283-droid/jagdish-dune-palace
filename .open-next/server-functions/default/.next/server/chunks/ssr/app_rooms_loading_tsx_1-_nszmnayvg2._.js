@@ -1,3 +1,0 @@
-module.exports=[42184,a=>{"use strict";var b=a.i(7997);a.s(["default",0,function(){return(0,b.jsxs)("div",{className:"min-h-screen flex flex-col items-center justify-center bg-[var(--theme-bg)]",children:[(0,b.jsx)("div",{className:"w-16 h-16 border-4 text-[var(--theme-secondary)] border-t-transparent rounded-full animate-spin mb-4"}),(0,b.jsx)("p",{className:"font-serif text-xl text-[var(--theme-primary)]",children:"Loading Rooms..."})]})}])},10525,function(a){a.n(a.i(42184))}];
-
-//# sourceMappingURL=app_rooms_loading_tsx_1-_nszmnayvg2._.js.map
