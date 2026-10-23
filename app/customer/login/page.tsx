@@ -8,7 +8,12 @@ import { Footer } from '@/components/Footer';
 function LoginContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const redirectUrl = searchParams.get('redirect') || '/my-booking';
+  
+  // ✅ सुधार: खतरनाक URL रीडायरेक्ट (Open Redirect) को रोकें
+  const redirectParam = searchParams.get('redirect');
+  const redirectUrl = (redirectParam && redirectParam.startsWith('/')) 
+    ? redirectParam 
+    : '/my-booking';
 
   const [email, setEmail] = useState('');
   const [otp, setOtp] = useState('');
@@ -19,42 +24,50 @@ function LoginContent() {
 
   const handleSendOtp = async (e: React.FormEvent) => {
     e.preventDefault();
-    setLoading(true); setError('');
+    setLoading(true); 
+    setError('');
     const supabase = createClient();
     
     const { error } = await supabase.auth.signInWithOtp({ email });
-    if (error) setError(error.message);
-    else setStep('otp');
+    if (error) {
+      setError(error.message);
+    } else {
+      setStep('otp');
+    }
     setLoading(false);
   };
 
   const handleVerifyOtp = async (e: React.FormEvent) => {
     e.preventDefault();
-    setLoading(true); setError('');
+    setLoading(true); 
+    setError('');
     const supabase = createClient();
     
     const { data, error } = await supabase.auth.verifyOtp({
-      email, token: otp, type: 'email',
+      email, 
+      token: otp, 
+      type: 'email',
     });
 
     if (error) {
       setError(error.message);
       setLoading(false);
     } else {
-      // चेक करें कि यूज़र के पास मोबाइल नंबर है या नहीं
+      // चेक करें कि यूज़र के पास मोबाइल नंबर सेव है या नहीं
       const userPhone = data.user?.user_metadata?.phone;
       if (!userPhone) {
-        setStep('phone'); // नंबर नहीं है तो मांगें
+        setStep('phone');
+        setLoading(false);
       } else {
         router.push(redirectUrl);
       }
-      setLoading(false);
     }
   };
 
   const handleSavePhone = async (e: React.FormEvent) => {
     e.preventDefault();
-    setLoading(true); setError('');
+    setLoading(true); 
+    setError('');
     const supabase = createClient();
     
     // 1. यूज़र के मेटाडेटा में फोन नंबर सेव करें
@@ -68,7 +81,7 @@ function LoginContent() {
       return;
     }
 
-    // 2. profiles टेबल में भी सेव करें (अगर आप चाहें)
+    // 2. profiles टेबल में भी सेव/अपडेट करें
     if (data.user) {
        await supabase.from('profiles').upsert({
            id: data.user.id,
@@ -95,11 +108,11 @@ function LoginContent() {
               <p className="text-center text-stone-500 text-sm mb-4">Enter your email to receive a login OTP</p>
               <div>
                 <label className="block text-xs font-bold text-stone-500 uppercase mb-2">Email Address</label>
-                <input type="email" required placeholder="yourname@gmail.com" className="w-full bg-[var(--theme-bg)] border border-stone-200 px-4 py-3 focus:outline-none focus:text-[var(--theme-secondary)]"
+                <input type="email" required placeholder="yourname@gmail.com" className="w-full bg-[var(--theme-bg)] border border-stone-200 px-4 py-3 focus:outline-none focus:border-[var(--theme-secondary)]"
                   value={email} onChange={(e) => setEmail(e.target.value)} />
               </div>
               {error && <p className="text-red-600 text-sm bg-red-50 p-2">{error}</p>}
-              <button type="submit" disabled={loading} className="w-full bg-[var(--theme-primary)] text-[var(--theme-secondary)] hover:bg-[var(--theme-primary)] hover:text-[var(--theme-primary)] py-3 font-bold uppercase tracking-widest text-xs transition-colors">
+              <button type="submit" disabled={loading} className="w-full bg-[var(--theme-primary)] text-[var(--theme-secondary)] hover:bg-[var(--theme-secondary)] hover:text-[var(--theme-primary)] py-3 font-bold uppercase tracking-widest text-xs transition-colors">
                 {loading ? 'Sending OTP...' : 'Send Login OTP'}
               </button>
             </form>
@@ -110,11 +123,11 @@ function LoginContent() {
               <p className="text-center text-sm text-stone-600">OTP sent to <strong>{email}</strong></p>
               <div>
                 <label className="block text-xs font-bold text-stone-500 uppercase mb-2">Enter 6-Digit OTP</label>
-                <input type="text" required placeholder="123456" maxLength={6} className="w-full bg-[var(--theme-bg)] border border-stone-200 px-4 py-3 text-center tracking-[0.5em] text-xl font-bold focus:outline-none focus:text-[var(--theme-secondary)]"
+                <input type="text" required placeholder="123456" maxLength={6} className="w-full bg-[var(--theme-bg)] border border-stone-200 px-4 py-3 text-center tracking-[0.5em] text-xl font-bold focus:outline-none focus:border-[var(--theme-secondary)]"
                   value={otp} onChange={(e) => setOtp(e.target.value)} />
               </div>
               {error && <p className="text-red-600 text-sm bg-red-50 p-2">{error}</p>}
-              <button type="submit" disabled={loading} className="w-full bg-[var(--theme-primary)] text-[var(--theme-primary)] hover:bg-[var(--theme-primary)] hover:text-[var(--theme-secondary)] py-3 font-bold uppercase tracking-widest text-xs transition-colors">
+              <button type="submit" disabled={loading} className="w-full bg-[var(--theme-secondary)] text-[var(--theme-primary)] hover:bg-[var(--theme-primary)] hover:text-[var(--theme-secondary)] py-3 font-bold uppercase tracking-widest text-xs transition-colors">
                 {loading ? 'Verifying...' : 'Verify OTP'}
               </button>
             </form>
@@ -125,11 +138,11 @@ function LoginContent() {
               <p className="text-center text-sm text-stone-600 mb-4">Please enter your mobile number to complete your profile.</p>
               <div>
                 <label className="block text-xs font-bold text-stone-500 uppercase mb-2">Mobile Number (Compulsory)</label>
-                <input type="tel" required placeholder="+91 98765 43210" className="w-full bg-[var(--theme-bg)] border border-stone-200 px-4 py-3 focus:outline-none focus:text-[var(--theme-secondary)]"
+                <input type="tel" required placeholder="+91 98765 43210" className="w-full bg-[var(--theme-bg)] border border-stone-200 px-4 py-3 focus:outline-none focus:border-[var(--theme-secondary)]"
                   value={phone} onChange={(e) => setPhone(e.target.value)} />
               </div>
               {error && <p className="text-red-600 text-sm bg-red-50 p-2">{error}</p>}
-              <button type="submit" disabled={loading} className="w-full bg-[var(--theme-primary)] text-[var(--theme-secondary)] hover:bg-[var(--theme-primary)] hover:text-[var(--theme-primary)] py-3 font-bold uppercase tracking-widest text-xs transition-colors">
+              <button type="submit" disabled={loading} className="w-full bg-[var(--theme-primary)] text-[var(--theme-secondary)] hover:bg-[var(--theme-secondary)] hover:text-[var(--theme-primary)] py-3 font-bold uppercase tracking-widest text-xs transition-colors">
                 {loading ? 'Saving...' : 'Save & Continue'}
               </button>
             </form>
@@ -143,5 +156,5 @@ function LoginContent() {
 }
 
 export default function CustomerLogin() {
-  return <Suspense fallback={<div className="text-center py-20">Loading...</div>}><LoginContent /></Suspense>;
+  return <Suspense fallback={<div className="text-center py-20 text-[var(--theme-primary)]">Loading...</div>}><LoginContent /></Suspense>;
 }

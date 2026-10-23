@@ -10,7 +10,6 @@ export default async function AdminLayout({ children }: { children: React.ReactN
 
   const { data: profile } = await supabase.from('profiles').select('role, full_name').eq('id', user.id).single();
   
-  // 🔒 सुरक्षा सुधार: अगर यूजर एडमिन या रिसेप्शनिस्ट नहीं है, तो उसे बाहर निकाल दें
   const role = profile?.role;
   if (role !== 'admin' && role !== 'receptionist') {
     redirect('/');

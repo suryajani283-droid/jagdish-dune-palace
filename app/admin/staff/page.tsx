@@ -7,7 +7,6 @@ export default async function StaffPage() {
   const supabase = await createClient();
   const { data: { user: currentUser } } = await supabase.auth.getUser();
 
-  // ✅ यहाँ फ़िल्टर लगा दिया है कि सिर्फ admin और receptionist दिखें, customer नहीं
   const { data: staffMembers, error } = await supabaseAdmin
     .from('profiles')
     .select('*')
@@ -38,28 +37,29 @@ export default async function StaffPage() {
             
             <div>
               <label className="block text-xs font-bold text-stone-500 uppercase mb-1">Full Name *</label>
-              <input type="text" name="full_name" required className="w-full bg-[var(--theme-bg)] border border-stone-200 px-4 py-2 focus:outline-none focus:text-[var(--theme-secondary)]" />
+              <input type="text" name="full_name" required className="w-full bg-[var(--theme-bg)] border border-stone-200 px-4 py-2 focus:outline-none focus:border-[var(--theme-secondary)]" />
             </div>
 
             <div>
               <label className="block text-xs font-bold text-stone-500 uppercase mb-1">Email (Login ID) *</label>
-              <input type="email" name="email" required className="w-full bg-[var(--theme-bg)] border border-stone-200 px-4 py-2 focus:outline-none focus:text-[var(--theme-secondary)]" />
+              <input type="email" name="email" required className="w-full bg-[var(--theme-bg)] border border-stone-200 px-4 py-2 focus:outline-none focus:border-[var(--theme-secondary)]" />
             </div>
 
             <div>
               <label className="block text-xs font-bold text-stone-500 uppercase mb-1">Password *</label>
-              <input type="text" name="password" required minLength={6} placeholder="Min 6 characters" className="w-full bg-[var(--theme-bg)] border border-stone-200 px-4 py-2 focus:outline-none focus:text-[var(--theme-secondary)]" />
+              {/* ✅ सुधार: पासवर्ड को छिपाने के लिए type="password" किया गया */}
+              <input type="password" name="password" required minLength={6} placeholder="Min 6 characters" className="w-full bg-[var(--theme-bg)] border border-stone-200 px-4 py-2 focus:outline-none focus:border-[var(--theme-secondary)]" />
             </div>
 
             <div>
               <label className="block text-xs font-bold text-stone-500 uppercase mb-1">Role *</label>
-              <select name="role" required className="w-full bg-[var(--theme-bg)] border border-stone-200 px-4 py-2 focus:outline-none focus:text-[var(--theme-secondary)]">
+              <select name="role" required className="w-full bg-[var(--theme-bg)] border border-stone-200 px-4 py-2 focus:outline-none focus:border-[var(--theme-secondary)]">
                 <option value="receptionist">Receptionist (सिर्फ बुकिंग देख सकते हैं)</option>
                 <option value="admin">Admin (पूरा एक्सेस)</option>
               </select>
             </div>
 
-            <button type="submit" className="w-full bg-[var(--theme-primary)] text-white hover:bg-[var(--theme-primary)] py-3 text-xs uppercase tracking-widest font-bold transition-colors">
+            <button type="submit" className="w-full bg-[var(--theme-primary)] text-white hover:bg-[var(--theme-secondary)] py-3 text-xs uppercase tracking-widest font-bold transition-colors">
               Create Account
             </button>
           </form>

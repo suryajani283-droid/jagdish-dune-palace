@@ -2,11 +2,32 @@
 
 import { supabaseAdmin } from '@/lib/supabase/admin';
 import { revalidatePath } from 'next/cache';
+import { createClient } from '@/lib/supabase/server';
 
 export async function updateBookingStatus(bookingId: string, newStatus: string) {
+  const supabaseAuth = await createClient();
+  const { data: { user } } = await supabaseAuth.auth.getUser();
+  if (!user) throw new Error('Unauthorized');
+
   try {
-    const { error } = await supabaseAdmin
-      .from('bookings').update({ status: newStatus }).eq('id', bookingId);
+    const { error } = await supabaseAdmin.from('bookings').update({ status: newStatus }).eq('id', bookingId);
+    if (error) throw new Error(error.message);
+    revalidatePath('/admin/bookings');
+    revalidatePath('/admin/dashboard');
+    revalidatePath('/admin/rooms');
+    return { success: true };
+  } catch (err: any) {
+    return { success: false, error: err.message };
+  }
+}
+
+export async function markAsPaid(bookingId: string) {
+  const supabaseAuth = await createClient();
+  const { data: { user } } = await supabaseAuth.auth.getUser();
+  if (!user) throw new Error('Unauthorized');
+
+  try {
+    const { error } = await supabaseAdmin.from('bookings').update({ payment_status: 'paid' }).eq('id', bookingId);
     if (error) throw new Error(error.message);
     revalidatePath('/admin/bookings');
     revalidatePath('/admin/dashboard');
@@ -16,28 +37,16 @@ export async function updateBookingStatus(bookingId: string, newStatus: string) 
   }
 }
 
-export async function markAsPaid(bookingId: string) {
-  try {
-    const { error } = await supabaseAdmin
-      .from('bookings').update({ payment_status: 'paid' }).eq('id', bookingId);
-    if (error) throw new Error(error.message);
-    revalidatePath('/admin/bookings');
-    return { success: true };
-  } catch (err: any) {
-    return { success: false, error: err.message };
-  }
-}
-
-// ✅ नया फंक्शन: रिफंड मार्क करने के लिए
 export async function markAsRefunded(bookingId: string) {
-  try {
-    const { error } = await supabaseAdmin
-      .from('bookings')
-      .update({ payment_status: 'refunded' }) // पेमेंट स्टेटस को 'refunded' कर देंगे
-      .eq('id', bookingId);
+  const supabaseAuth = await createClient();
+  const { data: { user } } = await supabaseAuth.auth.getUser();
+  if (!user) throw new Error('Unauthorized');
 
+  try {
+    const { error } = await supabaseAdmin.from('bookings').update({ payment_status: 'refunded' }).eq('id', bookingId);
     if (error) throw new Error(error.message);
     revalidatePath('/admin/bookings');
+    revalidatePath('/admin/dashboard');
     return { success: true };
   } catch (err: any) {
     return { success: false, error: err.message };
@@ -45,7 +54,10 @@ export async function markAsRefunded(bookingId: string) {
 }
 
 export async function createManualBooking(formData: FormData) {
-  // ... (पुराना कोड वैसा ही रहेगा, मैंने इसे यहाँ छोटा किया है)
+  const supabaseAuth = await createClient();
+  const { data: { user } } = await supabaseAuth.auth.getUser();
+  if (!user) throw new Error('Unauthorized');
+
   try {
     const full_name = formData.get('full_name') as string;
     const phone = formData.get('phone') as string;
@@ -59,7 +71,7 @@ export async function createManualBooking(formData: FormData) {
     if (roomErr || !room) throw new Error('Room not found');
 
     const nights = Math.max(1, Math.round((new Date(check_out).getTime() - new Date(check_in).getTime()) / 86400000));
-    const total_amount = room.base_price * nights * 1.12; // GST जोड़ दिया
+    const total_amount = room.base_price * nights * 1.12;
 
     const { data: guest, error: gErr } = await supabaseAdmin.from('guests').insert({ full_name, email: email || null, phone }).select().single();
     if (gErr) throw new Error('Guest creation failed');
@@ -74,6 +86,8 @@ export async function createManualBooking(formData: FormData) {
 
     if (bErr) throw new Error(bErr.message);
     revalidatePath('/admin/bookings');
+    revalidatePath('/admin/dashboard');
+    revalidatePath('/admin/rooms');
     return { success: true };
   } catch (err: any) {
     return { success: false, error: err.message };
@@ -81,7 +95,10 @@ export async function createManualBooking(formData: FormData) {
 }
 
 export async function generateInvoice(bookingId: string) {
-  // ... (पुराना इनवॉइस कोड वैसा ही रहेगा)
+  const supabaseAuth = await createClient();
+  const { data: { user } } = await supabaseAuth.auth.getUser();
+  if (!user) throw new Error('Unauthorized');
+
   try {
     const { data: booking } = await supabaseAdmin.from('bookings').select('*').eq('id', bookingId).single();
     if (!booking) throw new Error('Booking not found');
@@ -99,8 +116,9 @@ export async function generateInvoice(bookingId: string) {
     }).select().single();
 
     if (iErr) throw new Error(iErr.message);
-    await supabaseAdmin.from('bookings').update({ status: 'checked_out' }).eq('id', bookingId);
+    await supabaseAdmin.from('bookings').update({ status: 'checked_out', payment_status: 'paid' }).eq('id', bookingId);
     revalidatePath('/admin/bookings');
+    revalidatePath('/admin/dashboard');
     return { success: true, invoiceId: invoice.id };
   } catch (err: any) {
     return { success: false, error: err.message };
