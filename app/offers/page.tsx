@@ -10,7 +10,7 @@ export default async function OffersPage() {
   return (
     <>
       <Navbar />
-      <div className="bg-brand-dark py-20 text-center text-white">
+      <div className="bg-[[var(--theme-primary)]] py-20 text-center text-white">
         <h1 className="text-5xl font-serif font-bold mb-4 text-brand-gold">Special Offers</h1>
         <p className="text-stone-300">Exclusive packages for a memorable stay</p>
       </div>
@@ -18,12 +18,12 @@ export default async function OffersPage() {
       <div className="max-w-5xl mx-auto px-6 py-20">
         <div className="grid md:grid-cols-2 gap-8">
           {offers?.map((offer) => (
-            <div key={offer.id} className="bg-white border border-brand-gold p-8 flex flex-col justify-between rounded-sm shadow-lg">
+            <div key={offer.id} className="bg-white border text-[var(--theme-secondary)] p-8 flex flex-col justify-between rounded-sm shadow-lg">
               <div>
-                <h2 className="text-3xl font-serif text-brand-dark mb-3">{offer.title}</h2>
+                <h2 className="text-3xl font-serif text-[var(--theme-primary)] mb-3">{offer.title}</h2>
                 <p className="text-stone-600 mb-6">{offer.description}</p>
               </div>
-              <div className="bg-brand-cream p-4 border border-dashed border-brand-gold flex justify-between items-center mb-6">
+              <div className="bg-[var(--theme-bg)] p-4 border border-dashed text-[var(--theme-secondary)] flex justify-between items-center mb-6">
                 <span className="text-sm font-bold text-stone-500 uppercase">Use Code:</span>
                 <span className="text-xl font-mono font-bold text-brand-gold tracking-widest">{offer.coupon_code}</span>
               </div>

@@ -91,11 +91,11 @@ function Content() {
 
   // बुकिंग कार्ड UI
   const renderBookingCard = (booking: any, isSearched: boolean = false) => (
-    <div className={`bg-white border p-6 shadow-sm flex flex-col md:flex-row justify-between items-start md:items-center gap-4 ${isSearched ? 'border-[text-desert-text] border-2' : 'border-stone-200'}`}>
+    <div className={`bg-white border p-6 shadow-sm flex flex-col md:flex-row justify-between items-start md:items-center gap-4 ${isSearched ? 'text-[var(--theme-secondary)] border-2' : 'border-stone-200'}`}>
       <div>
         <p className="text-xs text-stone-500 uppercase tracking-widest mb-1">Reference</p>
-        <p className="text-xl font-mono font-bold text-[brand-primary] mb-2">{booking.booking_reference}</p>
-        <p className="text-sm font-bold text-[text-desert-text]">{booking.rooms?.category} (Room {booking.rooms?.room_number})</p>
+        <p className="text-xl font-mono font-bold text-[var(--theme-primary)] mb-2">{booking.booking_reference}</p>
+        <p className="text-sm font-bold text-[var(--theme-secondary)]">{booking.rooms?.category} (Room {booking.rooms?.room_number})</p>
         <p className="text-xs text-stone-500 mt-1">
           {new Date(booking.check_in).toLocaleDateString('en-IN')} to {new Date(booking.check_out).toLocaleDateString('en-IN')}
         </p>
@@ -106,7 +106,7 @@ function Content() {
       
       <div className="text-right flex flex-col items-end gap-2">
         <div>
-          <p className="text-lg font-bold text-[brand-primary] mb-1">{formatINR(booking.total_amount)}</p>
+          <p className="text-lg font-bold text-[var(--theme-primary)] mb-1">{formatINR(booking.total_amount)}</p>
           <div className="flex gap-2 justify-end">
             <span className={`inline-block px-2 py-1 text-[10px] font-bold uppercase rounded-sm border ${
               booking.status === 'confirmed' ? 'bg-green-50 text-green-700 border-green-200' : 
@@ -128,7 +128,7 @@ function Content() {
           <Link 
             href={`/my-booking/invoice/${booking.id}`} 
             target="_blank"
-            className="mt-1 inline-flex items-center gap-1 bg-[brand-primary] text-[text-desert-text] border border-[text-desert-text] hover:bg-[text-desert-text] hover:text-[brand-primary] px-3 py-1.5 text-xs font-bold transition-colors rounded-sm"
+            className="mt-1 inline-flex items-center gap-1 bg-[[var(--theme-primary)]] text-[var(--theme-secondary)] border text-[var(--theme-secondary)] hover:bg-[var(--theme-primary)] hover:text-[var(--theme-primary)] px-3 py-1.5 text-xs font-bold transition-colors rounded-sm"
           >
             📥 Download Receipt
           </Link>
@@ -137,13 +137,13 @@ function Content() {
     </div>
   );
 
-  if (loadingProfile) return <div className="p-20 text-center font-serif text-[brand-primary]">Loading Profile...</div>;
+  if (loadingProfile) return <div className="p-20 text-center font-serif text-[var(--theme-primary)]">Loading Profile...</div>;
 
   return (
     <>
       <Navbar />
-      <div className="bg-[brand-primary] py-16 text-center text-white">
-        <h1 className="text-5xl font-serif font-bold mb-4 text-[text-desert-text]">
+      <div className="bg-[[var(--theme-primary)]] py-16 text-center text-white">
+        <h1 className="text-5xl font-serif font-bold mb-4 text-[var(--theme-secondary)]">
           {user ? 'My Profile & Bookings' : 'Find Your Booking'}
         </h1>
         {user && (
@@ -164,10 +164,10 @@ function Content() {
               value={searchRef}
               onChange={(e) => setSearchRef(e.target.value.toUpperCase())}
               placeholder="Enter Booking Reference (e.g. JDP-XXXXXX)" 
-              className="w-full bg-[brand-bg] border border-stone-200 px-4 py-3 focus:outline-none focus:border-[text-desert-text] uppercase font-mono" 
+              className="w-full bg-[var(--theme-bg)] border border-stone-200 px-4 py-3 focus:outline-none focus:text-[var(--theme-secondary)] uppercase font-mono" 
               required
             />
-            <button type="submit" disabled={searchLoading} className="bg-[text-desert-text] text-[brand-primary] hover:bg-[brand-primary] hover:text-[text-desert-text] px-8 py-3 text-xs uppercase tracking-widest font-bold transition-colors disabled:opacity-50 whitespace-nowrap">
+            <button type="submit" disabled={searchLoading} className="bg-[var(--theme-primary)] text-[var(--theme-primary)] hover:bg-[[var(--theme-primary)]] hover:text-[var(--theme-secondary)] px-8 py-3 text-xs uppercase tracking-widest font-bold transition-colors disabled:opacity-50 whitespace-nowrap">
               {searchLoading ? 'Searching...' : 'Search'}
             </button>
           </form>
@@ -177,7 +177,7 @@ function Content() {
         {/* सर्च रिजल्ट */}
         {searchedBooking && (
           <div className="mb-12 animate-fade-up">
-            <h3 className="text-2xl font-serif text-[brand-primary] mb-4 border-b pb-2">Search Result</h3>
+            <h3 className="text-2xl font-serif text-[var(--theme-primary)] mb-4 border-b pb-2">Search Result</h3>
             {renderBookingCard(searchedBooking, true)}
           </div>
         )}
@@ -185,14 +185,14 @@ function Content() {
         {/* पुरानी हिस्ट्री */}
         {user && (
           <div className="mt-16 pt-8 border-t border-stone-200">
-            <h3 className="text-2xl font-serif text-[brand-primary] mb-6">My Booking History</h3>
+            <h3 className="text-2xl font-serif text-[var(--theme-primary)] mb-6">My Booking History</h3>
             
             {loadingHistory ? (
               <div className="text-center p-10 font-serif text-stone-500">Loading your bookings...</div>
             ) : userBookings.length === 0 ? (
               <div className="text-center p-10 bg-white border border-stone-200">
                 <p className="text-stone-500 mb-4">You have no past bookings.</p>
-                <Link href="/rooms" className="bg-[text-desert-text] text-[brand-primary] px-6 py-2 font-bold uppercase tracking-widest text-xs inline-block">Book a Room</Link>
+                <Link href="/rooms" className="bg-[var(--theme-primary)] text-[var(--theme-primary)] px-6 py-2 font-bold uppercase tracking-widest text-xs inline-block">Book a Room</Link>
               </div>
             ) : (
               <div className="space-y-4">
@@ -213,5 +213,5 @@ function Content() {
 }
 
 export default function MyBookingPage() {
-  return <Suspense fallback={<div className="text-center py-20 font-serif text-[brand-primary]">Loading...</div>}><Content /></Suspense>;
+  return <Suspense fallback={<div className="text-center py-20 font-serif text-[var(--theme-primary)]">Loading...</div>}><Content /></Suspense>;
 }

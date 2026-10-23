@@ -34,14 +34,14 @@ export default async function HomePage() {
       <Hero settings={settings} />
       
       {/* Heritage Section */}
-      <section className="py-24 bg-theme-bg transition-colors duration-500">
+      <section className="py-24 bg-[var(--theme-bg)] transition-colors duration-500">
         <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-16 items-center">
           <div className="relative h-[500px] w-full">
             <Image src="https://images.unsplash.com/photo-1582719508461-905c673771fd?w=800" alt="Hotel Heritage" fill className="object-cover rounded-t-[100px] rounded-bl-[100px] shadow-2xl" />
           </div>
           <div>
-            <p className="text-theme-secondary uppercase tracking-[0.3em] text-xs font-bold mb-4">Our Heritage</p>
-            <h2 className="text-4xl md:text-5xl font-serif font-bold text-theme-primary mb-6 leading-tight">
+            <p className="text-[var(--theme-secondary)] uppercase tracking-[0.3em] text-xs font-bold mb-4">Our Heritage</p>
+            <h2 className="text-4xl md:text-5xl font-serif font-bold text-[var(--theme-primary)] mb-6 leading-tight">
               A Royal Retreat in the Heart of the Thar Desert
             </h2>
             <p className="text-stone-500 leading-relaxed mb-6 font-light text-lg">
@@ -56,8 +56,8 @@ export default async function HomePage() {
       <section className="py-24 bg-white transition-colors duration-500">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-16">
-            <p className="text-theme-secondary uppercase tracking-[0.3em] text-xs font-bold mb-3">Accommodation</p>
-            <h2 className="text-4xl md:text-5xl font-serif font-bold text-theme-primary">Rooms & Suites</h2>
+            <p className="text-[var(--theme-secondary)] uppercase tracking-[0.3em] text-xs font-bold mb-3">Accommodation</p>
+            <h2 className="text-4xl md:text-5xl font-serif font-bold text-[var(--theme-primary)]">Rooms & Suites</h2>
             <div className="w-16 h-1 bg-theme-secondary mx-auto mt-6"></div>
           </div>
           <Suspense fallback={<div className="text-center py-10 font-serif text-lg text-stone-500">Loading rooms...</div>}>
@@ -70,10 +70,10 @@ export default async function HomePage() {
       </section>
 
       {/* Instagram Section */}
-      <section className="py-20 bg-theme-bg border-t border-stone-200 transition-colors duration-500">
+      <section className="py-20 bg-[var(--theme-bg)] border-t border-stone-200 transition-colors duration-500">
         <div className="max-w-7xl mx-auto px-6 text-center">
-          <p className="text-theme-secondary uppercase tracking-[0.3em] text-xs font-bold mb-3">Follow Our Journey</p>
-          <h2 className="text-4xl font-serif font-bold text-theme-primary mb-4">@jagdishpalacechohtan</h2>
+          <p className="text-[var(--theme-secondary)] uppercase tracking-[0.3em] text-xs font-bold mb-3">Follow Our Journey</p>
+          <h2 className="text-4xl font-serif font-bold text-[var(--theme-primary)] mb-4">@jagdishpalacechohtan</h2>
           <p className="text-stone-500 mb-10 max-w-xl mx-auto">Experience the beauty of the palace through our latest photos and reels.</p>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-10 items-start">
             {instaPosts.map((url, i) => (

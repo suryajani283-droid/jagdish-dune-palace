@@ -16,7 +16,6 @@ export function GalleryUploadForm() {
     const res = await addGalleryImage(formData);
 
     if (res.success) {
-      // सफल होने पर फॉर्म रीसेट करें
       (e.target as HTMLFormElement).reset();
     } else {
       setError(res.error || 'Failed to upload image');
@@ -26,7 +25,7 @@ export function GalleryUploadForm() {
 
   return (
     <form onSubmit={handleSubmit} className="bg-white p-6 border border-stone-200 shadow-sm space-y-4 sticky top-8">
-      <h2 className="text-xl font-bold text-[brand-primary] mb-4 border-b pb-2">+ Upload Photo</h2>
+      <h2 className="text-xl font-bold text-[var(--theme-primary)] mb-4 border-b pb-2">+ Upload Photo</h2>
       
       <div>
         <label className="block text-xs font-bold text-stone-500 uppercase mb-1">Select Image (JPG/PNG) *</label>
@@ -45,7 +44,7 @@ export function GalleryUploadForm() {
           type="text" 
           name="title" 
           placeholder="e.g. Royal Suite View" 
-          className="w-full bg-[brand-bg] border border-stone-200 px-4 py-2 focus:outline-none focus:border-[brand-accent]" 
+          className="w-full bg-[var(--theme-bg)] border border-stone-200 px-4 py-2 focus:outline-none focus:border-[var(--theme-secondary)]" 
         />
       </div>
 
@@ -54,7 +53,7 @@ export function GalleryUploadForm() {
       <button 
         type="submit" 
         disabled={loading}
-        className="w-full bg-[brand-accent] text-white hover:bg-[brand-primary] py-3 text-xs uppercase tracking-widest font-bold transition-colors disabled:opacity-50"
+        className="w-full bg-[var(--theme-secondary)] text-[var(--theme-primary)] hover:bg-[var(--theme-primary)] hover:text-[var(--theme-secondary)] py-3 text-xs uppercase tracking-widest font-bold transition-colors disabled:opacity-50"
       >
         {loading ? 'Uploading...' : 'Upload Photo'}
       </button>

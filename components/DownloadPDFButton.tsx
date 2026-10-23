@@ -30,7 +30,7 @@ export function DownloadPDFButton({ elementId, filename }: { elementId: string, 
     <button 
       onClick={handleDownload} 
       disabled={loading}
-      className="bg-[brand-primary] text-[text-desert-text] border border-[text-desert-text] hover:bg-[text-desert-text] hover:text-[brand-primary] px-8 py-3 text-sm font-bold shadow-lg transition-colors rounded-sm flex items-center gap-2"
+      className="bg-[var(--theme-primary)] text-[var(--theme-secondary)] border border-[var(--theme-secondary)] hover:bg-[var(--theme-secondary)] hover:text-[var(--theme-primary)] px-8 py-3 text-sm font-bold shadow-lg transition-colors rounded-sm flex items-center gap-2"
     >
       {loading ? (
         <>⏳ Generating PDF...</>

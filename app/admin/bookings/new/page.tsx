@@ -21,8 +21,8 @@ export default async function NewManualBooking() {
   return (
     <div className="p-8 max-w-4xl mx-auto">
       <div className="flex items-center gap-4 mb-8">
-        <Link href="/admin/bookings" className="text-stone-500 hover:text-[brand-accent]">← Back</Link>
-        <h1 className="text-3xl font-serif font-bold text-[brand-primary]">New Manual Booking</h1>
+        <Link href="/admin/bookings" className="text-stone-500 hover:text-[var(--theme-secondary)]">← Back</Link>
+        <h1 className="text-3xl font-serif font-bold text-[var(--theme-primary)]">New Manual Booking</h1>
       </div>
 
       <form action={submitForm} className="bg-white p-8 border border-stone-200 shadow-sm space-y-6">
@@ -30,27 +30,27 @@ export default async function NewManualBooking() {
         <div className="grid md:grid-cols-2 gap-6">
           {/* Guest Info */}
           <div className="space-y-4">
-            <h2 className="text-xl font-bold text-[brand-primary] border-b pb-2">Guest Details</h2>
+            <h2 className="text-xl font-bold text-[var(--theme-primary)] border-b pb-2">Guest Details</h2>
             <div>
               <label className="block text-xs font-bold text-stone-500 uppercase mb-1">Full Name *</label>
-              <input type="text" name="full_name" required className="w-full bg-[brand-bg] border border-stone-200 px-4 py-2 focus:outline-none focus:border-[brand-accent]" />
+              <input type="text" name="full_name" required className="w-full bg-[var(--theme-bg)] border border-stone-200 px-4 py-2 focus:outline-none focus:border-[var(--theme-secondary)]" />
             </div>
             <div>
               <label className="block text-xs font-bold text-stone-500 uppercase mb-1">Phone Number *</label>
-              <input type="text" name="phone" required className="w-full bg-[brand-bg] border border-stone-200 px-4 py-2 focus:outline-none focus:border-[brand-accent]" />
+              <input type="text" name="phone" required className="w-full bg-[var(--theme-bg)] border border-stone-200 px-4 py-2 focus:outline-none focus:border-[var(--theme-secondary)]" />
             </div>
             <div>
               <label className="block text-xs font-bold text-stone-500 uppercase mb-1">Email (Optional)</label>
-              <input type="email" name="email" className="w-full bg-[brand-bg] border border-stone-200 px-4 py-2 focus:outline-none focus:border-[brand-accent]" />
+              <input type="email" name="email" className="w-full bg-[var(--theme-bg)] border border-stone-200 px-4 py-2 focus:outline-none focus:border-[var(--theme-secondary)]" />
             </div>
           </div>
 
           {/* Booking Info */}
           <div className="space-y-4">
-            <h2 className="text-xl font-bold text-[brand-primary] border-b pb-2">Stay Details</h2>
+            <h2 className="text-xl font-bold text-[var(--theme-primary)] border-b pb-2">Stay Details</h2>
             <div>
               <label className="block text-xs font-bold text-stone-500 uppercase mb-1">Select Room *</label>
-              <select name="room_id" required className="w-full bg-[brand-bg] border border-stone-200 px-4 py-2 focus:outline-none focus:border-[brand-accent]">
+              <select name="room_id" required className="w-full bg-[var(--theme-bg)] border border-stone-200 px-4 py-2 focus:outline-none focus:border-[var(--theme-secondary)]">
                 <option value="">-- Choose Room --</option>
                 {rooms?.map(r => (
                   <option key={r.id} value={r.id}>Room {r.room_number} - {r.category} (₹{r.base_price})</option>
@@ -60,22 +60,22 @@ export default async function NewManualBooking() {
             <div className="grid grid-cols-2 gap-4">
               <div>
                 <label className="block text-xs font-bold text-stone-500 uppercase mb-1">Check-in *</label>
-                <input type="date" name="check_in" min={today} required className="w-full bg-[brand-bg] border border-stone-200 px-4 py-2 focus:outline-none focus:border-[brand-accent]" />
+                <input type="date" name="check_in" min={today} required className="w-full bg-[var(--theme-bg)] border border-stone-200 px-4 py-2 focus:outline-none focus:border-[var(--theme-secondary)]" />
               </div>
               <div>
                 <label className="block text-xs font-bold text-stone-500 uppercase mb-1">Check-out *</label>
-                <input type="date" name="check_out" min={today} required className="w-full bg-[brand-bg] border border-stone-200 px-4 py-2 focus:outline-none focus:border-[brand-accent]" />
+                <input type="date" name="check_out" min={today} required className="w-full bg-[var(--theme-bg)] border border-stone-200 px-4 py-2 focus:outline-none focus:border-[var(--theme-secondary)]" />
               </div>
             </div>
             <div>
               <label className="block text-xs font-bold text-stone-500 uppercase mb-1">Guests *</label>
-              <input type="number" name="guests_count" defaultValue={1} min={1} max={6} required className="w-full bg-[brand-bg] border border-stone-200 px-4 py-2 focus:outline-none focus:border-[brand-accent]" />
+              <input type="number" name="guests_count" defaultValue={1} min={1} max={6} required className="w-full bg-[var(--theme-bg)] border border-stone-200 px-4 py-2 focus:outline-none focus:border-[var(--theme-secondary)]" />
             </div>
           </div>
         </div>
 
         <div className="pt-6 border-t flex justify-end">
-          <button type="submit" className="bg-[brand-accent] text-white hover:bg-[brand-primary] px-8 py-3 text-sm uppercase tracking-widest font-bold transition-colors">
+          <button type="submit" className="bg-[var(--theme-secondary)] text-white hover:bg-[[var(--theme-primary)]] px-8 py-3 text-sm uppercase tracking-widest font-bold transition-colors">
             Create Booking
           </button>
         </div>

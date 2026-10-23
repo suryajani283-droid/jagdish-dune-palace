@@ -25,7 +25,7 @@ export default async function ManageRoomsPage() {
   return (
     <div className="p-8 max-w-7xl mx-auto">
       <div className="mb-8">
-        <h1 className="text-3xl font-serif font-bold text-[brand-primary]">Manage Rooms</h1>
+        <h1 className="text-3xl font-serif font-bold text-[var(--theme-primary)]">Manage Rooms</h1>
         <p className="text-stone-500 text-sm mt-1">Add, edit or remove hotel rooms</p>
       </div>
 
@@ -34,34 +34,34 @@ export default async function ManageRoomsPage() {
         {/* Add New Room Form */}
         <div className="lg:col-span-1">
           <form action={async (formData: FormData) => { 'use server'; await createRoom(formData); }} className="bg-white p-6 border border-stone-200 shadow-sm space-y-3 sticky top-8">
-            <h2 className="text-xl font-bold text-[brand-primary] mb-2 border-b pb-2">+ Add New Room</h2>
+            <h2 className="text-xl font-bold text-[var(--theme-primary)] mb-2 border-b pb-2">+ Add New Room</h2>
             
             <div>
               <label className="block text-[10px] font-bold text-stone-500 uppercase mb-1">Room Number *</label>
-              <input type="text" name="room_number" required placeholder="e.g. 401" className="w-full bg-[brand-bg] border border-stone-200 px-3 py-1.5 text-sm focus:border-[text-desert-text]" />
+              <input type="text" name="room_number" required placeholder="e.g. 401" className="w-full bg-[var(--theme-bg)] border border-stone-200 px-3 py-1.5 text-sm focus:text-[var(--theme-secondary)]" />
             </div>
             <div>
               <label className="block text-[10px] font-bold text-stone-500 uppercase mb-1">Category *</label>
-              <input type="text" name="category" required placeholder="e.g. Deluxe" className="w-full bg-[brand-bg] border border-stone-200 px-3 py-1.5 text-sm focus:border-[text-desert-text]" />
+              <input type="text" name="category" required placeholder="e.g. Deluxe" className="w-full bg-[var(--theme-bg)] border border-stone-200 px-3 py-1.5 text-sm focus:text-[var(--theme-secondary)]" />
             </div>
             <div className="grid grid-cols-2 gap-2">
               <div>
                 <label className="block text-[10px] font-bold text-stone-500 uppercase mb-1">Area *</label>
-                <input type="text" name="area" required placeholder="300 sq. ft." className="w-full bg-[brand-bg] border border-stone-200 px-3 py-1.5 text-sm focus:border-[text-desert-text]" />
+                <input type="text" name="area" required placeholder="300 sq. ft." className="w-full bg-[var(--theme-bg)] border border-stone-200 px-3 py-1.5 text-sm focus:text-[var(--theme-secondary)]" />
               </div>
               <div>
                 <label className="block text-[10px] font-bold text-stone-500 uppercase mb-1">Price (₹) *</label>
-                <input type="number" name="base_price" required placeholder="3500" className="w-full bg-[brand-bg] border border-stone-200 px-3 py-1.5 text-sm focus:border-[text-desert-text]" />
+                <input type="number" name="base_price" required placeholder="3500" className="w-full bg-[var(--theme-bg)] border border-stone-200 px-3 py-1.5 text-sm focus:text-[var(--theme-secondary)]" />
               </div>
             </div>
             <div className="grid grid-cols-2 gap-2">
               <div>
                 <label className="block text-[10px] font-bold text-stone-500 uppercase mb-1">Max Adults *</label>
-                <input type="number" name="max_adults" required defaultValue={2} min={1} className="w-full bg-[brand-bg] border border-stone-200 px-3 py-1.5 text-sm focus:border-[text-desert-text]" />
+                <input type="number" name="max_adults" required defaultValue={2} min={1} className="w-full bg-[var(--theme-bg)] border border-stone-200 px-3 py-1.5 text-sm focus:text-[var(--theme-secondary)]" />
               </div>
               <div>
                 <label className="block text-[10px] font-bold text-stone-500 uppercase mb-1">Max Children *</label>
-                <input type="number" name="max_children" required defaultValue={0} min={0} className="w-full bg-[brand-bg] border border-stone-200 px-3 py-1.5 text-sm focus:border-[text-desert-text]" />
+                <input type="number" name="max_children" required defaultValue={0} min={0} className="w-full bg-[var(--theme-bg)] border border-stone-200 px-3 py-1.5 text-sm focus:text-[var(--theme-secondary)]" />
               </div>
             </div>
             
@@ -70,7 +70,7 @@ export default async function ManageRoomsPage() {
               <div className="grid grid-cols-2 gap-1">
                 {ALL_AMENITIES.map(a => (
                   <label key={a} className="flex items-center gap-1.5 text-[11px] font-semibold text-stone-600">
-                    <input type="checkbox" name="amenities" value={a} className="accent-[text-desert-text] w-3 h-3" /> {a}
+                    <input type="checkbox" name="amenities" value={a} className="accent-[var(--theme-primary)] w-3 h-3" /> {a}
                   </label>
                 ))}
               </div>
@@ -78,12 +78,12 @@ export default async function ManageRoomsPage() {
 
             <div>
               <label className="block text-[10px] font-bold text-stone-500 uppercase mb-1">Status *</label>
-              <select name="status" required className="w-full bg-[brand-bg] border border-stone-200 px-3 py-1.5 text-sm focus:border-[text-desert-text]">
+              <select name="status" required className="w-full bg-[var(--theme-bg)] border border-stone-200 px-3 py-1.5 text-sm focus:text-[var(--theme-secondary)]">
                 <option value="available">Available</option>
                 <option value="maintenance">Maintenance</option>
               </select>
             </div>
-            <button type="submit" className="w-full bg-[text-desert-text] text-[brand-primary] hover:bg-[brand-primary] hover:text-[text-desert-text] py-2 text-xs uppercase tracking-widest font-bold transition-colors mt-2">
+            <button type="submit" className="w-full bg-[var(--theme-primary)] text-[var(--theme-primary)] hover:bg-[[var(--theme-primary)]] hover:text-[var(--theme-secondary)] py-2 text-xs uppercase tracking-widest font-bold transition-colors mt-2">
               Create Room
             </button>
           </form>
@@ -99,7 +99,7 @@ export default async function ManageRoomsPage() {
               <div key={room.id} className="bg-white border border-stone-200 shadow-sm p-6">
                 <div className="flex justify-between items-start mb-4">
                   <div>
-                    <h2 className="text-xl font-bold text-[brand-primary]">{room.category}</h2>
+                    <h2 className="text-xl font-bold text-[var(--theme-primary)]">{room.category}</h2>
                     <p className="text-xs text-stone-500 uppercase tracking-widest font-bold">Room {room.room_number}</p>
                   </div>
                   <div className={`px-2 py-1 text-xs font-bold uppercase rounded-sm border ${isOccupied ? 'bg-red-50 text-red-700 border-red-200' : 'bg-green-50 text-green-700 border-green-200'}`}>

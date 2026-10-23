@@ -7,7 +7,7 @@ export default function PrivacyPage() {
     <>
       <Navbar />
       <div className="max-w-4xl mx-auto px-6 py-20">
-        <h1 className="text-4xl font-serif font-bold mb-8 text-brand-dark">Privacy Policy</h1>
+        <h1 className="text-4xl font-serif font-bold mb-8 text-[var(--theme-primary)]">Privacy Policy</h1>
         <div className="space-y-6 text-stone-600 leading-relaxed font-light text-lg">
           <p>Your privacy is important to us. We collect personal information (name, email, phone) only to process your bookings and provide better service.</p>
           <p>We do not sell or share your data with third parties, except for payment processing (Razorpay) and legal requirements.</p>

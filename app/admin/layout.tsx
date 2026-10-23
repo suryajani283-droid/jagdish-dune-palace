@@ -15,11 +15,11 @@ export default async function AdminLayout({ children }: { children: React.ReactN
   return (
     <div className="min-h-screen bg-stone-50 flex flex-col md:flex-row">
       
-      <aside className="w-full md:w-64 bg-[brand-primary] text-white flex flex-col print:hidden shadow-xl z-20">
+      <aside className="w-full md:w-64 bg-[[var(--theme-primary)]] text-white flex flex-col print:hidden shadow-xl z-20">
         <div className="p-6 border-b border-stone-800">
-          <h2 className="text-xl font-serif font-bold text-[text-desert-text]">JDP Admin</h2>
+          <h2 className="text-xl font-serif font-bold text-[var(--theme-secondary)]">JDP Admin</h2>
           <p className="text-xs text-stone-400 mt-1">{displayName}</p>
-          <p className="text-[10px] text-[text-desert-text] uppercase tracking-widest mt-1 bg-[text-desert-text]/10 inline-block px-2 py-0.5 rounded-sm">{role}</p>
+          <p className="text-[10px] text-[var(--theme-secondary)] uppercase tracking-widest mt-1 bg-[var(--theme-primary)]/10 inline-block px-2 py-0.5 rounded-sm">{role}</p>
         </div>
         
         <nav className="flex-1 p-4 space-y-1 text-sm overflow-y-auto">
@@ -35,7 +35,7 @@ export default async function AdminLayout({ children }: { children: React.ReactN
           </div>
           
           <div className="py-2">
-            <Link href="/admin/bookings/new" className="block px-4 py-3 bg-[text-desert-text] text-[brand-primary] font-bold rounded-sm hover:bg-[#b8984e] transition-colors shadow-md">
+            <Link href="/admin/bookings/new" className="block px-4 py-3 bg-[var(--theme-primary)] text-[var(--theme-primary)] font-bold rounded-sm hover:bg-[#b8984e] transition-colors shadow-md">
               + New Booking
             </Link>
           </div>

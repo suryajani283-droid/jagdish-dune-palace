@@ -4,7 +4,6 @@ import { useState } from 'react';
 import { updateRoomDetails } from '@/app/admin/rooms/actions';
 import { DeleteRoomButton } from '@/components/DeleteRoomButton';
 
-// सुविधाओं की लिस्ट
 const ALL_AMENITIES = ['AC', 'WiFi', 'TV', 'Geyser', 'Room Heater', 'Balcony', 'Mini Bar', 'Spa', 'Kitchen'];
 
 export function EditRoomForm({ room }: { room: any }) {
@@ -53,40 +52,39 @@ export function EditRoomForm({ room }: { room: any }) {
       <div className="grid grid-cols-2 gap-3">
         <div>
           <label className="block text-[10px] font-bold text-stone-500 uppercase mb-1">Room Number</label>
-          <input type="text" name="room_number" defaultValue={room.room_number} required className="w-full bg-[brand-bg] border border-stone-200 px-2 py-1 text-sm focus:border-[text-desert-text]" />
+          <input type="text" name="room_number" defaultValue={room.room_number} required className="w-full bg-[var(--theme-bg)] border border-stone-200 px-2 py-1 text-sm focus:border-[var(--theme-secondary)]" />
         </div>
         <div>
           <label className="block text-[10px] font-bold text-stone-500 uppercase mb-1">Category</label>
-          <input type="text" name="category" defaultValue={room.category} required className="w-full bg-[brand-bg] border border-stone-200 px-2 py-1 text-sm focus:border-[text-desert-text]" />
+          <input type="text" name="category" defaultValue={room.category} required className="w-full bg-[var(--theme-bg)] border border-stone-200 px-2 py-1 text-sm focus:border-[var(--theme-secondary)]" />
         </div>
         <div>
           <label className="block text-[10px] font-bold text-stone-500 uppercase mb-1">Area (Sq.ft.)</label>
-          <input type="text" name="area" defaultValue={room.area || '250 sq. ft.'} required className="w-full bg-[brand-bg] border border-stone-200 px-2 py-1 text-sm focus:border-[text-desert-text]" />
+          <input type="text" name="area" defaultValue={room.area || '250 sq. ft.'} required className="w-full bg-[var(--theme-bg)] border border-stone-200 px-2 py-1 text-sm focus:border-[var(--theme-secondary)]" />
         </div>
         <div>
           <label className="block text-[10px] font-bold text-stone-500 uppercase mb-1">Price (₹)</label>
-          <input type="number" name="base_price" defaultValue={room.base_price} required className="w-full bg-[brand-bg] border border-stone-200 px-2 py-1 text-sm focus:border-[text-desert-text]" />
+          <input type="number" name="base_price" defaultValue={room.base_price} required className="w-full bg-[var(--theme-bg)] border border-stone-200 px-2 py-1 text-sm focus:border-[var(--theme-secondary)]" />
         </div>
         <div>
           <label className="block text-[10px] font-bold text-stone-500 uppercase mb-1">Max Adults</label>
-          <input type="number" name="max_adults" defaultValue={room.max_adults || room.capacity} min={1} required className="w-full bg-[brand-bg] border border-stone-200 px-2 py-1 text-sm focus:border-[text-desert-text]" />
+          <input type="number" name="max_adults" defaultValue={room.max_adults || room.capacity} min={1} required className="w-full bg-[var(--theme-bg)] border border-stone-200 px-2 py-1 text-sm focus:border-[var(--theme-secondary)]" />
         </div>
         <div>
           <label className="block text-[10px] font-bold text-stone-500 uppercase mb-1">Max Children</label>
-          <input type="number" name="max_children" defaultValue={room.max_children || 0} min={0} required className="w-full bg-[brand-bg] border border-stone-200 px-2 py-1 text-sm focus:border-[text-desert-text]" />
+          <input type="number" name="max_children" defaultValue={room.max_children || 0} min={0} required className="w-full bg-[var(--theme-bg)] border border-stone-200 px-2 py-1 text-sm focus:border-[var(--theme-secondary)]" />
         </div>
       </div>
 
       <div>
         <label className="block text-[10px] font-bold text-stone-500 uppercase mb-1">Status</label>
-        <select name="status" defaultValue={room.status} className="w-full bg-[brand-bg] border border-stone-200 px-2 py-1 text-sm focus:border-[text-desert-text]">
+        <select name="status" defaultValue={room.status} className="w-full bg-[var(--theme-bg)] border border-stone-200 px-2 py-1 text-sm focus:border-[var(--theme-secondary)]">
           <option value="available">Available</option>
           <option value="maintenance">Maintenance</option>
           <option value="blocked">Blocked</option>
         </select>
       </div>
 
-      {/* Amenities (Checkboxes) */}
       <div>
         <label className="block text-[10px] font-bold text-stone-500 uppercase mb-2">Facilities & Amenities</label>
         <div className="grid grid-cols-2 gap-2 bg-stone-50 p-3 border border-stone-200">
@@ -97,7 +95,7 @@ export function EditRoomForm({ room }: { room: any }) {
                 name="amenities" 
                 value={amenity} 
                 defaultChecked={room.amenities?.includes(amenity)}
-                className="accent-[text-desert-text] w-4 h-4" 
+                className="accent-[var(--theme-secondary)] w-4 h-4" 
               />
               {amenity}
             </label>
@@ -105,7 +103,6 @@ export function EditRoomForm({ room }: { room: any }) {
         </div>
       </div>
 
-      {/* Images */}
       <div className="bg-stone-50 p-3 border border-stone-200">
         <label className="block text-[10px] font-bold text-stone-600 uppercase mb-2">Manage Photos ({currentImages.length}/5)</label>
         
@@ -120,7 +117,7 @@ export function EditRoomForm({ room }: { room: any }) {
           </div>
         )}
 
-        <input type="file" name="room_images" multiple accept=".jpg,.jpeg,.png,.webp" className="w-full text-xs bg-white border border-stone-200 file:mr-4 file:py-1 file:px-3 file:border-0 file:text-xs file:font-semibold file:bg-[brand-primary] file:text-white hover:file:bg-[text-desert-text]" />
+        <input type="file" name="room_images" multiple accept=".jpg,.jpeg,.png,.webp" className="w-full text-xs bg-white border border-stone-200 file:mr-4 file:py-1 file:px-3 file:border-0 file:text-xs file:font-semibold file:bg-[var(--theme-primary)] file:text-white hover:file:bg-[var(--theme-secondary)]" />
         <input type="hidden" name="existing_images" value={currentImages.join(',')} />
       </div>
 
@@ -129,7 +126,7 @@ export function EditRoomForm({ room }: { room: any }) {
 
       <div className="flex justify-between items-center pt-2">
         <DeleteRoomButton roomId={room.id} />
-        <button type="submit" disabled={loading} className="bg-[brand-primary] text-white hover:bg-[text-desert-text] px-4 py-2 text-xs font-bold transition-colors disabled:opacity-50">
+        <button type="submit" disabled={loading} className="bg-[var(--theme-primary)] text-white hover:bg-[var(--theme-secondary)] px-4 py-2 text-xs font-bold transition-colors disabled:opacity-50">
           {loading ? 'Saving...' : 'Save Changes'}
         </button>
       </div>

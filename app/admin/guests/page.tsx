@@ -28,17 +28,17 @@ export default async function GuestHistoryPage() {
     <div className="p-8 max-w-7xl mx-auto">
       <div className="flex justify-between items-center mb-8">
         <div>
-          <h1 className="text-3xl font-serif font-bold text-[brand-primary]">Guest History (CRM)</h1>
+          <h1 className="text-3xl font-serif font-bold text-[var(--theme-primary)]">Guest History (CRM)</h1>
           <p className="text-stone-500 text-sm mt-1">View all your past and current customers</p>
         </div>
-        <div className="bg-[brand-primary] text-[text-desert-text] px-6 py-2 rounded-sm font-bold">
+        <div className="bg-[[var(--theme-primary)]] text-[var(--theme-secondary)] px-6 py-2 rounded-sm font-bold">
           Total Customers: {guests?.length || 0}
         </div>
       </div>
 
       <div className="bg-white border border-stone-200 shadow-sm overflow-x-auto">
         <table className="w-full text-left text-sm text-stone-600">
-          <thead className="bg-[brand-bg] border-b border-stone-200 text-xs uppercase tracking-wider text-stone-500">
+          <thead className="bg-[var(--theme-bg)] border-b border-stone-200 text-xs uppercase tracking-wider text-stone-500">
             <tr>
               <th className="px-6 py-4 font-bold">Guest Name</th>
               <th className="px-6 py-4 font-bold">Contact Info</th>
@@ -60,7 +60,7 @@ export default async function GuestHistoryPage() {
 
               return (
                 <tr key={guest.id} className="hover:bg-stone-50/50">
-                  <td className="px-6 py-4 font-bold text-[brand-primary]">{guest.full_name}</td>
+                  <td className="px-6 py-4 font-bold text-[var(--theme-primary)]">{guest.full_name}</td>
                   <td className="px-6 py-4">
                     <p className="text-xs text-stone-600 font-medium">{guest.phone}</p>
                     <p className="text-xs text-stone-400">{guest.email || 'No email'}</p>
@@ -70,7 +70,7 @@ export default async function GuestHistoryPage() {
                       {validBookings.length}
                     </span>
                   </td>
-                  <td className="px-6 py-4 text-right font-bold text-[text-desert-text]">
+                  <td className="px-6 py-4 text-right font-bold text-[var(--theme-secondary)]">
                     {formatINR(totalSpent)}
                   </td>
                   <td className="px-6 py-4 text-right text-xs">

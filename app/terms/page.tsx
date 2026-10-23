@@ -7,7 +7,7 @@ export default function TermsPage() {
     <>
       <Navbar />
       <div className="max-w-4xl mx-auto px-6 py-20">
-        <h1 className="text-4xl font-serif font-bold mb-8 text-brand-dark">Terms & Conditions</h1>
+        <h1 className="text-4xl font-serif font-bold mb-8 text-[var(--theme-primary)]">Terms & Conditions</h1>
         <div className="space-y-6 text-stone-600 leading-relaxed font-light text-lg">
           <p>Check-in time is 2:00 PM and check-out time is 11:00 AM. Early check-in and late check-out are subject to availability.</p>
           <p>Valid government-issued ID is mandatory for all guests at the time of check-in.</p>

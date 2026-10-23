@@ -1,10 +1,10 @@
-'use client'; // यह लाइन बहुत जरुरी है
+'use client'; 
 
 export function PrintButton() {
   return (
     <button 
       onClick={() => window.print()} 
-      className="bg-[brand-accent] text-white px-8 py-3 text-sm font-bold shadow-lg hover:bg-[brand-primary] transition-colors rounded-sm"
+      className="bg-[var(--theme-secondary)] text-[var(--theme-primary)] px-8 py-3 text-sm font-bold shadow-lg hover:bg-[var(--theme-primary)] hover:text-[var(--theme-secondary)] transition-colors rounded-sm"
     >
       🖨️ Print / Save PDF
     </button>

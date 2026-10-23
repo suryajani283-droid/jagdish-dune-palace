@@ -47,7 +47,7 @@ export default async function InvoicesPage() {
       
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4 print:hidden">
         <div>
-          <h1 className="text-3xl font-serif font-bold text-[brand-primary]">GST Invoices History</h1>
+          <h1 className="text-3xl font-serif font-bold text-[var(--theme-primary)]">GST Invoices History</h1>
           <p className="text-stone-500 text-sm mt-1">Track all generated bills for GST filing</p>
         </div>
         
@@ -69,7 +69,7 @@ export default async function InvoicesPage() {
 
       <div className="bg-white border border-stone-200 shadow-sm overflow-x-auto print:shadow-none print:border-none">
         <table className="w-full text-left text-sm text-stone-600">
-          <thead className="bg-[brand-bg] border-b border-stone-200 text-xs uppercase tracking-wider text-stone-500 print:bg-gray-100 print:text-black">
+          <thead className="bg-[var(--theme-bg)] border-b border-stone-200 text-xs uppercase tracking-wider text-stone-500 print:bg-gray-100 print:text-black">
             <tr>
               <th className="px-4 py-4 font-bold">Invoice No & Date</th>
               <th className="px-4 py-4 font-bold">Guest Details</th>
@@ -84,19 +84,19 @@ export default async function InvoicesPage() {
             {invoices?.map((inv) => (
               <tr key={inv.id} className="hover:bg-stone-50/50">
                 <td className="px-4 py-4">
-                  <p className="font-mono font-bold text-[brand-primary]">{inv.invoice_number}</p>
+                  <p className="font-mono font-bold text-[var(--theme-primary)]">{inv.invoice_number}</p>
                   <p className="text-xs text-stone-400">{new Date(inv.issued_at).toLocaleDateString('en-IN')}</p>
                 </td>
                 <td className="px-4 py-4">
-                  <p className="font-bold text-[brand-primary]">{inv.bookings?.guests?.full_name}</p>
+                  <p className="font-bold text-[var(--theme-primary)]">{inv.bookings?.guests?.full_name}</p>
                   <p className="text-xs text-stone-500 font-mono">{inv.bookings?.booking_reference}</p>
                 </td>
                 <td className="px-4 py-4 text-right">{formatINR(inv.taxable_value)}</td>
                 <td className="px-4 py-4 text-right text-stone-500">{formatINR(inv.gst_amount / 2)}</td>
                 <td className="px-4 py-4 text-right text-stone-500">{formatINR(inv.gst_amount / 2)}</td>
-                <td className="px-4 py-4 text-right font-bold text-[text-desert-text]">{formatINR(inv.total)}</td>
+                <td className="px-4 py-4 text-right font-bold text-[var(--theme-secondary)]">{formatINR(inv.total)}</td>
                 <td className="px-4 py-4 text-center print:hidden">
-                  <Link href={`/admin/bookings/${inv.booking_id}/invoice`} className="text-xs font-bold text-[brand-primary] hover:text-[text-desert-text] underline">
+                  <Link href={`/admin/bookings/${inv.booking_id}/invoice`} className="text-xs font-bold text-[var(--theme-primary)] hover:text-[var(--theme-secondary)] underline">
                     View Bill
                   </Link>
                 </td>
@@ -105,7 +105,7 @@ export default async function InvoicesPage() {
           </tbody>
           {/* कुल टैक्स का हिसाब */}
           {invoices && invoices.length > 0 && (
-            <tfoot className="bg-[brand-primary] text-[text-desert-text] font-bold print:bg-gray-200 print:text-black">
+            <tfoot className="bg-[[var(--theme-primary)]] text-[var(--theme-secondary)] font-bold print:bg-gray-200 print:text-black">
               <tr>
                 <td colSpan={2} className="px-4 py-3 text-right uppercase tracking-wider text-xs">Total (All Invoices)</td>
                 <td className="px-4 py-3 text-right">{formatINR(invoices.reduce((sum, inv) => sum + Number(inv.taxable_value), 0))}</td>

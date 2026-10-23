@@ -17,7 +17,7 @@ export default async function GalleryPage() {
   return (
     <>
       <Navbar />
-      <div className="bg-[#2a2520] py-20 text-center text-white">
+      <div className="bg-[[var(--theme-primary)]] py-20 text-center text-white">
         <h1 className="text-5xl font-serif font-bold mb-4">Gallery</h1>
         <p className="text-stone-300">A glimpse into the beauty of Jagdish Dune Palace</p>
       </div>

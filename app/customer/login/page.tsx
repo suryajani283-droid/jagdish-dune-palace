@@ -85,21 +85,21 @@ function LoginContent() {
   return (
     <>
       <Navbar />
-      <div className="min-h-[70vh] flex items-center justify-center bg-[brand-bg] py-16 px-6">
+      <div className="min-h-[70vh] flex items-center justify-center bg-[var(--theme-bg)] py-16 px-6">
         <div className="bg-white p-8 md:p-12 border border-stone-200 shadow-xl w-full max-w-md">
           
-          <h1 className="text-3xl font-serif font-bold text-[brand-primary] text-center mb-2">Customer Login</h1>
+          <h1 className="text-3xl font-serif font-bold text-[var(--theme-primary)] text-center mb-2">Customer Login</h1>
           
           {step === 'email' && (
             <form onSubmit={handleSendOtp} className="space-y-6 mt-6">
               <p className="text-center text-stone-500 text-sm mb-4">Enter your email to receive a login OTP</p>
               <div>
                 <label className="block text-xs font-bold text-stone-500 uppercase mb-2">Email Address</label>
-                <input type="email" required placeholder="yourname@gmail.com" className="w-full bg-[brand-bg] border border-stone-200 px-4 py-3 focus:outline-none focus:border-[text-desert-text]"
+                <input type="email" required placeholder="yourname@gmail.com" className="w-full bg-[var(--theme-bg)] border border-stone-200 px-4 py-3 focus:outline-none focus:text-[var(--theme-secondary)]"
                   value={email} onChange={(e) => setEmail(e.target.value)} />
               </div>
               {error && <p className="text-red-600 text-sm bg-red-50 p-2">{error}</p>}
-              <button type="submit" disabled={loading} className="w-full bg-[brand-primary] text-[text-desert-text] hover:bg-[text-desert-text] hover:text-[brand-primary] py-3 font-bold uppercase tracking-widest text-xs transition-colors">
+              <button type="submit" disabled={loading} className="w-full bg-[[var(--theme-primary)]] text-[var(--theme-secondary)] hover:bg-[var(--theme-primary)] hover:text-[var(--theme-primary)] py-3 font-bold uppercase tracking-widest text-xs transition-colors">
                 {loading ? 'Sending OTP...' : 'Send Login OTP'}
               </button>
             </form>
@@ -110,11 +110,11 @@ function LoginContent() {
               <p className="text-center text-sm text-stone-600">OTP sent to <strong>{email}</strong></p>
               <div>
                 <label className="block text-xs font-bold text-stone-500 uppercase mb-2">Enter 6-Digit OTP</label>
-                <input type="text" required placeholder="123456" maxLength={6} className="w-full bg-[brand-bg] border border-stone-200 px-4 py-3 text-center tracking-[0.5em] text-xl font-bold focus:outline-none focus:border-[text-desert-text]"
+                <input type="text" required placeholder="123456" maxLength={6} className="w-full bg-[var(--theme-bg)] border border-stone-200 px-4 py-3 text-center tracking-[0.5em] text-xl font-bold focus:outline-none focus:text-[var(--theme-secondary)]"
                   value={otp} onChange={(e) => setOtp(e.target.value)} />
               </div>
               {error && <p className="text-red-600 text-sm bg-red-50 p-2">{error}</p>}
-              <button type="submit" disabled={loading} className="w-full bg-[text-desert-text] text-[brand-primary] hover:bg-[brand-primary] hover:text-[text-desert-text] py-3 font-bold uppercase tracking-widest text-xs transition-colors">
+              <button type="submit" disabled={loading} className="w-full bg-[var(--theme-primary)] text-[var(--theme-primary)] hover:bg-[[var(--theme-primary)]] hover:text-[var(--theme-secondary)] py-3 font-bold uppercase tracking-widest text-xs transition-colors">
                 {loading ? 'Verifying...' : 'Verify OTP'}
               </button>
             </form>
@@ -125,11 +125,11 @@ function LoginContent() {
               <p className="text-center text-sm text-stone-600 mb-4">Please enter your mobile number to complete your profile.</p>
               <div>
                 <label className="block text-xs font-bold text-stone-500 uppercase mb-2">Mobile Number (Compulsory)</label>
-                <input type="tel" required placeholder="+91 98765 43210" className="w-full bg-[brand-bg] border border-stone-200 px-4 py-3 focus:outline-none focus:border-[text-desert-text]"
+                <input type="tel" required placeholder="+91 98765 43210" className="w-full bg-[var(--theme-bg)] border border-stone-200 px-4 py-3 focus:outline-none focus:text-[var(--theme-secondary)]"
                   value={phone} onChange={(e) => setPhone(e.target.value)} />
               </div>
               {error && <p className="text-red-600 text-sm bg-red-50 p-2">{error}</p>}
-              <button type="submit" disabled={loading} className="w-full bg-[brand-primary] text-[text-desert-text] hover:bg-[text-desert-text] hover:text-[brand-primary] py-3 font-bold uppercase tracking-widest text-xs transition-colors">
+              <button type="submit" disabled={loading} className="w-full bg-[[var(--theme-primary)]] text-[var(--theme-secondary)] hover:bg-[var(--theme-primary)] hover:text-[var(--theme-primary)] py-3 font-bold uppercase tracking-widest text-xs transition-colors">
                 {loading ? 'Saving...' : 'Save & Continue'}
               </button>
             </form>

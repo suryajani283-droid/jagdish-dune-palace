@@ -4,20 +4,23 @@ body {
   background-color: var(--theme-bg);
   color: var(--theme-text);
   overflow-x: hidden;
+  transition: background-color 0.5s ease;
 }
 
-/* Base Text & Backgrounds */
-.theme-bg { background-color: var(--theme-bg); }
-.theme-card { background-color: #FFFFFF; } /* Cards can remain white for contrast */
-.theme-text { color: var(--theme-text); }
+/* Global Theme Classes */
+.bg-[var(--theme-bg)] { background-color: var(--theme-bg) !important; }
+.text-[var(--theme-primary)] { color: var(--theme-primary) !important; }
+.text-[var(--theme-secondary)] { color: var(--theme-secondary) !important; }
+.bg-theme-primary { background-color: var(--theme-primary) !important; }
+.bg-theme-secondary { background-color: var(--theme-secondary) !important; }
 
-/* Hero Overlay (टेक्स्ट पढ़ने के लिए डार्क परदा) */
+/* Hero Overlay */
 .hero-overlay {
   background: linear-gradient(to bottom, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.7) 100%);
 }
 
 /* Buttons */
-.btn-primary {
+.btn-primary, .btn-luxury {
   background-color: var(--theme-secondary);
   color: var(--theme-primary);
   font-weight: 700;
@@ -28,26 +31,7 @@ body {
   border: 1px solid var(--theme-secondary);
   display: inline-block;
 }
-.btn-primary:hover {
-  background-color: var(--theme-primary);
-  color: var(--theme-secondary);
-  transform: translateY(-3px);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
-}
-
-/* यह क्लास Hero के बटन के लिए ज़रूरी है */
-.btn-luxury {
-  background-color: var(--theme-secondary);
-  color: var(--theme-primary);
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  padding: 1rem 2rem;
-  transition: all 0.3s ease;
-  border: 1px solid var(--theme-secondary);
-  display: inline-block;
-}
-.btn-luxury:hover {
+.btn-primary:hover, .btn-luxury:hover {
   background-color: var(--theme-primary);
   color: var(--theme-secondary);
   transform: translateY(-3px);
