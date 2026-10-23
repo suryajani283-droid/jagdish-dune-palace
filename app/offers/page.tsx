@@ -10,7 +10,7 @@ export default async function OffersPage() {
   return (
     <>
       <Navbar />
-      <div className="bg-[[var(--theme-primary)]] py-20 text-center text-white">
+      <div className="bg-[var(--theme-primary)] py-20 text-center text-white">
         <h1 className="text-5xl font-serif font-bold mb-4 text-brand-gold">Special Offers</h1>
         <p className="text-stone-300">Exclusive packages for a memorable stay</p>
       </div>

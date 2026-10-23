@@ -83,7 +83,7 @@ export default async function ManageRoomsPage() {
                 <option value="maintenance">Maintenance</option>
               </select>
             </div>
-            <button type="submit" className="w-full bg-[var(--theme-primary)] text-[var(--theme-primary)] hover:bg-[[var(--theme-primary)]] hover:text-[var(--theme-secondary)] py-2 text-xs uppercase tracking-widest font-bold transition-colors mt-2">
+            <button type="submit" className="w-full bg-[var(--theme-primary)] text-[var(--theme-primary)] hover:bg-[var(--theme-primary)] hover:text-[var(--theme-secondary)] py-2 text-xs uppercase tracking-widest font-bold transition-colors mt-2">
               Create Room
             </button>
           </form>

@@ -50,7 +50,7 @@ export default async function Dashboard() {
           <h1 className="text-3xl font-serif font-bold text-[var(--theme-primary)]">Dashboard Overview</h1>
           <p className="text-stone-500 text-sm mt-1">Welcome back! Here is your hotel's performance today.</p>
         </div>
-        <Link href="/admin/bookings/new" className="bg-[var(--theme-secondary)] text-white px-6 py-3 text-sm font-bold rounded-sm hover:bg-[[var(--theme-primary)]] transition-colors">
+        <Link href="/admin/bookings/new" className="bg-[var(--theme-secondary)] text-white px-6 py-3 text-sm font-bold rounded-sm hover:bg-[var(--theme-primary)] transition-colors">
           + Create Booking
         </Link>
       </div>

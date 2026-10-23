@@ -17,28 +17,31 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: 'Payment verification failed' }, { status: 400 });
     }
 
+    // 🔒 सुधार: डेटाबेस से बुकिंग का असली अमाउंट निकालें
+    const { data: bookingData, error: fetchErr } = await supabaseAdmin
+      .from('bookings').select('total_amount, guests(*), rooms(category), check_in, check_out, booking_reference').eq('id', booking_id).single();
+      
+    if (fetchErr || !bookingData) throw new Error('Booking not found');
+
     // 1. बुकिंग को कन्फर्म और पेड करें
     const { error: bErr } = await supabaseAdmin
       .from('bookings')
-      .update({ status: 'confirmed', payment_status: 'paid' }) // <-- यहाँ paid कर दिया
+      .update({ status: 'confirmed', payment_status: 'paid' })
       .eq('id', booking_id);
 
     if (bErr) throw new Error('Booking update failed');
 
-    // 2. पेमेंट का रिकॉर्ड सेव करें
+    // 2. पेमेंट का रिकॉर्ड सेव करें (असली अमाउंट के साथ)
     await supabaseAdmin.from('payments').insert({
       booking_id,
       razorpay_order_id,
       razorpay_payment_id,
-      amount: 0,
+      amount: bookingData.total_amount, // ✅ 0 की जगह असली अमाउंट
       status: 'captured'
     });
 
     // 3. ईमेल भेजें
-    const { data: bookingData } = await supabaseAdmin
-      .from('bookings').select('*, guests(*), rooms(category)').eq('id', booking_id).single();
-
-    if (bookingData && bookingData.guests?.email) {
+    if (bookingData.guests?.email) {
       await sendBookingEmail(
         bookingData.guests.email, bookingData.guests.full_name, bookingData.booking_reference, 
         bookingData.rooms.category, bookingData.check_in, bookingData.check_out, 

@@ -31,7 +31,7 @@ export default async function GuestHistoryPage() {
           <h1 className="text-3xl font-serif font-bold text-[var(--theme-primary)]">Guest History (CRM)</h1>
           <p className="text-stone-500 text-sm mt-1">View all your past and current customers</p>
         </div>
-        <div className="bg-[[var(--theme-primary)]] text-[var(--theme-secondary)] px-6 py-2 rounded-sm font-bold">
+        <div className="bg-[var(--theme-primary)] text-[var(--theme-secondary)] px-6 py-2 rounded-sm font-bold">
           Total Customers: {guests?.length || 0}
         </div>
       </div>

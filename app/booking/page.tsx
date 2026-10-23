@@ -13,7 +13,7 @@ function BookingContent() {
   
   const [rooms, setRooms] = useState<any[]>([]);
   const [user, setUser] = useState<any>(null);
-  const [isCheckingAuth, setIsCheckingAuth] = useState(true); // लोडिंग स्टेट
+  const [isCheckingAuth, setIsCheckingAuth] = useState(true); 
   
   const [form, setForm] = useState({
     full_name: '', email: '', phone: '',
@@ -35,16 +35,13 @@ function BookingContent() {
   const [isCouponValid, setIsCouponValid] = useState(false);
   const [checkingCoupon, setCheckingCoupon] = useState(false);
 
-  // ✅ लॉगिन चेक करने का लॉजिक
   useEffect(() => {
     const supabase = createClient();
     supabase.auth.getUser().then(({ data: { user } }) => {
       if (!user) {
-        // अगर लॉगिन नहीं है, तो लॉगिन पेज पर भेजें (और बाद में वापस यहीं आएँ)
         router.push('/customer/login?redirect=/booking');
       } else {
         setUser(user);
-        // प्रोफाइल से नाम और नंबर भरें
         setForm(prev => ({ 
           ...prev, 
           email: user.email || prev.email,
@@ -56,7 +53,6 @@ function BookingContent() {
     });
   }, [router]);
 
-  // अगर ऑथ चेक हो रहा है, तो लोडिंग दिखाएँ
   if (isCheckingAuth) {
     return (
       <>
@@ -163,7 +159,7 @@ function BookingContent() {
           else { setError('Payment succeeded but verification failed.'); setSubmitting(false); }
         },
         prefill: { name: form.full_name, email: form.email, contact: form.phone },
-        theme: { color: "text-desert-text" }
+        theme: { color: "#C5A059" } // ✅ सुधार: हेक्स कोड का इस्तेमाल
       };
 
       const rzp = new (window as any).Razorpay(options);
@@ -184,7 +180,7 @@ function BookingContent() {
       <Script src="https://checkout.razorpay.com/v1/checkout.js" strategy="lazyOnload" />
       
       <Navbar />
-      <div className="bg-[[var(--theme-primary)]] py-16 text-center text-white">
+      <div className="bg-[var(--theme-primary)] py-16 text-center text-white">
         <h1 className="text-5xl font-serif font-bold mb-4 text-[var(--theme-secondary)]">Reserve Your Stay</h1>
         <p className="text-stone-300">Complete your booking securely</p>
       </div>
@@ -192,42 +188,40 @@ function BookingContent() {
       <div className="max-w-4xl mx-auto px-6 py-16">
         <form onSubmit={submit} className="space-y-10">
           
-          {/* 1. Dates */}
           <div className="bg-white p-8 border border-stone-200 shadow-sm">
             <h3 className="text-2xl font-serif mb-6 text-[var(--theme-primary)]">1. Select Dates</h3>
             <div className="grid md:grid-cols-4 gap-4">
               <div>
                 <label className="block text-xs uppercase tracking-widest text-stone-500 mb-2">Check-in</label>
-                <input type="date" required className="w-full bg-[var(--theme-bg)] border border-stone-200 px-4 py-3 focus:outline-none focus:text-[var(--theme-secondary)]"
+                <input type="date" required className="w-full bg-[var(--theme-bg)] border border-stone-200 px-4 py-3 focus:outline-none focus:border-[var(--theme-secondary)]"
                   min={new Date().toISOString().split('T')[0]} value={form.check_in}
                   onChange={(e) => setForm({ ...form, check_in: e.target.value })} />
               </div>
               <div>
                 <label className="block text-xs uppercase tracking-widest text-stone-500 mb-2">Check-out</label>
-                <input type="date" required className="w-full bg-[var(--theme-bg)] border border-stone-200 px-4 py-3 focus:outline-none focus:text-[var(--theme-secondary)]"
+                <input type="date" required className="w-full bg-[var(--theme-bg)] border border-stone-200 px-4 py-3 focus:outline-none focus:border-[var(--theme-secondary)]"
                   min={form.check_in || new Date().toISOString().split('T')[0]} value={form.check_out}
                   onChange={(e) => setForm({ ...form, check_out: e.target.value })} />
               </div>
               <div>
                 <label className="block text-xs uppercase tracking-widest text-stone-500 mb-2">Guests</label>
-                <input type="number" min={1} max={6} className="w-full bg-[var(--theme-bg)] border border-stone-200 px-4 py-3 focus:outline-none focus:text-[var(--theme-secondary)]"
+                <input type="number" min={1} max={6} className="w-full bg-[var(--theme-bg)] border border-stone-200 px-4 py-3 focus:outline-none focus:border-[var(--theme-secondary)]"
                   value={form.guests_count} onChange={(e) => setForm({ ...form, guests_count: +e.target.value })} />
               </div>
               <div className="flex items-end">
-                <button type="button" onClick={search} disabled={searching} className="w-full bg-[[var(--theme-primary)]] text-[var(--theme-secondary)] hover:bg-[var(--theme-primary)] hover:text-[var(--theme-primary)] py-3 text-xs uppercase tracking-widest transition-colors font-bold">
+                <button type="button" onClick={search} disabled={searching} className="w-full bg-[var(--theme-primary)] text-[var(--theme-secondary)] hover:bg-[var(--theme-secondary)] hover:text-[var(--theme-primary)] py-3 text-xs uppercase tracking-widest transition-colors font-bold">
                   {searching ? 'Searching...' : 'Check Rooms'}
                 </button>
               </div>
             </div>
           </div>
 
-          {/* 2. Rooms */}
           {rooms.length > 0 && (
             <div className="bg-white p-8 border border-stone-200 shadow-sm animate-fade-up">
               <h3 className="text-2xl font-serif mb-6 text-[var(--theme-primary)]">2. Select Room</h3>
               <div className="space-y-4">
                 {rooms.map((r) => (
-                  <label key={r.id} className={`flex justify-between items-center p-4 border cursor-pointer transition-colors ${form.room_id === r.id ? 'text-[var(--theme-secondary)] bg-[var(--theme-bg)]' : 'border-stone-200 hover:border-stone-400'}`}>
+                  <label key={r.id} className={`flex justify-between items-center p-4 border cursor-pointer transition-colors ${form.room_id === r.id ? 'border-[var(--theme-secondary)] bg-[var(--theme-bg)]' : 'border-stone-200 hover:border-stone-400'}`}>
                     <div className="flex items-center gap-4">
                       <input type="radio" name="room" value={r.id} className="accent-[var(--theme-primary)] w-4 h-4"
                         checked={form.room_id === r.id} onChange={() => setForm({ ...form, room_id: r.id })} />
@@ -243,66 +237,59 @@ function BookingContent() {
             </div>
           )}
 
-         {/* 3. Guest Details */}
-<div className="bg-white p-8 border border-stone-200 shadow-sm">
-  <h3 className="text-2xl font-serif mb-6 text-[var(--theme-primary)]">3. Guest Details</h3>
-  <div className="grid md:grid-cols-3 gap-4">
-    <input required placeholder="Full Name" className="w-full bg-[var(--theme-bg)] border border-stone-200 px-4 py-3 focus:outline-none focus:text-[var(--theme-secondary)]"
-      value={form.full_name} onChange={(e) => setForm({ ...form, full_name: e.target.value })} />
-    <input readOnly placeholder="Email" type="email" className="w-full bg-stone-100 border border-stone-200 px-4 py-3 text-stone-500 cursor-not-allowed"
-      value={form.email} />
-    <input required placeholder="Phone Number" className="w-full bg-[var(--theme-bg)] border border-stone-200 px-4 py-3 focus:outline-none focus:text-[var(--theme-secondary)]"
-      value={form.phone} onChange={(e) => setForm({ ...form, phone: e.target.value })} />
-  </div>
-  
-  {/* GSTIN फील्ड */}
-  <div className="mt-4">
-    <input placeholder="Company GSTIN (Optional - for business invoices)" className="w-full bg-[var(--theme-bg)] border border-stone-200 px-4 py-3 focus:outline-none focus:text-[var(--theme-secondary)] uppercase"
-      value={form.guest_gstin} onChange={(e) => setForm({ ...form, guest_gstin: e.target.value.toUpperCase() })} />
-  </div>
+          <div className="bg-white p-8 border border-stone-200 shadow-sm">
+            <h3 className="text-2xl font-serif mb-6 text-[var(--theme-primary)]">3. Guest Details</h3>
+            <div className="grid md:grid-cols-3 gap-4">
+              <input required placeholder="Full Name" className="w-full bg-[var(--theme-bg)] border border-stone-200 px-4 py-3 focus:outline-none focus:border-[var(--theme-secondary)]"
+                value={form.full_name} onChange={(e) => setForm({ ...form, full_name: e.target.value })} />
+              <input readOnly placeholder="Email" type="email" className="w-full bg-stone-100 border border-stone-200 px-4 py-3 text-stone-500 cursor-not-allowed"
+                value={form.email} />
+              <input required placeholder="Phone Number" className="w-full bg-[var(--theme-bg)] border border-stone-200 px-4 py-3 focus:outline-none focus:border-[var(--theme-secondary)]"
+                value={form.phone} onChange={(e) => setForm({ ...form, phone: e.target.value })} />
+            </div>
+            <div className="mt-4">
+              <input placeholder="Company GSTIN (Optional)" className="w-full bg-[var(--theme-bg)] border border-stone-200 px-4 py-3 focus:outline-none focus:border-[var(--theme-secondary)] uppercase"
+                value={form.guest_gstin} onChange={(e) => setForm({ ...form, guest_gstin: e.target.value.toUpperCase() })} />
+            </div>
+            <textarea placeholder="Any special requests? (Optional)" className="w-full bg-[var(--theme-bg)] border border-stone-200 px-4 py-3 mt-4 focus:outline-none focus:border-[var(--theme-secondary)] h-24"
+              value={form.special_requests} onChange={(e) => setForm({ ...form, special_requests: e.target.value })} />
+          </div>
 
-  <textarea placeholder="Any special requests? (Optional)" className="w-full bg-[var(--theme-bg)] border border-stone-200 px-4 py-3 mt-4 focus:outline-none focus:text-[var(--theme-secondary)] h-24"
-    value={form.special_requests} onChange={(e) => setForm({ ...form, special_requests: e.target.value })} />
-</div>
-
-          {/* 4. Payment Method */}
           <div className="bg-white p-8 border border-stone-200 shadow-sm">
             <h3 className="text-2xl font-serif mb-6 text-[var(--theme-primary)]">4. Payment Method</h3>
             <div className="grid md:grid-cols-2 gap-4">
-              <label className={`flex items-start gap-4 p-4 border cursor-pointer transition-colors ${form.payment_method === 'online' ? 'text-[var(--theme-secondary)] bg-[var(--theme-bg)]' : 'border-stone-200'}`}>
+              <label className={`flex items-start gap-4 p-4 border cursor-pointer transition-colors ${form.payment_method === 'online' ? 'border-[var(--theme-secondary)] bg-[var(--theme-bg)]' : 'border-stone-200'}`}>
                 <input type="radio" name="payment_method" value="online" className="accent-[var(--theme-primary)] w-4 h-4 mt-1"
                   checked={form.payment_method === 'online'} onChange={() => setForm({ ...form, payment_method: 'online' })} />
                 <div>
-                  <span className="font-bold text-[var(--theme-primary)] block mb-1">Pay Online (सुरक्षित)</span>
-                  <span className="text-xs text-stone-500">UPI, Credit Card, Debit Card, Netbanking के ज़रिए अभी पेमेंट करें।</span>
+                  <span className="font-bold text-[var(--theme-primary)] block mb-1">Pay Online</span>
+                  <span className="text-xs text-stone-500">UPI, Credit Card, Debit Card के ज़रिए अभी पेमेंट करें।</span>
                 </div>
               </label>
-              <label className={`flex items-start gap-4 p-4 border cursor-pointer transition-colors ${form.payment_method === 'pay_at_hotel' ? 'text-[var(--theme-secondary)] bg-[var(--theme-bg)]' : 'border-stone-200'}`}>
+              <label className={`flex items-start gap-4 p-4 border cursor-pointer transition-colors ${form.payment_method === 'pay_at_hotel' ? 'border-[var(--theme-secondary)] bg-[var(--theme-bg)]' : 'border-stone-200'}`}>
                 <input type="radio" name="payment_method" value="pay_at_hotel" className="accent-[var(--theme-primary)] w-4 h-4 mt-1"
                   checked={form.payment_method === 'pay_at_hotel'} onChange={() => setForm({ ...form, payment_method: 'pay_at_hotel' })} />
                 <div>
-                  <span className="font-bold text-[var(--theme-primary)] block mb-1">Pay at Hotel (होटल में भुगतान)</span>
+                  <span className="font-bold text-[var(--theme-primary)] block mb-1">Pay at Hotel</span>
                   <span className="text-xs text-stone-500">होटल पहुँचकर कैश या कार्ड से पेमेंट करें।</span>
                 </div>
               </label>
             </div>
           </div>
 
-          {/* 5. Coupon Code */}
           <div className="bg-white p-8 border border-stone-200 shadow-sm">
             <h3 className="text-2xl font-serif mb-4 text-[var(--theme-primary)]">5. Have a Coupon Code?</h3>
             <div className="flex gap-2">
-              <input type="text" value={couponInput} onChange={(e) => setCouponInput(e.target.value.toUpperCase())} placeholder="Enter Code" className="w-full bg-[var(--theme-bg)] border border-stone-200 px-4 py-3 focus:outline-none focus:text-[var(--theme-secondary)] uppercase font-mono" />
-              <button type="button" onClick={applyCoupon} disabled={checkingCoupon} className="bg-[[var(--theme-primary)]] text-[var(--theme-secondary)] border border-[[var(--theme-primary)]] hover:bg-[var(--theme-primary)] hover:text-[var(--theme-primary)] px-6 py-3 font-bold uppercase tracking-widest transition-colors disabled:opacity-50">
+              <input type="text" value={couponInput} onChange={(e) => setCouponInput(e.target.value.toUpperCase())} placeholder="Enter Code" className="w-full bg-[var(--theme-bg)] border border-stone-200 px-4 py-3 focus:outline-none focus:border-[var(--theme-secondary)] uppercase font-mono" />
+              <button type="button" onClick={applyCoupon} disabled={checkingCoupon} className="bg-[var(--theme-primary)] text-[var(--theme-secondary)] border border-[var(--theme-primary)] hover:bg-[var(--theme-secondary)] hover:text-[var(--theme-primary)] px-6 py-3 font-bold uppercase tracking-widest transition-colors disabled:opacity-50">
                 {checkingCoupon ? '...' : 'Apply'}
               </button>
             </div>
             {couponMessage && <p className={`text-sm font-bold mt-2 ${isCouponValid ? 'text-green-600' : 'text-red-600'}`}>{couponMessage}</p>}
           </div>
 
-          {/* 6. Summary */}
           {selected && nights > 0 && (
-            <div className="bg-[[var(--theme-primary)]] text-white p-8 border text-[var(--theme-secondary)] animate-fade-up shadow-xl">
+            <div className="bg-[var(--theme-primary)] text-white p-8 border border-[var(--theme-secondary)] animate-fade-up shadow-xl">
               <h3 className="text-2xl font-serif mb-6 text-[var(--theme-secondary)]">Booking Summary</h3>
               <div className="flex justify-between text-sm mb-2 text-stone-300"><span>{selected.category} ({nights} Nights)</span><span>{formatINR(baseTotal)}</span></div>
               {discountPercent > 0 && <div className="flex justify-between text-sm mb-2 text-green-400 font-bold"><span>Discount ({discountPercent}% OFF)</span><span>- {formatINR(discountAmount)}</span></div>}
@@ -317,7 +304,7 @@ function BookingContent() {
 
           {error && <p className="text-red-600 font-bold text-center bg-red-50 p-4 border border-red-200 animate-fade-up">{error}</p>}
           
-          <button type="submit" disabled={submitting || !form.room_id} className={`w-full py-5 text-sm uppercase tracking-widest font-bold transition-all shadow-lg ${form.room_id ? 'bg-[[var(--theme-primary)]] text-[var(--theme-secondary)] hover:bg-[var(--theme-primary)] hover:text-[var(--theme-primary)]' : 'bg-stone-300 text-stone-500 cursor-not-allowed'}`}>
+          <button type="submit" disabled={submitting || !form.room_id} className={`w-full py-5 text-sm uppercase tracking-widest font-bold transition-all shadow-lg ${form.room_id ? 'bg-[var(--theme-primary)] text-[var(--theme-secondary)] hover:bg-[var(--theme-secondary)] hover:text-[var(--theme-primary)]' : 'bg-stone-300 text-stone-500 cursor-not-allowed'}`}>
             {submitting ? 'Processing...' : form.payment_method === 'online' ? 'Proceed to Pay' : 'Confirm Booking'}
           </button>
         </form>

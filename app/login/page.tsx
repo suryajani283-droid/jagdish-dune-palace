@@ -27,7 +27,7 @@ export default function AdminLogin() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-[[var(--theme-primary)]]">
+    <div className="min-h-screen flex items-center justify-center bg-[var(--theme-primary)]">
       <form onSubmit={submit} className="bg-white p-10 border border-stone-200 shadow-2xl w-full max-w-md space-y-6">
         <div className="text-center mb-8">
           <h1 className="text-3xl font-serif font-bold text-[var(--theme-primary)]">Admin Panel</h1>
@@ -48,7 +48,7 @@ export default function AdminLogin() {
 
         {error && <p className="text-red-600 text-sm bg-red-50 p-3 text-center">{error}</p>}
         
-        <button type="submit" disabled={loading} className="w-full bg-[var(--theme-secondary)] text-white hover:bg-[[var(--theme-primary)]] py-4 text-xs uppercase tracking-widest font-bold transition-colors">
+        <button type="submit" disabled={loading} className="w-full bg-[var(--theme-secondary)] text-white hover:bg-[var(--theme-primary)] py-4 text-xs uppercase tracking-widest font-bold transition-colors">
           {loading ? 'Signing in...' : 'Sign In'}
         </button>
       </form>

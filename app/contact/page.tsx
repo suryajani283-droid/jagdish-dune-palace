@@ -5,7 +5,7 @@ export default function ContactPage() {
   return (
     <>
       <Navbar />
-      <div className="bg-[[var(--theme-primary)]] py-20 text-center text-white">
+      <div className="bg-[var(--theme-primary)] py-20 text-center text-white">
         <h1 className="text-5xl font-serif font-bold mb-4 text-[var(--theme-secondary)]">Contact Us</h1>
         <p className="text-stone-300">We are here to help you plan your perfect getaway</p>
       </div>
@@ -48,7 +48,7 @@ export default function ContactPage() {
               <input type="email" placeholder="Your Email" className="w-full bg-[var(--theme-bg)] border border-stone-200 px-4 py-3 focus:outline-none focus:text-[var(--theme-secondary)]" required />
               <input type="tel" placeholder="Your Phone Number" className="w-full bg-[var(--theme-bg)] border border-stone-200 px-4 py-3 focus:outline-none focus:text-[var(--theme-secondary)]" required />
               <textarea placeholder="How can we help you?" className="w-full bg-[var(--theme-bg)] border border-stone-200 px-4 py-3 focus:outline-none focus:text-[var(--theme-secondary)] h-32" required></textarea>
-              <button type="button" className="w-full bg-[[var(--theme-primary)]] text-[var(--theme-secondary)] hover:bg-[var(--theme-primary)] hover:text-[var(--theme-primary)] py-4 font-bold uppercase tracking-widest text-sm transition-colors">
+              <button type="button" className="w-full bg-[var(--theme-primary)] text-[var(--theme-secondary)] hover:bg-[var(--theme-primary)] hover:text-[var(--theme-primary)] py-4 font-bold uppercase tracking-widest text-sm transition-colors">
                 Submit Message
               </button>
             </form>
@@ -78,7 +78,7 @@ export default function ContactPage() {
               href="https://maps.app.goo.gl/A4xZ4vZ8gLtWraGU7" 
               target="_blank" 
               rel="noopener noreferrer"
-              className="w-full bg-[[var(--theme-primary)]] text-white hover:bg-[var(--theme-primary)] hover:text-[var(--theme-primary)] py-4 font-bold uppercase tracking-widest text-sm transition-colors text-center flex items-center justify-center gap-2 shadow-md"
+              className="w-full bg-[var(--theme-primary)] text-white hover:bg-[var(--theme-primary)] hover:text-[var(--theme-primary)] py-4 font-bold uppercase tracking-widest text-sm transition-colors text-center flex items-center justify-center gap-2 shadow-md"
             >
               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
               Get Directions on Google Maps

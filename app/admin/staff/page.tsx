@@ -59,7 +59,7 @@ export default async function StaffPage() {
               </select>
             </div>
 
-            <button type="submit" className="w-full bg-[[var(--theme-primary)]] text-white hover:bg-[var(--theme-primary)] py-3 text-xs uppercase tracking-widest font-bold transition-colors">
+            <button type="submit" className="w-full bg-[var(--theme-primary)] text-white hover:bg-[var(--theme-primary)] py-3 text-xs uppercase tracking-widest font-bold transition-colors">
               Create Account
             </button>
           </form>

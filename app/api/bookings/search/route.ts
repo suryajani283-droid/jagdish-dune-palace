@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import { supabaseAdmin } from '@/lib/supabase/admin';
-import { createClient } from '@/lib/supabase/server'; // <-- सर्वर क्लाइंट इम्पोर्ट करें
+import { createClient } from '@/lib/supabase/server';
 
 export async function GET(req: Request) {
   try {
@@ -11,11 +11,9 @@ export async function GET(req: Request) {
       return NextResponse.json({ error: 'Reference number is required' }, { status: 400 });
     }
 
-    // 1. चेक करें कि यूज़र लॉगिन है या नहीं
     const supabase = await createClient();
     const { data: { user } } = await supabase.auth.getUser();
 
-    // 2. बेस क्वेरी तैयार करें (रेफरेंस नंबर से)
     let query = supabaseAdmin
       .from('bookings')
       .select(`
@@ -26,7 +24,7 @@ export async function GET(req: Request) {
       `)
       .eq('booking_reference', ref.toUpperCase());
 
-    // 3. 🔒 अगर यूज़र लॉगिन है, तो सिर्फ उसी की बुकिंग दिखाएँ
+    // 🔒 अगर यूज़र लॉगिन है, तो सिर्फ उसी की बुकिंग दिखाएँ
     if (user) {
       query = query.eq('user_id', user.id);
     }
@@ -34,8 +32,7 @@ export async function GET(req: Request) {
     const { data: booking, error } = await query.single();
 
     if (error || !booking) {
-      // सुरक्षा कारणों से हम यह नहीं बताएँगे कि बुकिंग किसी और की है, बस 'Not Found' कहेंगे
-      return NextResponse.json({ error: 'No booking found with this reference for your account.' }, { status: 404 });
+      return NextResponse.json({ error: 'No booking found with this reference.' }, { status: 404 });
     }
 
     return NextResponse.json({ booking });

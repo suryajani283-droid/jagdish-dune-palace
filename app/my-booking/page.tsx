@@ -128,7 +128,7 @@ function Content() {
           <Link 
             href={`/my-booking/invoice/${booking.id}`} 
             target="_blank"
-            className="mt-1 inline-flex items-center gap-1 bg-[[var(--theme-primary)]] text-[var(--theme-secondary)] border text-[var(--theme-secondary)] hover:bg-[var(--theme-primary)] hover:text-[var(--theme-primary)] px-3 py-1.5 text-xs font-bold transition-colors rounded-sm"
+            className="mt-1 inline-flex items-center gap-1 bg-[var(--theme-primary)] text-[var(--theme-secondary)] border text-[var(--theme-secondary)] hover:bg-[var(--theme-primary)] hover:text-[var(--theme-primary)] px-3 py-1.5 text-xs font-bold transition-colors rounded-sm"
           >
             📥 Download Receipt
           </Link>
@@ -142,7 +142,7 @@ function Content() {
   return (
     <>
       <Navbar />
-      <div className="bg-[[var(--theme-primary)]] py-16 text-center text-white">
+      <div className="bg-[var(--theme-primary)] py-16 text-center text-white">
         <h1 className="text-5xl font-serif font-bold mb-4 text-[var(--theme-secondary)]">
           {user ? 'My Profile & Bookings' : 'Find Your Booking'}
         </h1>
@@ -167,7 +167,7 @@ function Content() {
               className="w-full bg-[var(--theme-bg)] border border-stone-200 px-4 py-3 focus:outline-none focus:text-[var(--theme-secondary)] uppercase font-mono" 
               required
             />
-            <button type="submit" disabled={searchLoading} className="bg-[var(--theme-primary)] text-[var(--theme-primary)] hover:bg-[[var(--theme-primary)]] hover:text-[var(--theme-secondary)] px-8 py-3 text-xs uppercase tracking-widest font-bold transition-colors disabled:opacity-50 whitespace-nowrap">
+            <button type="submit" disabled={searchLoading} className="bg-[var(--theme-primary)] text-[var(--theme-primary)] hover:bg-[var(--theme-primary)] hover:text-[var(--theme-secondary)] px-8 py-3 text-xs uppercase tracking-widest font-bold transition-colors disabled:opacity-50 whitespace-nowrap">
               {searchLoading ? 'Searching...' : 'Search'}
             </button>
           </form>

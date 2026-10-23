@@ -105,7 +105,7 @@ export default async function InvoicesPage() {
           </tbody>
           {/* कुल टैक्स का हिसाब */}
           {invoices && invoices.length > 0 && (
-            <tfoot className="bg-[[var(--theme-primary)]] text-[var(--theme-secondary)] font-bold print:bg-gray-200 print:text-black">
+            <tfoot className="bg-[var(--theme-primary)] text-[var(--theme-secondary)] font-bold print:bg-gray-200 print:text-black">
               <tr>
                 <td colSpan={2} className="px-4 py-3 text-right uppercase tracking-wider text-xs">Total (All Invoices)</td>
                 <td className="px-4 py-3 text-right">{formatINR(invoices.reduce((sum, inv) => sum + Number(inv.taxable_value), 0))}</td>

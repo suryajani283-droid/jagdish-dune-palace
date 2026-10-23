@@ -65,7 +65,7 @@ export default async function BookingsPage({ searchParams }: { searchParams: Pro
           <Link 
             key={tab.id} 
             href={`/admin/bookings?filter=${tab.id}`}
-            className={`px-4 py-2 text-sm font-bold rounded-t-sm transition-colors ${filter === tab.id ? 'bg-[[var(--theme-primary)]] text-[var(--theme-secondary)]' : 'bg-stone-100 text-stone-600 hover:bg-stone-200'}`}
+            className={`px-4 py-2 text-sm font-bold rounded-t-sm transition-colors ${filter === tab.id ? 'bg-[var(--theme-primary)] text-[var(--theme-secondary)]' : 'bg-stone-100 text-stone-600 hover:bg-stone-200'}`}
           >
             {tab.label}
           </Link>
@@ -120,7 +120,7 @@ export default async function BookingsPage({ searchParams }: { searchParams: Pro
                         {/* Mark Paid बटन */}
                         {!isPaid && !isRefunded && (
                           <form action={async () => { 'use server'; await markAsPaid(booking.id); }}>
-                            <button className="text-[10px] bg-[[var(--theme-primary)]] text-white px-2 py-0.5 rounded hover:bg-[var(--theme-primary)] transition-colors">Mark Paid</button>
+                            <button className="text-[10px] bg-[var(--theme-primary)] text-white px-2 py-0.5 rounded hover:bg-[var(--theme-primary)] transition-colors">Mark Paid</button>
                           </form>
                         )}
 

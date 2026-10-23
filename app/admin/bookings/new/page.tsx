@@ -75,7 +75,7 @@ export default async function NewManualBooking() {
         </div>
 
         <div className="pt-6 border-t flex justify-end">
-          <button type="submit" className="bg-[var(--theme-secondary)] text-white hover:bg-[[var(--theme-primary)]] px-8 py-3 text-sm uppercase tracking-widest font-bold transition-colors">
+          <button type="submit" className="bg-[var(--theme-secondary)] text-white hover:bg-[var(--theme-primary)] px-8 py-3 text-sm uppercase tracking-widest font-bold transition-colors">
             Create Booking
           </button>
         </div>

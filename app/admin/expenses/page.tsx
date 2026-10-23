@@ -92,7 +92,7 @@ export default async function ExpensesPage({
               <option key={y} value={y}>{y}</option>
             ))}
           </select>
-          <button type="submit" className="bg-[[var(--theme-primary)]] text-white px-4 py-2 text-xs font-bold uppercase transition-colors hover:bg-[var(--theme-secondary)]">Apply Filter</button>
+          <button type="submit" className="bg-[var(--theme-primary)] text-white px-4 py-2 text-xs font-bold uppercase transition-colors hover:bg-[var(--theme-secondary)]">Apply Filter</button>
           {params.month && (
             <Link href="/admin/expenses" className="bg-stone-200 text-stone-700 px-4 py-2 text-xs font-bold uppercase transition-colors hover:bg-stone-300">Clear</Link>
           )}
@@ -144,7 +144,7 @@ export default async function ExpensesPage({
               <textarea name="notes" className="w-full bg-[var(--theme-bg)] border border-stone-200 px-4 py-2 focus:outline-none focus:border-[var(--theme-secondary)] h-20"></textarea>
             </div>
 
-            <button type="submit" className="w-full bg-[var(--theme-secondary)] text-white hover:bg-[[var(--theme-primary)]] py-3 text-xs uppercase tracking-widest font-bold transition-colors">
+            <button type="submit" className="w-full bg-[var(--theme-secondary)] text-white hover:bg-[var(--theme-primary)] py-3 text-xs uppercase tracking-widest font-bold transition-colors">
               Save Expense
             </button>
           </form>

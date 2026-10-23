@@ -99,7 +99,7 @@ function LoginContent() {
                   value={email} onChange={(e) => setEmail(e.target.value)} />
               </div>
               {error && <p className="text-red-600 text-sm bg-red-50 p-2">{error}</p>}
-              <button type="submit" disabled={loading} className="w-full bg-[[var(--theme-primary)]] text-[var(--theme-secondary)] hover:bg-[var(--theme-primary)] hover:text-[var(--theme-primary)] py-3 font-bold uppercase tracking-widest text-xs transition-colors">
+              <button type="submit" disabled={loading} className="w-full bg-[var(--theme-primary)] text-[var(--theme-secondary)] hover:bg-[var(--theme-primary)] hover:text-[var(--theme-primary)] py-3 font-bold uppercase tracking-widest text-xs transition-colors">
                 {loading ? 'Sending OTP...' : 'Send Login OTP'}
               </button>
             </form>
@@ -114,7 +114,7 @@ function LoginContent() {
                   value={otp} onChange={(e) => setOtp(e.target.value)} />
               </div>
               {error && <p className="text-red-600 text-sm bg-red-50 p-2">{error}</p>}
-              <button type="submit" disabled={loading} className="w-full bg-[var(--theme-primary)] text-[var(--theme-primary)] hover:bg-[[var(--theme-primary)]] hover:text-[var(--theme-secondary)] py-3 font-bold uppercase tracking-widest text-xs transition-colors">
+              <button type="submit" disabled={loading} className="w-full bg-[var(--theme-primary)] text-[var(--theme-primary)] hover:bg-[var(--theme-primary)] hover:text-[var(--theme-secondary)] py-3 font-bold uppercase tracking-widest text-xs transition-colors">
                 {loading ? 'Verifying...' : 'Verify OTP'}
               </button>
             </form>
@@ -129,7 +129,7 @@ function LoginContent() {
                   value={phone} onChange={(e) => setPhone(e.target.value)} />
               </div>
               {error && <p className="text-red-600 text-sm bg-red-50 p-2">{error}</p>}
-              <button type="submit" disabled={loading} className="w-full bg-[[var(--theme-primary)]] text-[var(--theme-secondary)] hover:bg-[var(--theme-primary)] hover:text-[var(--theme-primary)] py-3 font-bold uppercase tracking-widest text-xs transition-colors">
+              <button type="submit" disabled={loading} className="w-full bg-[var(--theme-primary)] text-[var(--theme-secondary)] hover:bg-[var(--theme-primary)] hover:text-[var(--theme-primary)] py-3 font-bold uppercase tracking-widest text-xs transition-colors">
                 {loading ? 'Saving...' : 'Save & Continue'}
               </button>
             </form>
