@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import { Playfair_Display, Lato } from 'next/font/google';
-import './globals.css';
+import './globals.css'; // <--- यह लाइन होनी चाहिए
 import { supabaseAdmin } from '@/lib/supabase/admin';
 
 const playfair = Playfair_Display({ subsets: ['latin'], variable: '--font-playfair', display: 'swap' });

@@ -1,17 +1,77 @@
 @import "tailwindcss";
 
+/* Base Setup */
 body {
-  background-color: #F8F9FA;
-  color: #1A1A1A;
+  background-color: var(--theme-bg);
+  color: var(--theme-text);
+  overflow-x: hidden;
+  transition: background-color 0.5s ease;
 }
 
-/* Diwali Theme Test Colors */
-[data-theme="diwali"] body {
-  background-color: #FFF4E6;
+/* Normal Theme (Navy & Gold) */
+:root {
+  --theme-primary: #0B1320;
+  --theme-secondary: #C5A059;
+  --theme-bg: #F8F9FA;
+  --theme-text: #1A1A1A;
 }
-[data-theme="diwali"] .theme-text {
-  color: #FFD700 !important;
+
+/* Diwali Theme */
+[data-theme="diwali"] {
+  --theme-primary: #3E0606;
+  --theme-secondary: #FFD700;
+  --theme-bg: #FFF8E7;
+  --theme-text: #2B1A1A;
 }
-[data-theme="diwali"] .theme-bg {
-  background-color: #3E0606 !important;
+
+/* Holi Theme */
+[data-theme="holi"] {
+  --theme-primary: #2B1055;
+  --theme-secondary: #FF007F;
+  --theme-bg: #F4F9F4;
+  --theme-text: #1D3557;
+}
+
+/* Rakshabandhan Theme */
+[data-theme="rakshabandhan"] {
+  --theme-primary: #4A1525;
+  --theme-secondary: #FF9933;
+  --theme-bg: #FFF8F0;
+  --theme-text: #2B1A1A;
+}
+
+/* Utility Classes */
+.text-theme-primary { color: var(--theme-primary) !important; }
+.text-theme-secondary { color: var(--theme-secondary) !important; }
+.bg-theme-primary { background-color: var(--theme-primary) !important; }
+.bg-theme-secondary { background-color: var(--theme-secondary) !important; }
+.bg-theme-bg { background-color: var(--theme-bg) !important; }
+
+/* Buttons */
+.btn-primary {
+  background-color: var(--theme-secondary);
+  color: var(--theme-primary);
+  font-weight: 700;
+  text-transform: uppercase;
+  padding: 1rem 2rem;
+  transition: all 0.3s ease;
+  display: inline-block;
+}
+.btn-primary:hover {
+  background-color: var(--theme-primary);
+  color: var(--theme-secondary);
+}
+
+.btn-outline-theme {
+  border: 2px solid var(--theme-primary);
+  color: var(--theme-primary);
+  padding: 1rem 2rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+  display: inline-block;
+}
+.btn-outline-theme:hover {
+  background-color: var(--theme-primary);
+  color: var(--theme-secondary);
 }
