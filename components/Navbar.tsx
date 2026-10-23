@@ -32,9 +32,9 @@ export function Navbar() {
   };
 
   return (
-    <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-stone-200 shadow-sm">
-      {/* Top Bar (Obsidian Navy) */}
-      <div className="bg-[#0B1320] text-stone-300 text-xs py-2 hidden md:block">
+    <header className="sticky top-0 z-50 theme-bg/95 backdrop-blur-md border-b border-black/10 shadow-sm transition-colors duration-500">
+      {/* Top Bar */}
+      <div className="bg-[var(--theme-primary)] text-white/80 text-xs py-2 hidden md:block transition-colors duration-500">
         <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
           <div className="flex gap-6 font-medium tracking-wide">
             <span>📞 +91 7599936000</span>
@@ -48,73 +48,50 @@ export function Navbar() {
       <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
         <Link href="/" className="flex items-center gap-4 group">
           {logoUrl ? (
-            <div className="w-16 h-16 md:w-20 md:h-20 rounded-full overflow-hidden border-2 border-[#C5A059] shadow-md shrink-0 bg-white group-hover:scale-105 transition-transform duration-300">
-              <img src={logoUrl} alt="Hotel Logo" className="w-full h-full object-cover" />
+            <div className="w-16 h-16 md:w-20 md:h-20 rounded-full overflow-hidden border-2 border-[var(--theme-secondary)] shadow-md shrink-0 bg-white group-hover:scale-105 transition-transform duration-300">
+              <img src={logoUrl} alt="Logo" className="w-full h-full object-cover" />
             </div>
           ) : (
-            <div className="w-16 h-16 md:w-20 md:h-20 rounded-full border-2 border-[#C5A059] flex items-center justify-center font-serif text-3xl font-bold text-[#0B1320] group-hover:bg-[#0B1320] group-hover:text-[#C5A059] transition-all duration-300 shadow-md shrink-0">
+            <div className="w-16 h-16 md:w-20 md:h-20 rounded-full border-2 border-[var(--theme-secondary)] flex items-center justify-center font-serif text-3xl font-bold text-[var(--theme-primary)] group-hover:bg-[var(--theme-primary)] group-hover:text-[var(--theme-secondary)] transition-all duration-300 shadow-md shrink-0">
               J
             </div>
           )}
           <div className="flex flex-col">
-            <span className="text-xl md:text-3xl font-serif font-bold text-[#0B1320] tracking-wide uppercase leading-tight group-hover:text-[#C5A059] transition-colors">
+            <span className="text-xl md:text-3xl font-serif font-bold text-[var(--theme-primary)] tracking-wide uppercase leading-tight transition-colors">
               Jagdish Dune
             </span>
-            <span className="text-[10px] md:text-xs uppercase tracking-[0.4em] text-[#C5A059] font-sans font-bold text-left mt-1">
+            <span className="text-[10px] md:text-xs uppercase tracking-[0.4em] text-[var(--theme-secondary)] font-sans font-bold text-left mt-1">
               Palace
             </span>
           </div>
         </Link>
         
-        <nav className="hidden lg:flex items-center gap-8 text-xs uppercase tracking-widest font-bold text-stone-600">
-          <Link href="/" className="nav-link">Home</Link>
-          <Link href="/rooms" className="nav-link">Rooms</Link>
-          <Link href="/facilities" className="nav-link">Facilities</Link>
-          <Link href="/gallery" className="nav-link">Gallery</Link>
-          <Link href="/offers" className="nav-link">Offers</Link>
-          <Link href="/contact" className="nav-link">Contact</Link>
+        <nav className="hidden lg:flex items-center gap-8 text-xs uppercase tracking-widest font-bold text-[var(--theme-text)]/70">
+          <Link href="/" className="hover:text-[var(--theme-secondary)] transition-colors">Home</Link>
+          <Link href="/rooms" className="hover:text-[var(--theme-secondary)] transition-colors">Rooms</Link>
+          <Link href="/facilities" className="hover:text-[var(--theme-secondary)] transition-colors">Facilities</Link>
+          <Link href="/gallery" className="hover:text-[var(--theme-secondary)] transition-colors">Gallery</Link>
+          <Link href="/offers" className="hover:text-[var(--theme-secondary)] transition-colors">Offers</Link>
+          <Link href="/contact" className="hover:text-[var(--theme-secondary)] transition-colors">Contact</Link>
           
           {user ? (
-            <div className="flex items-center gap-4 ml-2 pl-4 border-l border-stone-300">
-              <Link href="/my-booking" className="nav-link text-[#0B1320] flex items-center gap-1">👤 Profile</Link>
+            <div className="flex items-center gap-4 ml-2 pl-4 border-l border-black/10">
+              <Link href="/my-booking" className="text-[var(--theme-primary)] flex items-center gap-1 hover:text-[var(--theme-secondary)]">👤 Profile</Link>
               <button onClick={handleLogout} className="text-red-500 hover:text-red-700 transition-colors">Logout</button>
             </div>
           ) : (
-            <Link href="/customer/login" className="nav-link text-[#0B1320] border border-stone-300 px-3 py-1.5 rounded-sm hover:border-[#C5A059]">Login</Link>
+            <Link href="/customer/login" className="text-[var(--theme-primary)] border border-black/20 px-3 py-1.5 rounded-sm hover:border-[var(--theme-secondary)]">Login</Link>
           )}
 
-          <Link href="/booking" className="bg-[#C5A059] text-[#0B1320] hover:bg-[#0B1320] hover:text-[#C5A059] transition-all duration-300 py-3 px-6 ml-2 font-bold shadow-md hover:-translate-y-1 hover:shadow-xl">
-            Book Now
-          </Link>
+          <Link href="/booking" className="btn-primary py-3 px-6 ml-2">Book Now</Link>
         </nav>
 
-        <button className="lg:hidden text-2xl text-[#0B1320]" onClick={() => setIsOpen(!isOpen)}>
+        <button className="lg:hidden text-2xl text-[var(--theme-primary)]" onClick={() => setIsOpen(!isOpen)}>
           {isOpen ? '✕' : '☰'}
         </button>
       </div>
-
-      {/* Mobile Menu */}
-      {isOpen && (
-        <div className="lg:hidden bg-white border-t border-stone-200 px-6 py-6 flex flex-col gap-5 text-sm uppercase tracking-widest font-bold text-stone-600 shadow-lg absolute w-full left-0">
-          <Link href="/" onClick={() => setIsOpen(false)} className="hover:text-[#C5A059]">Home</Link>
-          <Link href="/rooms" onClick={() => setIsOpen(false)} className="hover:text-[#C5A059]">Rooms</Link>
-          <Link href="/facilities" onClick={() => setIsOpen(false)} className="hover:text-[#C5A059]">Facilities</Link>
-          <Link href="/gallery" onClick={() => setIsOpen(false)} className="hover:text-[#C5A059]">Gallery</Link>
-          <Link href="/offers" onClick={() => setIsOpen(false)} className="hover:text-[#C5A059]">Offers</Link>
-          <Link href="/contact" onClick={() => setIsOpen(false)} className="hover:text-[#C5A059]">Contact</Link>
-          
-          {user ? (
-            <div className="flex flex-col gap-4 py-4 border-y border-stone-200">
-              <Link href="/my-booking" onClick={() => setIsOpen(false)} className="hover:text-[#C5A059]">👤 My Profile</Link>
-              <button onClick={handleLogout} className="text-red-500 text-left hover:text-red-700">Logout</button>
-            </div>
-          ) : (
-            <Link href="/customer/login" onClick={() => setIsOpen(false)} className="hover:text-[#C5A059] py-4 border-y border-stone-200">Login / Register</Link>
-          )}
-
-          <Link href="/booking" onClick={() => setIsOpen(false)} className="bg-[#C5A059] text-[#0B1320] text-center py-4 mt-2 shadow-md transition-all font-bold">Book Now</Link>
-        </div>
-      )}
+      
+      {/* Mobile Menu... (You can leave the existing mobile menu code) */}
     </header>
   );
 }
