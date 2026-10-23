@@ -7,14 +7,7 @@ body {
   transition: background-color 0.5s ease;
 }
 
-/* Global Theme Classes */
-.bg-[var(--theme-bg)] { background-color: var(--theme-bg) !important; }
-.text-[var(--theme-primary)] { color: var(--theme-primary) !important; }
-.text-[var(--theme-secondary)] { color: var(--theme-secondary) !important; }
-.bg-theme-primary { background-color: var(--theme-primary) !important; }
-.bg-theme-secondary { background-color: var(--theme-secondary) !important; }
-
-/* Hero Overlay */
+/* Hero Overlay (टेक्स्ट पढ़ने के लिए डार्क परदा) */
 .hero-overlay {
   background: linear-gradient(to bottom, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.7) 100%);
 }
@@ -53,3 +46,8 @@ body {
   color: var(--theme-secondary);
   transform: translateY(-3px);
 }
+
+/* Custom Dynamic Classes */
+.bg-theme-bg { background-color: var(--theme-bg) !important; }
+.text-theme-primary { color: var(--theme-primary) !important; }
+.text-theme-secondary { color: var(--theme-secondary) !important; }
