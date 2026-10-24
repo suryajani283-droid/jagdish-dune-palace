@@ -6,7 +6,6 @@ import { RoomCard } from '@/components/RoomCard';
 import { createClient } from '@/lib/supabase/server';
 import { supabaseAdmin } from '@/lib/supabase/admin';
 import Link from 'next/link';
-import Image from 'next/image';
 
 async function FeaturedRooms() {
   const supabase = await createClient();
@@ -37,7 +36,7 @@ export default async function HomePage() {
       <section className="py-24 bg-[var(--theme-bg)] transition-colors duration-500">
         <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-16 items-center">
           <div className="relative h-[500px] w-full">
-            <Image src="https://images.unsplash.com/photo-1582719508461-905c673771fd?w=800" alt="Hotel Heritage" fill className="object-cover rounded-t-[100px] rounded-bl-[100px] shadow-2xl" />
+            <Img src="https://images.unsplash.com/photo-1582719508461-905c673771fd?w=800" alt="Hotel Heritage" fill className="object-cover rounded-t-[100px] rounded-bl-[100px] shadow-2xl" />
           </div>
           <div>
             <p className="text-[var(--theme-secondary)] uppercase tracking-[0.3em] text-xs font-bold mb-4">Our Heritage</p>

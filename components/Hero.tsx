@@ -1,6 +1,5 @@
 'use client';
 import Link from 'next/link';
-import Image from 'next/image';
 import { useState, useEffect } from 'react';
 import { t, type Lang } from '@/lib/i18n';
 
@@ -19,7 +18,7 @@ export function Hero({ settings }: { settings: any }) {
 
   return (
     <section className="relative h-[90vh] min-h-[600px] flex items-center justify-center text-center overflow-hidden w-full">
-      <Image src={bgImage} alt="Hotel Background" fill priority className="object-cover object-center z-0" />
+      <imgsrc={bgImage} alt="Hotel Background" fill priority className="object-cover object-center z-0" />
       
       {/* यहाँ डार्क ओवरले लगा है */}
       <div className="absolute inset-0 hero-overlay z-10"></div>

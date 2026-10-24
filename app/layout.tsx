@@ -34,6 +34,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
   return (
     <html lang="en" className={`${playfair.variable} ${lato.variable}`}>
       <body 
+        suppressHydrationWarning
         className="font-sans antialiased transition-colors duration-500"
         style={{
           '--theme-primary': primary,
