@@ -10,7 +10,6 @@ export const metadata: Metadata = {
   title: 'Jagdish Dune Palace',
 };
 
-// ✅ कैश को रोकने के लिए ताकि थीम तुरंत बदले
 export const dynamic = 'force-dynamic'; 
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
@@ -20,7 +19,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
     <html lang="en" className={`${playfair.variable} ${lato.variable}`}>
       <body 
         suppressHydrationWarning
-        className="font-sans antialiased transition-colors duration-500"
+        className="font-sans antialiased transition-colors duration-500 relative"
         style={{
           '--theme-primary': theme.primary_color,
           '--theme-secondary': theme.secondary_color,
@@ -30,7 +29,23 @@ export default async function RootLayout({ children }: { children: React.ReactNo
           '--theme-footer': theme.footer_bg || theme.primary_color,
         } as React.CSSProperties}
       >
-        {children}
+        {/* ✅ अगर थीम में इमेज है, तो उसे बैकग्राउंड में लगाएँ */}
+        {theme.bg_image && (
+          <div 
+            className="fixed inset-0 z-[-1]"
+            style={{
+              backgroundImage: `url(${theme.bg_image})`,
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+              backgroundAttachment: 'fixed',
+              filter: 'brightness(1.1) opacity(0.15)', // हल्का सा फीका करें ताकि टेक्स्ट दिखे
+            }}
+          />
+        )}
+
+        <div className="relative z-10">
+          {children}
+        </div>
       </body>
     </html>
   );

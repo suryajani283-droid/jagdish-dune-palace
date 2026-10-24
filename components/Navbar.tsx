@@ -48,7 +48,7 @@ export function Navbar() {
       {/* Main Navbar */}
       <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
         
-        {/* ✅ Next Level Logo Section */}
+        {/* ✅ Next Level Logo Section with Lighting Effect */}
         <Link href="/" className="flex items-center gap-4 group">
           
           {/* Logo Icon / Image */}
@@ -62,9 +62,10 @@ export function Navbar() {
             </div>
           )}
 
-          {/* ✅ Dynamic Royal Text Design */}
+          {/* ✅ Dynamic Royal Text Design with Glow */}
           <div className="flex flex-col relative">
-            <span className="text-xl md:text-3xl font-serif font-bold text-[var(--theme-primary)] tracking-wide uppercase leading-none transition-colors duration-500">
+            {/* यहाँ text-glow क्लास जोड़ी गई है जो रोशनी का इफेक्ट देगी */}
+            <span className="text-xl md:text-3xl font-serif font-bold text-[var(--theme-primary)] tracking-wide uppercase leading-none transition-colors duration-500 text-glow">
               Jagdish Dune
             </span>
             
