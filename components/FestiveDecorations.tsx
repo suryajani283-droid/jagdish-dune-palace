@@ -5,43 +5,48 @@ export function FestiveDecorations({ theme }: { theme: string }) {
   const [elements, setElements] = useState<any[]>([]);
 
   useEffect(() => {
-    // हर थीम के लिए अलग डेकोरेशन जनरेट करें
-    if (theme === 'holi') {
-      const colors = ['#FF007F', '#FFD700', '#00BFFF', '#32CD32', '#FF4500'];
-      const newElements = Array.from({ length: 30 }).map((_, i) => ({
+    // Diwali: ऊपर से लटकते हुए लालटेन और दीये
+    if (theme === 'diwali') {
+      const newElements = Array.from({ length: 12 }).map((_, i) => ({
+        id: i,
+        left: `${(i * 8) + Math.random() * 4}%`, // स्क्रीन पर समान दूरी पर फैलाएँ
+        delay: `${Math.random() * 2}s`,
+        text: Math.random() > 0.5 ? '🏮' : '🪔',
+        stringHeight: `${Math.random() * 60 + 40}px`, // डोरी की लंबाई अलग-अलग
+      }));
+      setElements(newElements);
+    } 
+    // Holi: रंगों की बौछार
+    else if (theme === 'holi') {
+      const colors = ['#FF007F', '#FFD700', '#00BFFF', '#32CD32', '#FF4500', '#9400D3'];
+      const newElements = Array.from({ length: 40 }).map((_, i) => ({
         id: i,
         left: `${Math.random() * 100}%`,
-        animationDuration: `${Math.random() * 3 + 3}s`,
+        animationDuration: `${Math.random() * 3 + 2}s`,
         animationDelay: `${Math.random() * 2}s`,
         backgroundColor: colors[Math.floor(Math.random() * colors.length)],
         width: `${Math.random() * 15 + 10}px`,
         height: `${Math.random() * 15 + 10}px`,
       }));
       setElements(newElements);
-    } else if (theme === 'diwali') {
+    } 
+    // Rakshabandhan: तैरती हुई राखियां
+    else if (theme === 'rakshabandhan') {
       const newElements = Array.from({ length: 15 }).map((_, i) => ({
         id: i,
         left: `${Math.random() * 100}%`,
-        animationDuration: `${Math.random() * 3 + 4}s`,
-        animationDelay: `${Math.random() * 2}s`,
-        text: Math.random() > 0.5 ? '✨' : '🪔',
-        fontSize: `${Math.random() * 20 + 15}px`,
-      }));
-      setElements(newElements);
-    } else if (theme === 'rakshabandhan') {
-      const newElements = Array.from({ length: 8 }).map((_, i) => ({
-        id: i,
-        left: `${Math.random() * 100}%`,
         top: `${Math.random() * 80 + 10}%`,
-        text: '🪢',
+        text: Math.random() > 0.5 ? '🪢' : '🌼',
       }));
       setElements(newElements);
-    } else if (theme === 'newyear') {
-      const newElements = Array.from({ length: 40 }).map((_, i) => ({
+    } 
+    // New Year: चमकते सितारे
+    else if (theme === 'newyear') {
+      const newElements = Array.from({ length: 50 }).map((_, i) => ({
         id: i,
         left: `${Math.random() * 100}%`,
         top: `${Math.random() * 100}%`,
-        text: '✦',
+        animationDelay: `${Math.random() * 2}s`,
       }));
       setElements(newElements);
     }
@@ -51,6 +56,19 @@ export function FestiveDecorations({ theme }: { theme: string }) {
 
   return (
     <div className="fixed inset-0 pointer-events-none overflow-hidden z-[100]">
+      
+      {/* Diwali: Hanging Lanterns */}
+      {theme === 'diwali' && elements.map((el) => (
+        <div
+          key={el.id}
+          className="hanging-lantern-wrapper"
+          style={{ left: el.left, animationDelay: el.delay }}
+        >
+          <div className="hanging-string" style={{ height: el.stringHeight }}></div>
+          <div className="hanging-lantern">{el.text}</div>
+        </div>
+      ))}
+
       {/* Holi: Falling Colors */}
       {theme === 'holi' && elements.map((el) => (
         <div
@@ -65,23 +83,6 @@ export function FestiveDecorations({ theme }: { theme: string }) {
             height: el.height,
           }}
         />
-      ))}
-
-      {/* Diwali: Floating Diyas & Sparkles */}
-      {theme === 'diwali' && elements.map((el) => (
-        <div
-          key={el.id}
-          className="diwali-glow absolute"
-          style={{
-            left: el.left,
-            bottom: '-10vh',
-            animation: `fall ${el.animationDuration} linear infinite`,
-            animationDelay: el.animationDelay,
-            fontSize: el.fontSize,
-          }}
-        >
-          {el.text}
-        </div>
       ))}
 
       {/* Rakshabandhan: Floating Rakhis */}
@@ -100,15 +101,12 @@ export function FestiveDecorations({ theme }: { theme: string }) {
         <div
           key={el.id}
           className="star-twinkle"
-          style={{ 
-            left: el.left, 
-            top: el.top,
-            animationDelay: `${Math.random() * 2}s` 
-          }}
+          style={{ left: el.left, top: el.top, animationDelay: el.animationDelay }}
         >
-          {el.text}
+          ✦
         </div>
       ))}
+
     </div>
   );
 }

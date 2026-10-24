@@ -4,12 +4,12 @@ body {
   background-color: var(--theme-bg);
   color: var(--theme-text);
   overflow-x: hidden;
-  transition: background-color 0.5s ease;
+  transition: background-color 0.8s ease;
 }
 
-/* Hero Overlay (टेक्स्ट पढ़ने के लिए डार्क परदा) */
+/* Hero Overlay */
 .hero-overlay {
-  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.7) 100%);
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.8) 100%);
 }
 
 /* Buttons */
@@ -47,7 +47,82 @@ body {
   transform: translateY(-3px);
 }
 
-/* Custom Dynamic Classes */
+/* Dynamic Classes */
 .bg-theme-bg { background-color: var(--theme-bg) !important; }
 .text-theme-primary { color: var(--theme-primary) !important; }
 .text-theme-secondary { color: var(--theme-secondary) !important; }
+.bg-theme-primary { background-color: var(--theme-primary) !important; }
+.bg-theme-secondary { background-color: var(--theme-secondary) !important; }
+
+/* =========================================
+   FESTIVAL ANIMATIONS
+   ========================================= */
+
+/* Diwali: Hanging Lanterns Swing */
+@keyframes swing {
+  0% { transform: rotate(-8deg); }
+  100% { transform: rotate(8deg); }
+}
+.hanging-lantern-wrapper {
+  position: absolute;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transform-origin: top center;
+  animation: swing 3s infinite alternate ease-in-out;
+  z-index: 100;
+  pointer-events: none;
+}
+.hanging-string {
+  width: 2px;
+  height: 60px;
+  background-color: #FFD700;
+  opacity: 0.7;
+}
+.hanging-lantern {
+  font-size: 2.5rem;
+  filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.8));
+}
+
+/* Holi: Falling Colors */
+@keyframes fall {
+  0% { transform: translateY(-10vh) rotate(0deg); opacity: 1; }
+  100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
+}
+.holi-color {
+  position: fixed;
+  top: -10vh;
+  border-radius: 50%;
+  animation: fall linear infinite;
+  z-index: 100;
+  pointer-events: none;
+}
+
+/* Rakshabandhan: Floating Rakhis */
+@keyframes float {
+  0% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-20px) rotate(10deg); }
+  100% { transform: translateY(0px) rotate(0deg); }
+}
+.rakhi-float {
+  position: fixed;
+  animation: float 4s ease-in-out infinite;
+  z-index: 100;
+  pointer-events: none;
+  font-size: 2rem;
+}
+
+/* New Year: Twinkling Stars */
+@keyframes twinkle {
+  0%, 100% { opacity: 0.2; transform: scale(0.8); }
+  50% { opacity: 1; transform: scale(1.2); }
+}
+.star-twinkle {
+  position: fixed;
+  color: #FFD700;
+  animation: twinkle 2s infinite;
+  z-index: 100;
+  pointer-events: none;
+  font-size: 1.5rem;
+}
