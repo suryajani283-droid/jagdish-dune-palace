@@ -1,10 +1,9 @@
 @import "tailwindcss";
 
 :root {
-  /* Modern Desert Luxury Defaults */
   --theme-primary: #2B2520; 
-  --theme-secondary: #C05C3E; /* Terracotta */
-  --theme-bg: #FDFBF7; /* Ivory/Sand */
+  --theme-secondary: #C05C3E; 
+  --theme-bg: #FDFBF7; 
   --theme-text: #2B2520;
 }
 
@@ -15,16 +14,12 @@ body {
   transition: background-color 0.8s ease;
 }
 
-/* Base Utility Classes */
 .bg-theme-bg { background-color: var(--theme-bg) !important; }
 .text-theme-primary { color: var(--theme-primary) !important; }
 .text-theme-secondary { color: var(--theme-secondary) !important; }
 .bg-theme-primary { background-color: var(--theme-primary) !important; }
 .bg-theme-secondary { background-color: var(--theme-secondary) !important; }
 
-/* =========================================
-   BUTTONS & CARDS (Premium Look)
-   ========================================= */
 .btn-primary, .btn-luxury {
   background-color: var(--theme-secondary);
   color: #fff;
@@ -63,11 +58,6 @@ body {
   background: linear-gradient(to bottom, rgba(43, 37, 32, 0.4) 0%, rgba(43, 37, 32, 0.8) 100%);
 }
 
-/* =========================================
-   ANIMATIONS (Diwali, Holi, etc.)
-   ========================================= */
-
-/* Diwali: Hanging Lanterns & Diyas */
 @keyframes swing {
   0% { transform: rotate(-8deg); }
   100% { transform: rotate(8deg); }
@@ -93,7 +83,6 @@ body {
   filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.8));
 }
 
-/* Holi: Falling Colors */
 @keyframes fall {
   0% { transform: translateY(-10vh) rotate(0deg); opacity: 1; }
   100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
@@ -107,7 +96,6 @@ body {
   pointer-events: none;
 }
 
-/* Rakshabandhan: Floating Rakhis */
 @keyframes float {
   0% { transform: translateY(0px) rotate(0deg); }
   50% { transform: translateY(-20px) rotate(10deg); }
@@ -121,7 +109,6 @@ body {
   font-size: 2rem;
 }
 
-/* New Year: Twinkling Stars */
 @keyframes twinkle {
   0%, 100% { opacity: 0.2; transform: scale(0.8); }
   50% { opacity: 1; transform: scale(1.2); }

@@ -1,82 +1,37 @@
-'use client';
-import { useEffect, useState } from 'react';
+import type { Metadata } from 'next';
+import { Playfair_Display, Lato } from 'next/font/google';
+import './globals.css';
+import { getActiveTheme } from '@/lib/theme-engine';
+import { FestiveDecorations } from '@/components/FestiveDecorations';
 
-export function FestiveDecorations({ type }: { type: string }) {
-  const [elements, setElements] = useState<any[]>([]);
+const playfair = Playfair_Display({ subsets: ['latin'], variable: '--font-playfair', display: 'swap' });
+const lato = Lato({ weight: ['300', '400', '700', '900'], subsets: ['latin'], variable: '--font-lato', display: 'swap' });
 
-  useEffect(() => {
-    if (type === 'diwali_lights') {
-      const newElements = Array.from({ length: 12 }).map((_, i) => ({
-        id: i,
-        left: `${(i * 8) + Math.random() * 4}%`,
-        delay: `${Math.random() * 2}s`,
-        text: Math.random() > 0.5 ? '🏮' : '🪔',
-        stringHeight: `${Math.random() * 60 + 40}px`,
-      }));
-      setElements(newElements);
-    } 
-    else if (type === 'holi_colors') {
-      const colors = ['#FF007F', '#FFD700', '#00BFFF', '#32CD32', '#FF4500', '#9400D3'];
-      const newElements = Array.from({ length: 40 }).map((_, i) => ({
-        id: i,
-        left: `${Math.random() * 100}%`,
-        animationDuration: `${Math.random() * 3 + 2}s`,
-        animationDelay: `${Math.random() * 2}s`,
-        backgroundColor: colors[Math.floor(Math.random() * colors.length)],
-        width: `${Math.random() * 15 + 10}px`,
-        height: `${Math.random() * 15 + 10}px`,
-      }));
-      setElements(newElements);
-    } 
-    else if (type === 'rakhi') {
-      const newElements = Array.from({ length: 15 }).map((_, i) => ({
-        id: i,
-        left: `${Math.random() * 100}%`,
-        top: `${Math.random() * 80 + 10}%`,
-        text: Math.random() > 0.5 ? '🪢' : '🌼',
-      }));
-      setElements(newElements);
-    } 
-    else if (type === 'stars') {
-      const newElements = Array.from({ length: 50 }).map((_, i) => ({
-        id: i,
-        left: `${Math.random() * 100}%`,
-        top: `${Math.random() * 100}%`,
-        animationDelay: `${Math.random() * 2}s`,
-      }));
-      setElements(newElements);
-    }
-  }, [type]);
+export const metadata: Metadata = {
+  title: 'Jagdish Dune Palace',
+};
 
-  if (type === 'none' || !type) return null;
+// ✅ यह लाइन जोड़ें ताकि बिल्ड के समय डेटाबेस क्रैश न हो
+export const dynamic = 'force-dynamic'; 
+
+export default async function RootLayout({ children }: { children: React.ReactNode }) {
+  const theme = await getActiveTheme();
 
   return (
-    <div className="fixed inset-0 pointer-events-none overflow-hidden z-[100]">
-      {type === 'diwali_lights' && elements.map((el) => (
-        <div key={el.id} className="hanging-wrapper" style={{ left: el.left, animationDelay: el.delay }}>
-          <div className="hanging-string" style={{ height: el.stringHeight }}></div>
-          <div className="hanging-item">{el.text}</div>
-        </div>
-      ))}
-
-      {type === 'holi_colors' && elements.map((el) => (
-        <div key={el.id} className="holi-color" style={{
-            left: el.left, animationDuration: el.animationDuration, animationDelay: el.animationDelay,
-            backgroundColor: el.backgroundColor, width: el.width, height: el.height,
-        }} />
-      ))}
-
-      {type === 'rakhi' && elements.map((el) => (
-        <div key={el.id} className="rakhi-float" style={{ left: el.left, top: el.top }}>
-          {el.text}
-        </div>
-      ))}
-
-      {type === 'stars' && elements.map((el) => (
-        <div key={el.id} className="star-twinkle" style={{ left: el.left, top: el.top, animationDelay: el.animationDelay }}>
-          ✦
-        </div>
-      ))}
-    </div>
+    <html lang="en" className={`${playfair.variable} ${lato.variable}`}>
+      <body 
+        suppressHydrationWarning
+        className="font-sans antialiased transition-colors duration-500"
+        style={{
+          '--theme-primary': theme?.primary_color || '#2B2520',
+          '--theme-secondary': theme?.secondary_color || '#C05C3E',
+          '--theme-bg': theme?.bg_color || '#FDFBF7',
+          '--theme-text': theme?.text_color || '#2B2520',
+        } as React.CSSProperties}
+      >
+        <FestiveDecorations type={theme?.decoration_type || 'none'} />
+        {children}
+      </body>
+    </html>
   );
 }

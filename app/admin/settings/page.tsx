@@ -2,21 +2,12 @@ import { supabaseAdmin } from '@/lib/supabase/admin';
 import { updateSettings } from './actions';
 
 export default async function SettingsPage() {
-  // डेटाबेस से सेटिंग्स लाएँ
-  const { data: settings } = await supabaseAdmin
-    .from('hotel_settings')
-    .select('*')
-    .eq('id', 1)
-    .single();
+  const { data: settings } = await supabaseAdmin.from('hotel_settings').select('*').eq('id', 1).single();
 
-  // फॉर्म सबमिट हैंडलर
   async function submitSettings(formData: FormData) {
     'use server';
     const res = await updateSettings(formData);
-    if (!res.success) {
-      // एरर आने पर उसे यूआरएल के जरिए दिखाना (सिंपल अप्रोच)
-      throw new Error(res.error);
-    }
+    if (!res.success) throw new Error(res.error);
   }
 
   return (
@@ -28,7 +19,6 @@ export default async function SettingsPage() {
 
       <form action={submitSettings} className="space-y-8">
         
-        {/* SECTION 1: HOTEL INFORMATION */}
         <div className="bg-white p-6 border border-stone-200 shadow-sm rounded-sm">
           <h2 className="text-xl font-bold text-[var(--theme-primary)] mb-4 border-b pb-2">1. Hotel Information</h2>
           <div className="grid md:grid-cols-2 gap-4">
@@ -55,7 +45,6 @@ export default async function SettingsPage() {
           </div>
         </div>
 
-        {/* SECTION 2: HOME PAGE CONTENT */}
         <div className="bg-white p-6 border border-stone-200 shadow-sm rounded-sm">
           <h2 className="text-xl font-bold text-[var(--theme-primary)] mb-4 border-b pb-2">2. Home Page (Hero Section)</h2>
           <div className="space-y-4">
@@ -79,7 +68,6 @@ export default async function SettingsPage() {
           </div>
         </div>
 
-        {/* SECTION 3: BRANDING (LOGO) */}
         <div className="bg-white p-6 border border-stone-200 shadow-sm rounded-sm">
           <h2 className="text-xl font-bold text-[var(--theme-primary)] mb-4 border-b pb-2">3. Branding & Logo</h2>
           <div className="bg-[var(--theme-bg)] p-4 border border-stone-200">
@@ -92,7 +80,6 @@ export default async function SettingsPage() {
           </div>
         </div>
 
-        {/* SECTION 4: FESTIVAL THEME */}
         <div className="bg-white p-6 border border-stone-200 shadow-sm rounded-sm">
           <h2 className="text-xl font-bold text-[var(--theme-primary)] mb-4 border-b pb-2">4. 🎨 Festival Theme Selector</h2>
           <p className="text-sm text-stone-500 mb-4">Change the website's colors instantly for festivals.</p>
