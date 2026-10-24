@@ -11,7 +11,6 @@ export type Theme = {
 };
 
 export async function getActiveTheme(): Promise<Theme> {
-  // 1. डिफ़ॉल्ट थीम (Fallback)
   const defaultTheme: Theme = {
     primary_color: '#2B2520',
     secondary_color: '#C05C3E',
@@ -23,7 +22,7 @@ export async function getActiveTheme(): Promise<Theme> {
   };
 
   try {
-    // 2. चेक करें कि एडमिन ने मैन्युअल ओवरराइड तो नहीं किया है
+    // 1. चेक करें कि एडमिन ने मैन्युअल थीम सेलेक्ट की है या नहीं
     const { data: settings } = await supabaseAdmin
       .from('hotel_settings')
       .select('manual_theme_override')
@@ -39,37 +38,30 @@ export async function getActiveTheme(): Promise<Theme> {
       if (manualTheme) return manualTheme;
     }
 
-    // 3. आज की तारीख (Asia/Kolkata)
-    const today = new Intl.DateTimeFormat('en-CA', {
-      timeZone: 'Asia/Kolkata',
-      year: 'numeric',
-      month: '2-digit',
-      day: '2-digit'
-    }).format(new Date()); // Output: YYYY-MM-DD
+    // 2. अगर मैन्युअल नहीं है, तो आज की तारीख (Asia/Kolkata) चेक करें
+    const today = new Intl.DateTimeFormat('en-CA', { 
+      timeZone: 'Asia/Kolkata', 
+      year: 'numeric', month: '2-digit', day: '2-digit' 
+    }).format(new Date());
 
-    // 4. कैलेंडर से चेक करें कि आज कोई त्योहार है या नहीं
+    // 3. कैलेंडर से चेक करें कि आज कोई त्योहार है या नहीं
     const { data: activeFestivals } = await supabaseAdmin
       .from('festival_calendar')
       .select('*, theme_settings(*)')
       .lte('start_date', today)
       .gte('end_date', today)
       .eq('is_active', true)
-      .order('priority', { ascending: false }) // जिसकी प्राथमिकता ज्यादा हो
+      .order('priority', { ascending: false })
       .limit(1);
 
     if (activeFestivals && activeFestivals.length > 0) {
       return activeFestivals[0].theme_settings;
     }
 
-    // 5. अगर कुछ नहीं मिला, तो डिफ़ॉल्ट दिखाएँ
-    const { data: defaultData } = await supabaseAdmin
-      .from('theme_settings')
-      .select('*')
-      .eq('name', 'default')
-      .single();
-      
+    // 4. अगर कुछ नहीं मिला, तो डिफ़ॉल्ट थीम दिखाएँ
+    const { data: defaultData } = await supabaseAdmin.from('theme_settings').select('*').eq('name', 'default').single();
     return defaultData || defaultTheme;
-
+    
   } catch (error) {
     console.error("Theme Engine Error:", error);
     return defaultTheme;

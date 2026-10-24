@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   title: 'Jagdish Dune Palace',
 };
 
-// ✅ यह लाइन जोड़ें ताकि बिल्ड के समय डेटाबेस क्रैश न हो
+// ✅ यह लाइन सबसे ज़रूरी है। यह Next.js को बताती है कि हर बार डेटाबेस से नया थीम उठाओ।
 export const dynamic = 'force-dynamic'; 
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
@@ -29,6 +29,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
           '--theme-text': theme?.text_color || '#2B2520',
         } as React.CSSProperties}
       >
+        {/* यहाँ डेकोरेशन लोड होगा (दीये, रंग, राखियां) */}
         <FestiveDecorations type={theme?.decoration_type || 'none'} />
         {children}
       </body>
