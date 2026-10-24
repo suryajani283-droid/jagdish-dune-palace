@@ -1,5 +1,13 @@
 @import "tailwindcss";
 
+:root {
+  /* Modern Desert Luxury Defaults */
+  --theme-primary: #2B2520; 
+  --theme-secondary: #C05C3E; /* Terracotta */
+  --theme-bg: #FDFBF7; /* Ivory/Sand */
+  --theme-text: #2B2520;
+}
+
 body {
   background-color: var(--theme-bg);
   color: var(--theme-text);
@@ -7,47 +15,7 @@ body {
   transition: background-color 0.8s ease;
 }
 
-/* Hero Overlay */
-.hero-overlay {
-  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.8) 100%);
-}
-
-/* Buttons */
-.btn-primary, .btn-luxury {
-  background-color: var(--theme-secondary);
-  color: var(--theme-primary);
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  padding: 1rem 2rem;
-  transition: all 0.3s ease;
-  border: 1px solid var(--theme-secondary);
-  display: inline-block;
-}
-.btn-primary:hover, .btn-luxury:hover {
-  background-color: var(--theme-primary);
-  color: var(--theme-secondary);
-  transform: translateY(-3px);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
-}
-
-.btn-outline-theme {
-  border: 2px solid var(--theme-primary);
-  color: var(--theme-primary);
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  padding: 1rem 2rem;
-  transition: all 0.3s ease;
-  display: inline-block;
-}
-.btn-outline-theme:hover {
-  background-color: var(--theme-primary);
-  color: var(--theme-secondary);
-  transform: translateY(-3px);
-}
-
-/* Dynamic Classes */
+/* Base Utility Classes */
 .bg-theme-bg { background-color: var(--theme-bg) !important; }
 .text-theme-primary { color: var(--theme-primary) !important; }
 .text-theme-secondary { color: var(--theme-secondary) !important; }
@@ -55,22 +23,63 @@ body {
 .bg-theme-secondary { background-color: var(--theme-secondary) !important; }
 
 /* =========================================
-   FESTIVAL ANIMATIONS
+   BUTTONS & CARDS (Premium Look)
+   ========================================= */
+.btn-primary, .btn-luxury {
+  background-color: var(--theme-secondary);
+  color: #fff;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: 1rem 2rem;
+  transition: all 0.3s ease;
+  border: 1px solid var(--theme-secondary);
+  display: inline-block;
+  box-shadow: 0 4px 15px rgba(192, 92, 62, 0.3);
+}
+.btn-primary:hover, .btn-luxury:hover {
+  background-color: var(--theme-primary);
+  border-color: var(--theme-primary);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(43, 37, 32, 0.4);
+}
+
+.btn-outline-theme {
+  border: 2px solid var(--theme-primary);
+  color: var(--theme-primary);
+  font-weight: 700;
+  text-transform: uppercase;
+  padding: 1rem 2rem;
+  transition: all 0.3s ease;
+  display: inline-block;
+}
+.btn-outline-theme:hover {
+  background-color: var(--theme-primary);
+  color: #fff;
+  transform: translateY(-3px);
+}
+
+.hero-overlay {
+  background: linear-gradient(to bottom, rgba(43, 37, 32, 0.4) 0%, rgba(43, 37, 32, 0.8) 100%);
+}
+
+/* =========================================
+   ANIMATIONS (Diwali, Holi, etc.)
    ========================================= */
 
-/* Diwali: Hanging Lanterns Swing */
+/* Diwali: Hanging Lanterns & Diyas */
 @keyframes swing {
   0% { transform: rotate(-8deg); }
   100% { transform: rotate(8deg); }
 }
-.hanging-lantern-wrapper {
+.hanging-wrapper {
   position: absolute;
   top: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
   transform-origin: top center;
-  animation: swing 3s infinite alternate ease-in-out;
+  animation: swing 4s infinite alternate ease-in-out;
   z-index: 100;
   pointer-events: none;
 }
@@ -78,9 +87,8 @@ body {
   width: 2px;
   height: 60px;
   background-color: #FFD700;
-  opacity: 0.7;
 }
-.hanging-lantern {
+.hanging-item {
   font-size: 2.5rem;
   filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.8));
 }
@@ -120,7 +128,7 @@ body {
 }
 .star-twinkle {
   position: fixed;
-  color: #FFD700;
+  color: #E5E5E5;
   animation: twinkle 2s infinite;
   z-index: 100;
   pointer-events: none;

@@ -1,23 +1,21 @@
 'use client';
 import { useEffect, useState } from 'react';
 
-export function FestiveDecorations({ theme }: { theme: string }) {
+export function FestiveDecorations({ type }: { type: string }) {
   const [elements, setElements] = useState<any[]>([]);
 
   useEffect(() => {
-    // Diwali: ऊपर से लटकते हुए लालटेन और दीये
-    if (theme === 'diwali') {
+    if (type === 'diwali_lights') {
       const newElements = Array.from({ length: 12 }).map((_, i) => ({
         id: i,
-        left: `${(i * 8) + Math.random() * 4}%`, // स्क्रीन पर समान दूरी पर फैलाएँ
+        left: `${(i * 8) + Math.random() * 4}%`,
         delay: `${Math.random() * 2}s`,
         text: Math.random() > 0.5 ? '🏮' : '🪔',
-        stringHeight: `${Math.random() * 60 + 40}px`, // डोरी की लंबाई अलग-अलग
+        stringHeight: `${Math.random() * 60 + 40}px`,
       }));
       setElements(newElements);
     } 
-    // Holi: रंगों की बौछार
-    else if (theme === 'holi') {
+    else if (type === 'holi_colors') {
       const colors = ['#FF007F', '#FFD700', '#00BFFF', '#32CD32', '#FF4500', '#9400D3'];
       const newElements = Array.from({ length: 40 }).map((_, i) => ({
         id: i,
@@ -30,8 +28,7 @@ export function FestiveDecorations({ theme }: { theme: string }) {
       }));
       setElements(newElements);
     } 
-    // Rakshabandhan: तैरती हुई राखियां
-    else if (theme === 'rakshabandhan') {
+    else if (type === 'rakhi') {
       const newElements = Array.from({ length: 15 }).map((_, i) => ({
         id: i,
         left: `${Math.random() * 100}%`,
@@ -40,8 +37,7 @@ export function FestiveDecorations({ theme }: { theme: string }) {
       }));
       setElements(newElements);
     } 
-    // New Year: चमकते सितारे
-    else if (theme === 'newyear') {
+    else if (type === 'stars') {
       const newElements = Array.from({ length: 50 }).map((_, i) => ({
         id: i,
         left: `${Math.random() * 100}%`,
@@ -50,63 +46,37 @@ export function FestiveDecorations({ theme }: { theme: string }) {
       }));
       setElements(newElements);
     }
-  }, [theme]);
+  }, [type]);
 
-  if (theme === 'default') return null;
+  if (type === 'none' || !type) return null;
 
   return (
     <div className="fixed inset-0 pointer-events-none overflow-hidden z-[100]">
-      
-      {/* Diwali: Hanging Lanterns */}
-      {theme === 'diwali' && elements.map((el) => (
-        <div
-          key={el.id}
-          className="hanging-lantern-wrapper"
-          style={{ left: el.left, animationDelay: el.delay }}
-        >
+      {type === 'diwali_lights' && elements.map((el) => (
+        <div key={el.id} className="hanging-wrapper" style={{ left: el.left, animationDelay: el.delay }}>
           <div className="hanging-string" style={{ height: el.stringHeight }}></div>
-          <div className="hanging-lantern">{el.text}</div>
+          <div className="hanging-item">{el.text}</div>
         </div>
       ))}
 
-      {/* Holi: Falling Colors */}
-      {theme === 'holi' && elements.map((el) => (
-        <div
-          key={el.id}
-          className="holi-color"
-          style={{
-            left: el.left,
-            animationDuration: el.animationDuration,
-            animationDelay: el.animationDelay,
-            backgroundColor: el.backgroundColor,
-            width: el.width,
-            height: el.height,
-          }}
-        />
+      {type === 'holi_colors' && elements.map((el) => (
+        <div key={el.id} className="holi-color" style={{
+            left: el.left, animationDuration: el.animationDuration, animationDelay: el.animationDelay,
+            backgroundColor: el.backgroundColor, width: el.width, height: el.height,
+        }} />
       ))}
 
-      {/* Rakshabandhan: Floating Rakhis */}
-      {theme === 'rakshabandhan' && elements.map((el) => (
-        <div
-          key={el.id}
-          className="rakhi-float"
-          style={{ left: el.left, top: el.top }}
-        >
+      {type === 'rakhi' && elements.map((el) => (
+        <div key={el.id} className="rakhi-float" style={{ left: el.left, top: el.top }}>
           {el.text}
         </div>
       ))}
 
-      {/* New Year: Twinkling Stars */}
-      {theme === 'newyear' && elements.map((el) => (
-        <div
-          key={el.id}
-          className="star-twinkle"
-          style={{ left: el.left, top: el.top, animationDelay: el.animationDelay }}
-        >
+      {type === 'stars' && elements.map((el) => (
+        <div key={el.id} className="star-twinkle" style={{ left: el.left, top: el.top, animationDelay: el.animationDelay }}>
           ✦
         </div>
       ))}
-
     </div>
   );
 }

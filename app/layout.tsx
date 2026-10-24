@@ -1,65 +1,82 @@
-import type { Metadata } from 'next';
-import { Playfair_Display, Lato } from 'next/font/google';
-import './globals.css';
-import { supabaseAdmin } from '@/lib/supabase/admin';
-import { FestiveDecorations } from '@/components/FestiveDecorations';
+'use client';
+import { useEffect, useState } from 'react';
 
-const playfair = Playfair_Display({ subsets: ['latin'], variable: '--font-playfair', display: 'swap' });
-const lato = Lato({ weight: ['300', '400', '700', '900'], subsets: ['latin'], variable: '--font-lato', display: 'swap' });
+export function FestiveDecorations({ type }: { type: string }) {
+  const [elements, setElements] = useState<any[]>([]);
 
-export const metadata: Metadata = {
-  title: 'Jagdish Dune Palace',
-};
+  useEffect(() => {
+    if (type === 'diwali_lights') {
+      const newElements = Array.from({ length: 12 }).map((_, i) => ({
+        id: i,
+        left: `${(i * 8) + Math.random() * 4}%`,
+        delay: `${Math.random() * 2}s`,
+        text: Math.random() > 0.5 ? '🏮' : '🪔',
+        stringHeight: `${Math.random() * 60 + 40}px`,
+      }));
+      setElements(newElements);
+    } 
+    else if (type === 'holi_colors') {
+      const colors = ['#FF007F', '#FFD700', '#00BFFF', '#32CD32', '#FF4500', '#9400D3'];
+      const newElements = Array.from({ length: 40 }).map((_, i) => ({
+        id: i,
+        left: `${Math.random() * 100}%`,
+        animationDuration: `${Math.random() * 3 + 2}s`,
+        animationDelay: `${Math.random() * 2}s`,
+        backgroundColor: colors[Math.floor(Math.random() * colors.length)],
+        width: `${Math.random() * 15 + 10}px`,
+        height: `${Math.random() * 15 + 10}px`,
+      }));
+      setElements(newElements);
+    } 
+    else if (type === 'rakhi') {
+      const newElements = Array.from({ length: 15 }).map((_, i) => ({
+        id: i,
+        left: `${Math.random() * 100}%`,
+        top: `${Math.random() * 80 + 10}%`,
+        text: Math.random() > 0.5 ? '🪢' : '🌼',
+      }));
+      setElements(newElements);
+    } 
+    else if (type === 'stars') {
+      const newElements = Array.from({ length: 50 }).map((_, i) => ({
+        id: i,
+        left: `${Math.random() * 100}%`,
+        top: `${Math.random() * 100}%`,
+        animationDelay: `${Math.random() * 2}s`,
+      }));
+      setElements(newElements);
+    }
+  }, [type]);
 
-export default async function RootLayout({ children }: { children: React.ReactNode }) {
-  // डेटाबेस से एक्टिव थीम लाएँ
-  const { data: settings } = await supabaseAdmin.from('hotel_settings').select('active_theme').eq('id', 1).single();
-  const theme = settings?.active_theme || 'default';
-
-  // थीम के हिसाब से शानदार रंग तय करें
-  let primary = '#0B1320'; // Default Royal Navy
-  let secondary = '#C5A059'; // Default Gold
-  let bg = '#F8F9FA'; // Default Light
-  let text = '#1A1A1A';
-
-  if (theme === 'diwali') {
-    primary = '#3E0606'; // Deep Maroon
-    secondary = '#FFD700'; // Bright Gold
-    bg = '#FFF4E6'; // Warm Cream
-    text = '#2B1A1A';
-  } else if (theme === 'holi') {
-    primary = '#2B1055'; // Deep Purple
-    secondary = '#FF007F'; // Bright Pink
-    bg = '#FDF0F5'; // Soft Pinkish White
-    text = '#1D3557';
-  } else if (theme === 'rakshabandhan') {
-    primary = '#4A1525'; // Deep Maroon
-    secondary = '#FF9933'; // Saffron
-    bg = '#FFF8F0'; // Light Cream
-    text = '#2B1A1A';
-  } else if (theme === 'newyear') {
-    primary = '#000000'; // Black
-    secondary = '#E5E5E5'; // Silver
-    bg = '#F9F9F9'; // White/Grey
-    text = '#111111';
-  }
+  if (type === 'none' || !type) return null;
 
   return (
-    <html lang="en" className={`${playfair.variable} ${lato.variable}`}>
-      <body 
-        suppressHydrationWarning
-        className="font-sans antialiased transition-colors duration-500"
-        style={{
-          '--theme-primary': primary,
-          '--theme-secondary': secondary,
-          '--theme-bg': bg,
-          '--theme-text': text,
-        } as React.CSSProperties}
-      >
-        {/* यहाँ हमने डेकोरेशन कंपोनेंट जोड़ दिया है ताकि स्क्रीन पर दिखे */}
-        <FestiveDecorations theme={theme} />
-        {children}
-      </body>
-    </html>
+    <div className="fixed inset-0 pointer-events-none overflow-hidden z-[100]">
+      {type === 'diwali_lights' && elements.map((el) => (
+        <div key={el.id} className="hanging-wrapper" style={{ left: el.left, animationDelay: el.delay }}>
+          <div className="hanging-string" style={{ height: el.stringHeight }}></div>
+          <div className="hanging-item">{el.text}</div>
+        </div>
+      ))}
+
+      {type === 'holi_colors' && elements.map((el) => (
+        <div key={el.id} className="holi-color" style={{
+            left: el.left, animationDuration: el.animationDuration, animationDelay: el.animationDelay,
+            backgroundColor: el.backgroundColor, width: el.width, height: el.height,
+        }} />
+      ))}
+
+      {type === 'rakhi' && elements.map((el) => (
+        <div key={el.id} className="rakhi-float" style={{ left: el.left, top: el.top }}>
+          {el.text}
+        </div>
+      ))}
+
+      {type === 'stars' && elements.map((el) => (
+        <div key={el.id} className="star-twinkle" style={{ left: el.left, top: el.top, animationDelay: el.animationDelay }}>
+          ✦
+        </div>
+      ))}
+    </div>
   );
 }

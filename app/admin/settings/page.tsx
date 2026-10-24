@@ -2,16 +2,21 @@ import { supabaseAdmin } from '@/lib/supabase/admin';
 import { updateSettings } from './actions';
 
 export default async function SettingsPage() {
+  // डेटाबेस से सेटिंग्स लाएँ
   const { data: settings } = await supabaseAdmin
     .from('hotel_settings')
     .select('*')
     .eq('id', 1)
     .single();
 
+  // फॉर्म सबमिट हैंडलर
   async function submitSettings(formData: FormData) {
     'use server';
     const res = await updateSettings(formData);
-    if (!res.success) throw new Error(res.error);
+    if (!res.success) {
+      // एरर आने पर उसे यूआरएल के जरिए दिखाना (सिंपल अप्रोच)
+      throw new Error(res.error);
+    }
   }
 
   return (
@@ -87,7 +92,7 @@ export default async function SettingsPage() {
           </div>
         </div>
 
-        {/* ✅ SECTION 4: FESTIVAL THEME (यह जोड़ दिया गया है) */}
+        {/* SECTION 4: FESTIVAL THEME */}
         <div className="bg-white p-6 border border-stone-200 shadow-sm rounded-sm">
           <h2 className="text-xl font-bold text-[var(--theme-primary)] mb-4 border-b pb-2">4. 🎨 Festival Theme Selector</h2>
           <p className="text-sm text-stone-500 mb-4">Change the website's colors instantly for festivals.</p>
@@ -99,7 +104,7 @@ export default async function SettingsPage() {
               defaultValue={settings?.active_theme || 'default'}
               className="w-full bg-[var(--theme-bg)] border border-stone-200 px-4 py-3 focus:outline-none focus:border-[var(--theme-secondary)] text-lg font-semibold"
             >
-              <option value="default">Normal (Royal Navy & Gold)</option>
+              <option value="default">Normal (Modern Desert Luxury)</option>
               <option value="diwali">🪔 Diwali (Diyas, Lights & Maroon/Gold)</option>
               <option value="holi">🌈 Holi (Falling Colors & Indigo/Pink)</option>
               <option value="rakshabandhan">🪢 Raksha Bandhan (Rakhis & Plum/Saffron)</option>
