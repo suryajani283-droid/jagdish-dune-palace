@@ -5,8 +5,7 @@ export const createClient = () => {
   const key = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 
   if (!url || !key) {
-    console.error("Supabase URL or Key is missing in browser!");
-    return createBrowserClient('https://placeholder.supabase.co', 'placeholder-key');
+    throw new Error("Supabase URL or Key is missing. Check Cloudflare Environment Variables.");
   }
 
   return createBrowserClient(url, key);
