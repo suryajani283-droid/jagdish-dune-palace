@@ -59,7 +59,15 @@ export async function updateSettings(formData: FormData) {
     const { error } = await supabaseAdmin
       .from('hotel_settings')
       .update({
-        hotel_name, phone, email, address, gstin, logo_url, hero_image_url, hero_title, hero_subtitle,
+        hotel_name, 
+        phone, 
+        email, 
+        address, 
+        gstin, 
+        logo_url, 
+        hero_image_url, 
+        hero_title, 
+        hero_subtitle,
         active_theme: active_theme_name,
         manual_theme_override
       })
@@ -72,6 +80,7 @@ export async function updateSettings(formData: FormData) {
     revalidatePath('/admin/settings');
     
     return { success: true };
+    
   } catch (err: any) {
     return { success: false, error: err.message };
   }

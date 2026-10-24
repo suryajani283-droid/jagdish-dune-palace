@@ -32,9 +32,10 @@ export function Navbar() {
   };
 
   return (
-    <header className="sticky top-0 z-50 bg-[var(--theme-bg)] border-b border-black/10 shadow-sm transition-colors duration-500">
+    <header className="sticky top-0 z-50 bg-[var(--theme-navbar)] border-b border-black/10 shadow-sm transition-colors duration-500">
+      
       {/* Top Bar */}
-      <div className="bg-[var(--theme-primary)] text-white/80 text-xs py-2 hidden md:block transition-colors duration-500">
+      <div className="bg-[var(--theme-primary)] text-white/90 text-xs py-2 hidden md:block transition-colors duration-500">
         <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
           <div className="flex gap-6 font-medium tracking-wide">
             <span>📞 +91 7599936000</span>
@@ -46,7 +47,11 @@ export function Navbar() {
 
       {/* Main Navbar */}
       <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+        
+        {/* ✅ Next Level Logo Section */}
         <Link href="/" className="flex items-center gap-4 group">
+          
+          {/* Logo Icon / Image */}
           {logoUrl ? (
             <div className="w-16 h-16 md:w-20 md:h-20 rounded-full overflow-hidden border-2 border-[var(--theme-secondary)] shadow-md shrink-0 bg-white group-hover:scale-105 transition-transform duration-300">
               <img src={logoUrl} alt="Logo" className="w-full h-full object-cover" />
@@ -56,17 +61,26 @@ export function Navbar() {
               J
             </div>
           )}
-          <div className="flex flex-col">
-            <span className="text-xl md:text-3xl font-serif font-bold text-[var(--theme-primary)] tracking-wide uppercase leading-tight transition-colors">
+
+          {/* ✅ Dynamic Royal Text Design */}
+          <div className="flex flex-col relative">
+            <span className="text-xl md:text-3xl font-serif font-bold text-[var(--theme-primary)] tracking-wide uppercase leading-none transition-colors duration-500">
               Jagdish Dune
             </span>
-            <span className="text-[10px] md:text-xs uppercase tracking-[0.4em] text-[var(--theme-secondary)] font-sans font-bold text-left mt-1">
-              Palace
-            </span>
+            
+            {/* नीचे का डिज़ाइन (सुनहरी लाइन और Palace) */}
+            <div className="flex items-center gap-2 mt-1.5">
+              <div className="h-[2px] flex-1 bg-[var(--theme-secondary)] opacity-80"></div>
+              <span className="text-[10px] md:text-xs uppercase tracking-[0.4em] text-[var(--theme-secondary)] font-sans font-black whitespace-nowrap transition-colors duration-500">
+                Palace
+              </span>
+              <div className="h-[2px] flex-1 bg-[var(--theme-secondary)] opacity-80"></div>
+            </div>
           </div>
         </Link>
         
-        <nav className="hidden lg:flex items-center gap-8 text-xs uppercase tracking-widest font-bold text-[var(--theme-text)]/70">
+        {/* Desktop Menu */}
+        <nav className="hidden lg:flex items-center gap-8 text-xs uppercase tracking-widest font-bold text-[var(--theme-text)]">
           <Link href="/" className="hover:text-[var(--theme-secondary)] transition-colors">Home</Link>
           <Link href="/rooms" className="hover:text-[var(--theme-secondary)] transition-colors">Rooms</Link>
           <Link href="/facilities" className="hover:text-[var(--theme-secondary)] transition-colors">Facilities</Link>
@@ -76,20 +90,44 @@ export function Navbar() {
           
           {user ? (
             <div className="flex items-center gap-4 ml-2 pl-4 border-l border-black/10">
-              <Link href="/my-booking" className="text-[var(--theme-primary)] flex items-center gap-1 hover:text-[var(--theme-secondary)]">👤 Profile</Link>
+              <Link href="/my-booking" className="text-[var(--theme-primary)] flex items-center gap-1 hover:text-[var(--theme-secondary)] transition-colors">👤 Profile</Link>
               <button onClick={handleLogout} className="text-red-500 hover:text-red-700 transition-colors">Logout</button>
             </div>
           ) : (
-            <Link href="/customer/login" className="text-[var(--theme-primary)] border border-black/20 px-3 py-1.5 rounded-sm hover:border-[var(--theme-secondary)]">Login</Link>
+            <Link href="/customer/login" className="text-[var(--theme-primary)] border border-black/20 px-3 py-1.5 rounded-sm hover:border-[var(--theme-secondary)] transition-colors">Login</Link>
           )}
 
           <Link href="/booking" className="btn-primary py-3 px-6 ml-2">Book Now</Link>
         </nav>
 
+        {/* Mobile Menu Button */}
         <button className="lg:hidden text-2xl text-[var(--theme-primary)]" onClick={() => setIsOpen(!isOpen)}>
           {isOpen ? '✕' : '☰'}
         </button>
       </div>
+
+      {/* Mobile Menu */}
+      {isOpen && (
+        <div className="lg:hidden bg-[var(--theme-navbar)] border-t border-black/10 px-6 py-6 flex flex-col gap-5 text-sm uppercase tracking-widest font-bold text-[var(--theme-text)] shadow-lg absolute w-full left-0">
+          <Link href="/" onClick={() => setIsOpen(false)}>Home</Link>
+          <Link href="/rooms" onClick={() => setIsOpen(false)}>Rooms</Link>
+          <Link href="/facilities" onClick={() => setIsOpen(false)}>Facilities</Link>
+          <Link href="/gallery" onClick={() => setIsOpen(false)}>Gallery</Link>
+          <Link href="/offers" onClick={() => setIsOpen(false)}>Offers</Link>
+          <Link href="/contact" onClick={() => setIsOpen(false)}>Contact</Link>
+          
+          {user ? (
+            <div className="flex flex-col gap-4 py-4 border-y border-black/10">
+              <Link href="/my-booking" onClick={() => setIsOpen(false)}>👤 My Profile</Link>
+              <button onClick={handleLogout} className="text-red-500 text-left">Logout</button>
+            </div>
+          ) : (
+            <Link href="/customer/login" onClick={() => setIsOpen(false)} className="py-4 border-y border-black/10">Login / Register</Link>
+          )}
+
+          <Link href="/booking" onClick={() => setIsOpen(false)} className="btn-primary text-center mt-2">Book Now</Link>
+        </div>
+      )}
     </header>
   );
 }
