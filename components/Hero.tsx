@@ -18,13 +18,18 @@ export function Hero({ settings }: { settings: any }) {
 
   return (
     <section className="relative h-[90vh] min-h-[600px] flex items-center justify-center text-center overflow-hidden w-full">
-      <imgsrc={bgImage} alt="Hotel Background" fill priority className="object-cover object-center z-0" />
       
-      {/* यहाँ डार्क ओवरले लगा है */}
+      {/* ✅ यहाँ स्पेस की गलती ठीक कर दी गई है (img src) */}
+      <img 
+        src={bgImage} 
+        alt="Hotel Background" 
+        className="absolute inset-0 w-full h-full object-cover object-center z-0" 
+      />
+      
+      {/* डार्क ओवरले */}
       <div className="absolute inset-0 hero-overlay z-10"></div>
 
       <div className="relative z-20 max-w-4xl px-6 text-white animate-fade-up w-full pt-16">
-        {/* हार्डकोडेड #C5A059 हटाकर डायनामिक रंग लगाया */}
         <p className="text-[var(--theme-secondary)] uppercase tracking-[0.5em] text-xs md:text-sm mb-4 font-bold">
           Welcome to Chohtan, Barmer
         </p>
