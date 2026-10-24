@@ -12,7 +12,7 @@
     "binding": "ASSETS"
   },
   "vars": {
-    "NEXT_PUBLIC_RAZORPAY_KEY_ID": "rzp_live_TqEClUEEX1JjRh"
+    "NEXT_PUBLIC_RAZORPAY_KEY_ID": "rzp_live_TqEClUEEX1JjRh",
     "NEXT_PUBLIC_SUPABASE_URL": "https://qocvgplnvpscrzsknjhq.supabase.co",
     "NEXT_PUBLIC_SUPABASE_ANON_KEY": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFvY3ZncGxudnBzY3J6c2tuamhxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTI0ODcwOTUsImV4cCI6MjEwODA2MzA5NX0.gzzceUzjjsgdGLUZ5gcRWG7iiZYk_zs-0StiPbTBvUY"
   }
